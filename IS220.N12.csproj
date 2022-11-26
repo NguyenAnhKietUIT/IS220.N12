@@ -232,6 +232,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BeachController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,8 +275,10 @@
     <Content Include="Assets\font-awesome\sprites\brands.svg" />
     <Content Include="Assets\font-awesome\sprites\regular.svg" />
     <Content Include="Assets\font-awesome\sprites\solid.svg" />
+    <Content Include="Assets\img\category\beach\Frame_98.png" />
     <Content Include="Assets\img\category\beach\havelock.jpg" />
     <Content Include="Assets\img\category\beach\image_25.png" />
+    <Content Include="Assets\img\category\beach\image_3.png" />
     <Content Include="Assets\img\category\beach\image_31.png" />
     <Content Include="Assets\img\category\beach\image_32.png" />
     <Content Include="Assets\img\category\beach\maldives.jpg" />
@@ -286,6 +289,10 @@
     <Content Include="Assets\img\category\iconic_city\city_2.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_3.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_4.png" />
+    <Content Include="Assets\img\category\iconic_city\Frame_100.png" />
+    <Content Include="Assets\img\category\iconic_city\image_1.png" />
+    <Content Include="Assets\img\category\mountain\Frame_99.png" />
+    <Content Include="Assets\img\category\mountain\image_4.png" />
     <Content Include="Assets\img\category\mountain\mountain_1.jpg" />
     <Content Include="Assets\img\category\mountain\mountain_2.jpg" />
     <Content Include="Assets\img\category\mountain\mountain_3.jpg" />
@@ -344,6 +351,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\custom\inspiration.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -846,6 +854,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Homepage.cshtml" />
     <Content Include="Views\Homepage\Index.cshtml" />
+    <Content Include="Views\Beach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

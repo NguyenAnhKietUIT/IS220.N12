@@ -1,0 +1,41 @@
+﻿.app__inspiration-item {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+    transition: transform ease-in 0.1s;
+    will-change: transform;
+}
+
+    .app__inspiration-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 2px 2px rgb(0 0 0 / 5%);
+    }
+
+.app__inspiration-item__img {
+    width: 100%;
+    border-radius: 24px;
+    padding: 12px 12px 4px;
+}
+
+.app__inspiration-item-info {
+    padding-left: 12px;
+}
+
+.app__inspiration-item-title {
+    color: #000;
+    font-size: 1.25em;
+}
+
+.app__inspiration-item-desc,
+.app__inspiration-item-view {
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.7);
+    display: block;
+}
+
+.app__inspiration-item-view {
+    padding-bottom: 12px;
+}
