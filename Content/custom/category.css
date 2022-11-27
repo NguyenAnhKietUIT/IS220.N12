@@ -6,10 +6,10 @@
     will-change: transform;
 }
 
-    .home-location-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 2px 2px rgb(0 0 0 / 5%);
-    }
+.home-location-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 2px 2px rgb(0 0 0 / 5%);
+}
 
 .home-location-item__img {
     height: 184px;

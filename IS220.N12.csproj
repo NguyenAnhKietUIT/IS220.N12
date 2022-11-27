@@ -233,7 +233,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BeachController.cs" />
+    <Compile Include="Controllers\CampingController.cs" />
+    <Compile Include="Controllers\CountrysideController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
+    <Compile Include="Controllers\IconicCityController.cs" />
+    <Compile Include="Controllers\MountainController.cs" />
+    <Compile Include="Controllers\TropicalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -285,10 +290,32 @@
     <Content Include="Assets\img\category\beach\mauritius.png" />
     <Content Include="Assets\img\category\beach\summer_bonanza.png" />
     <Content Include="Assets\img\category\beach\whitsunday_islands.jpg" />
+    <Content Include="Assets\img\category\camping\background_camping.jpg" />
+    <Content Include="Assets\img\category\camping\camping_1.png" />
+    <Content Include="Assets\img\category\camping\camping_2.jpg" />
+    <Content Include="Assets\img\category\camping\camping_3.jpg" />
+    <Content Include="Assets\img\category\camping\camping_4.jpg" />
+    <Content Include="Assets\img\category\camping\camping_5.jpg" />
+    <Content Include="Assets\img\category\camping\camping_6.jpg" />
+    <Content Include="Assets\img\category\camping\camping_7.jpg" />
+    <Content Include="Assets\img\category\camping\camping_8.jpg" />
+    <Content Include="Assets\img\category\country_side\background_countryside.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_1.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_2.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_3.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_4.png" />
+    <Content Include="Assets\img\category\country_side\countryside_5.png" />
+    <Content Include="Assets\img\category\country_side\countryside_6.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_7.jpg" />
+    <Content Include="Assets\img\category\country_side\countryside_8.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_1.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_2.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_3.jpg" />
     <Content Include="Assets\img\category\iconic_city\city_4.png" />
+    <Content Include="Assets\img\category\iconic_city\city_5.jpg" />
+    <Content Include="Assets\img\category\iconic_city\city_6.png" />
+    <Content Include="Assets\img\category\iconic_city\city_7.jpg" />
+    <Content Include="Assets\img\category\iconic_city\city_8.jpg" />
     <Content Include="Assets\img\category\iconic_city\Frame_100.png" />
     <Content Include="Assets\img\category\iconic_city\image_1.png" />
     <Content Include="Assets\img\category\mountain\Frame_99.png" />
@@ -297,6 +324,19 @@
     <Content Include="Assets\img\category\mountain\mountain_2.jpg" />
     <Content Include="Assets\img\category\mountain\mountain_3.jpg" />
     <Content Include="Assets\img\category\mountain\mountain_4.jpg" />
+    <Content Include="Assets\img\category\mountain\mountain_5.jpg" />
+    <Content Include="Assets\img\category\mountain\mountain_6.jpg" />
+    <Content Include="Assets\img\category\mountain\mountain_7.jpg" />
+    <Content Include="Assets\img\category\mountain\mountain_8.jpg" />
+    <Content Include="Assets\img\category\tropical\background_tropical.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_1.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_2.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_3.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_4.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_5.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_6.png" />
+    <Content Include="Assets\img\category\tropical\tropical_7.jpg" />
+    <Content Include="Assets\img\category\tropical\tropical_8.jpg" />
     <Content Include="Assets\img\Homepage\apartments.png" />
     <Content Include="Assets\img\Homepage\backgroud_theme.png" />
     <Content Include="Assets\img\Homepage\beach_1.jpg" />
@@ -856,12 +896,14 @@
     <Content Include="Views\Shared\_Homepage.cshtml" />
     <Content Include="Views\Homepage\Index.cshtml" />
     <Content Include="Views\Beach\Index.cshtml" />
+    <Content Include="Views\Mountain\Index.cshtml" />
+    <Content Include="Views\IconicCity\Index.cshtml" />
+    <Content Include="Views\Countryside\Index.cshtml" />
+    <Content Include="Views\Camping\Index.cshtml" />
+    <Content Include="Views\Tropical\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\img\category\camping\" />
-    <Folder Include="Assets\img\category\country_side\" />
-    <Folder Include="Assets\img\category\tropical\" />
     <Folder Include="Dao\" />
     <Folder Include="Models\" />
   </ItemGroup>
