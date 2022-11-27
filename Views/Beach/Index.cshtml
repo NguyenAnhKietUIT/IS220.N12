@@ -1,11 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Beach";
     Layout = "~/Views/Shared/_Homepage.cshtml";
 }
 
 @*Inspiration*@
 <link rel="stylesheet" href="~/Content/custom/inspiration.css" />
+
+@*Content*@
+<link rel="stylesheet" href="~/Content/custom/category.css" />
 
 <style>
     .app__header {
@@ -16,7 +19,9 @@
         background-image: url("./../Assets/img/category/beach/Frame_98.png");
     }
 
-    /* Beach content */
+    .app__category-item:first-child {
+        color: white;
+    }
 </style>
 
 <div class="container">
@@ -26,20 +31,20 @@
         </h3>
 
         <div class="row">
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/mauritius.png" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/mauritius.png" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Mauritius</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Mauritius</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.7
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -60,7 +65,6 @@
                     <div class="home-location-item__detail">
                         <ul>
                             <li>Tour combo with return airport transfer</li>
-                            <li>City Tour, Curious Corner}</li>
                             <li>Curious Corner</li>
                         </ul>
                     </div>
@@ -71,20 +75,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/havelock.jpg" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/havelock.jpg" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Havelock</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Havelock</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.9
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -116,20 +120,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/whitsunday_islands.jpg" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/whitsunday_islands.jpg" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Whitsunday Islands</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Whitsunday Islands</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.5
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -161,20 +165,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/mauritius.png" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/mauritius.png" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Mauritius</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Mauritius</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.7
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -214,20 +218,20 @@
         </h3>
 
         <div class="row">
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/image_25.png" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/image_25.png" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Havelock</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Havelock</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.9
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -259,20 +263,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/image_31.png" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/image_31.png" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Whitsunday Islands</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Whitsunday Islands</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.5
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -304,20 +308,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/image_32.png" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/image_32.png" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Maldives</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Maldives</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.9
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>
@@ -349,20 +353,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col l-3 m-6 c-6">
-                <a href="#" class="home-location-item">
-                    <img src="~/Assets/img/category/beach/whitsunday_islands.jpg" alt="" class="home-location-item__img">
+            <div class="col">
+                <a href="#" class="home-location-item d-block position-relative text-decoration-none bg-light">
+                    <img src="~/Assets/img/category/beach/whitsunday_islands.jpg" alt="" class="home-location-item__img w-100">
                     <i class="home-location-item__favourite fa-regular fa-heart"></i>
                     <i class="home-location-item__favourite--active fa-solid fa-heart"></i>
-                    <span class="home-location-item__title">
-                        <span class="home-location-item__name">Whitsunday Islands</span>
-                        <span class="home-location-item__rating">
-                            <i class="home-location-item__rating-icon fa-solid fa-star"></i>
+                    <span class="home-location-item__title d-flex justify-content-between">
+                        <span style="font-weight: 300;">Whitsunday Islands</span>
+                        <span>
+                            <i class="fa-solid fa-star"></i>
                             4.5
                         </span>
                     </span>
-                    <span class="home-location-item__desc">3Days 4 Nights</span>
-                    <div class="home-location-item__schedule">
+                    <span class="home-location-item__desc d-block mb-1">3Days 4 Nights</span>
+                    <div class="home-location-item__schedule d-flex justify-content-between text-center">
                         <span class="schedule__item">
                             <i class="schedule__item-icon fa-solid fa-plane-up"></i>
                             <figcaption>2 Flights</figcaption>

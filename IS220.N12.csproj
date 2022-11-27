@@ -351,6 +351,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\inspiration.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\PagedList.css" />
