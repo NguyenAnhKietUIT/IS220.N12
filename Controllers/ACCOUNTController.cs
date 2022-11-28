@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IS220.N12.Dao;
+using IS220.N12.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,23 @@ namespace IS220.N12.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string gmail, string password)
+        {
+            HotelBookingContext context = new HotelBookingContext();
+
+            if (ModelState.IsValid)
+            {
+                ACCOUNTDao dao = new ACCOUNTDao();
+                Session["Account"] = dao.Login(context, gmail, password);
+                return RedirectToAction("../Homepage/Index");
+            } else
+            {
+                ViewBag.error = "Login Failed!!!";
+                return RedirectToAction("Login");
+            }
         }
 
         // GET: ACCOUNT/Details/5
