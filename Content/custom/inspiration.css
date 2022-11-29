@@ -8,11 +8,10 @@
     transition: transform ease-in 0.1s;
     will-change: transform;
 }
-
-    .app__inspiration-item:hover {
+.app__inspiration-item:hover {
         transform: translateY(-2px);
         box-shadow: 0 0 2px 2px rgb(0 0 0 / 5%);
-    }
+}
 
 .app__inspiration-item__img {
     width: 100%;

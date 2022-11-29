@@ -1,5 +1,4 @@
-﻿using IS220.N12.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,27 +6,27 @@ using System.Web.Mvc;
 
 namespace IS220.N12.Controllers
 {
-    public class BeachController : Controller
+    public class CUSTOMERController : Controller
     {
-        // GET: Beach
+        // GET: CUSTOMER
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Beach/Details/5
+        // GET: CUSTOMER/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Beach/Create
+        // GET: CUSTOMER/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Beach/Create
+        // POST: CUSTOMER/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,13 +42,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        // GET: Beach/Edit/5
+        // GET: CUSTOMER/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Beach/Edit/5
+        // POST: CUSTOMER/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -65,13 +64,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        // GET: Beach/Delete/5
+        // GET: CUSTOMER/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Beach/Delete/5
+        // POST: CUSTOMER/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
