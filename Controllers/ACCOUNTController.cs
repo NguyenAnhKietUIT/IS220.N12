@@ -16,15 +16,42 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult signUpCustomer()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Login(string gmail, string password)
+        public ActionResult signUpCustomer(string username, string gmail, string password)
+        {
+            return View();
+        }
+
+        public ActionResult signUpProperty()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult signUpProperty(string username, string gmail, string password)
+        {
+            return View();
+        }
+
+        public ActionResult signIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult signIn(string gmail, string password)
         {
             HotelBookingContext context = new HotelBookingContext();
 
             if (ModelState.IsValid)
             {
                 ACCOUNTDao dao = new ACCOUNTDao();
-                Session["Account"] = dao.Login(context, gmail, password);
+                Session["Account"] = dao.signIn(context, gmail, password);
                 return RedirectToAction("../Homepage/Index");
             } else
             {

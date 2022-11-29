@@ -927,8 +927,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Homepage.cshtml" />
     <Content Include="Views\Homepage\Index.cshtml" />
     <Content Include="Views\Beach\Index.cshtml" />
@@ -937,15 +935,13 @@
     <Content Include="Views\Countryside\Index.cshtml" />
     <Content Include="Views\Camping\Index.cshtml" />
     <Content Include="Views\Tropical\Index.cshtml" />
-    <Content Include="Views\SignUpCus\Index.cshtml" />
-    <Content Include="Views\Shared\_HomepageSignUp.cshtml" />
-    <Content Include="Views\SignIn\Index.cshtml" />
-    <Content Include="Views\SignUp\Index.cshtml" />
-    <Content Include="Views\SignUp\SignUp_2.cshtml" />
+    <Content Include="Views\Shared\_LoginRegister.cshtml" />
+    <Content Include="Views\ACCOUNT\signIn.cshtml" />
+    <Content Include="Views\ACCOUNT\signUpCustomer.cshtml" />
+    <Content Include="Views\ACCOUNT\signUpProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ACCOUNT\" />
     <Folder Include="Views\CUSTOMER\" />
     <Folder Include="Views\HOTEL\" />
     <Folder Include="Views\RESERVATION\" />

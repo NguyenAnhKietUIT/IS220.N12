@@ -9,7 +9,7 @@ namespace IS220.N12.Dao
 {
     public class ACCOUNTDao
     {
-        public ACCOUNT Login(HotelBookingContext context, string gmail, string password)
+        public ACCOUNT signIn(HotelBookingContext context, string gmail, string password)
         {
             var resultQuery = context.ACCOUNTs.Where(a => a.GMAIL.Equals(gmail) 
                                                         && a.Passwords.Equals(password));

@@ -36,20 +36,20 @@ html {
 
 .plan-btn {
     text-decoration: none;
-    background-color: #6c94b9;
+    background-color: #597B9B;
     padding: 12px 20px;
     border-radius: 8px;
     color: var(--white-color);
 }
 
 .plan-btn:hover {
-    background-color: #1167b7;
+    color: white;
+    background-color: #115696;
 }
 
 /* Form */
 .form {
-    
-    width: 420px;
+    width: 360px;
     display: flex;
     flex-direction: column;
     padding: 60px; 

@@ -17,8 +17,7 @@
 
 .register__plan {
     height: 350px;
-    vertical-align: middle;
-    display: table-cell;
+    width: 340px;
     text-align: center;
 }
 
