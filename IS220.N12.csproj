@@ -312,6 +312,7 @@
     <Content Include="Assets\font-awesome\sprites\regular.svg" />
     <Content Include="Assets\font-awesome\sprites\solid.svg" />
     <Content Include="Assets\img\Background\Property_sign_in.png" />
+    <Content Include="Assets\img\Background\Sign_In.png" />
     <Content Include="Assets\img\google_icon.png" />
     <Content Include="Assets\img\Background\Sign_Up_page_for_customers.png" />
     <Content Include="Assets\img\category\beach\Frame_98.png" />
@@ -428,6 +429,7 @@
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\inspiration.css" />
+    <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\PagedList.css" />
