@@ -939,10 +939,10 @@
     <Content Include="Views\ACCOUNT\signIn.cshtml" />
     <Content Include="Views\ACCOUNT\signUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\signUpProperty.cshtml" />
+    <Content Include="Views\CUSTOMER\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CUSTOMER\" />
     <Folder Include="Views\HOTEL\" />
     <Folder Include="Views\RESERVATION\" />
   </ItemGroup>
