@@ -242,7 +242,6 @@
     <Compile Include="Controllers\HOTELController.cs" />
     <Compile Include="Controllers\IconicCityController.cs" />
     <Compile Include="Controllers\MountainController.cs" />
-    <Compile Include="Controllers\RESERVATIONController.cs" />
     <Compile Include="Controllers\TropicalController.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
     <Compile Include="Dao\CUSTOMERDao.cs" />
@@ -312,6 +311,9 @@
     <Content Include="Assets\font-awesome\sprites\brands.svg" />
     <Content Include="Assets\font-awesome\sprites\regular.svg" />
     <Content Include="Assets\font-awesome\sprites\solid.svg" />
+    <Content Include="Assets\img\Background\Property_sign_in.png" />
+    <Content Include="Assets\img\google_icon.png" />
+    <Content Include="Assets\img\Background\Sign_Up_page_for_customers.png" />
     <Content Include="Assets\img\category\beach\Frame_98.png" />
     <Content Include="Assets\img\category\beach\havelock.jpg" />
     <Content Include="Assets\img\category\beach\image_25.png" />
@@ -423,8 +425,10 @@
     <Content Include="Content\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\inspiration.css" />
+    <Content Include="Content\custom\sign_up.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -933,6 +937,11 @@
     <Content Include="Views\Countryside\Index.cshtml" />
     <Content Include="Views\Camping\Index.cshtml" />
     <Content Include="Views\Tropical\Index.cshtml" />
+    <Content Include="Views\SignUpCus\Index.cshtml" />
+    <Content Include="Views\Shared\_HomepageSignUp.cshtml" />
+    <Content Include="Views\SignIn\Index.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="Views\SignUp\SignUp_2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
