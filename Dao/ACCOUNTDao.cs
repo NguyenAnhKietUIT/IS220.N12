@@ -9,28 +9,28 @@ namespace IS220.N12.Dao
 {
     public class ACCOUNTDao
     {
-        public ACCOUNT signIn(HotelBookingContext context, string gmail, string password)
+        public ACCOUNT signIn(HotelBookingContext context, string username, string password)
         {
-            var resultQuery = context.ACCOUNTs.Where(a => a.GMAIL.Equals(gmail) 
+            var resultQuery = context.ACCOUNTs.Where(a => a.Username.Equals(username) 
                                                         && a.Passwords.Equals(password));
 
             if (resultQuery.Count() > 0)
             {
                 var result = from acc in context.ACCOUNTs
-                               where acc.GMAIL.Equals(gmail) && acc.Passwords.Equals(password)
+                               where acc.Username.Equals(username) && acc.Passwords.Equals(password)
                                select new
                                {
-                                   username = acc.Username,
+                                   gmail = acc.GMAIL,
                                    role = acc.ROLES
                                };
 
                 ACCOUNT account = new ACCOUNT();
                 account.Passwords = password;
-                account.GMAIL = gmail;
+                account.Username = username;
 
                 foreach (var kq in result)
                 {
-                    account.Username = kq.username;
+                    account.GMAIL = kq.gmail;
                     account.ROLES = kq.role;
                 }
 

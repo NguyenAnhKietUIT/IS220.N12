@@ -44,20 +44,26 @@ namespace IS220.N12.Controllers
         }
 
         [HttpPost]
-        public ActionResult signIn(string gmail, string password)
+        public ActionResult signIn(string username, string password)
         {
             HotelBookingContext context = new HotelBookingContext();
 
             if (ModelState.IsValid)
             {
                 ACCOUNTDao dao = new ACCOUNTDao();
-                Session["Account"] = dao.signIn(context, gmail, password);
-                return RedirectToAction("../Homepage/Index");
+                ACCOUNT temp = dao.signIn(context, username, password);
+                Session["Account"] = temp;
+
+                if (temp != null && temp.ROLES == 3)
+                {
+                    return RedirectToAction("../Homepage/Index");
+                }
             } else
             {
                 ViewBag.error = "Login Failed!!!";
                 return RedirectToAction("Login");
             }
+            return View();
         }
 
         // GET: ACCOUNT/Details/5

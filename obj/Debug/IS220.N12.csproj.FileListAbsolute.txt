@@ -68,8 +68,8 @@ D:\IS220.N12\IS220.N12\bin\System.Web.WebPages.xml
 D:\IS220.N12\IS220.N12\bin\System.Web.WebPages.Deployment.xml
 D:\IS220.N12\IS220.N12\bin\System.Web.WebPages.Razor.xml
 D:\IS220.N12\IS220.N12\bin\Antlr3.Runtime.pdb
-D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.csproj.AssemblyReference.cache
-D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.csproj.CoreCompileInputs.cache
 D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.csproj.CopyComplete
 D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.dll
 D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.pdb
+D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.csproj.AssemblyReference.cache
+D:\IS220.N12\IS220.N12\obj\Debug\IS220.N12.csproj.CoreCompileInputs.cache
