@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace IS220.N12.Controllers
@@ -24,16 +25,26 @@ namespace IS220.N12.Controllers
         [HttpPost]
         public ActionResult signUpCustomer(string[] values)
         {
+            HotelBookingContext context = new HotelBookingContext();
+            ACCOUNT account = new ACCOUNT();
+            account.Username = values[0];
+            account.GMAIL = values[1];
+            account.Passwords = values[2];
+            account.ROLES = Convert.ToInt32(values[3]);
+
+            context.ACCOUNTs.Add(account);
+            context.SaveChanges();
+
             try
             {
                 return Json(new
                 {
-                    msg = values[1]
+                    msg = "Successfull created account!!!"
                 });
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                return View();
             }
         }
 

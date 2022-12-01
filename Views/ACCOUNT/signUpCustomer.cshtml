@@ -102,8 +102,8 @@
         $('.form-btn').click(function (e) {
             e.preventDefault();
 
-            var ACCOUNT = [$('#username').val(), $('#email').val(), $('#password').val()];
-            console.log(typeof ACCOUNT)
+            var ACCOUNT = [$('#username').val(), $('#email').val(), $('#password').val(), 3];
+            
             $.ajax({
                 type: "POST",
                 url: "/ACCOUNT/signUpCustomer",
@@ -112,6 +112,10 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     alert(data.msg);
+                    $('#username').val("");
+                    $('#email').val("");
+                    $('#password').val("");
+                    $('#confirm-password').val("");
                 },
                 error: function () {
                     alert("Error occured!!")
