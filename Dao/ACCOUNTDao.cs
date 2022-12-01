@@ -40,5 +40,17 @@ namespace IS220.N12.Dao
             }
             return null;
         }
+
+        public void signUp(HotelBookingContext context, string[] values)
+        {
+            ACCOUNT account = new ACCOUNT();
+            account.Username = values[0];
+            account.GMAIL = values[1];
+            account.Passwords = values[2];
+            account.ROLES = Convert.ToInt32(values[3]);
+
+            context.ACCOUNTs.Add(account);
+            context.SaveChanges();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IS220.N12.Dao;
 using IS220.N12.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,14 +27,8 @@ namespace IS220.N12.Controllers
         public ActionResult signUpCustomer(string[] values)
         {
             HotelBookingContext context = new HotelBookingContext();
-            ACCOUNT account = new ACCOUNT();
-            account.Username = values[0];
-            account.GMAIL = values[1];
-            account.Passwords = values[2];
-            account.ROLES = Convert.ToInt32(values[3]);
-
-            context.ACCOUNTs.Add(account);
-            context.SaveChanges();
+            ACCOUNTDao dao = new ACCOUNTDao();
+            dao.signUp(context, values);
 
             try
             {
@@ -54,9 +49,24 @@ namespace IS220.N12.Controllers
         }
 
         [HttpPost]
-        public ActionResult signUpProperty(string username, string gmail, string password)
+        public ActionResult signUpProperty(string[] values)
         {
-            return View();
+
+            HotelBookingContext context = new HotelBookingContext();
+            ACCOUNTDao dao = new ACCOUNTDao();
+            dao.signUp(context, values);
+
+            try
+            {
+                return Json(new
+                {
+                    msg = "Successfull created account!!!"
+                });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult signIn()
