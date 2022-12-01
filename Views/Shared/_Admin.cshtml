@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="nav-action">
+            <div class="nav__header">
+                <img src="../assets/img/logo.png" alt="Logo" class="nav__header-img">
+
+                <span class="app__header-name">Admin page</span>
+            </div>
+
+            <div class="nav__content">
+                <ul class="nav__content-list">
+                    <li>
+                        <a href="./Admin_Dashboard.html" class="nav__content-list-item">
+                            <i class="fa-brands fa-unsplash"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Admin_Evaluate.html" class="nav__content-list-item active">
+                            <i class="fa-solid fa-star"></i>
+                            <span>Evaluate</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Admin_Analytics.html" class="nav__content-list-item">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Admin_Message.html" class="nav__content-list-item">
+                            <i class="fa-solid fa-message"></i>
+                            <span>Message</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <form action="" method="POST" class="nav__content-list-item">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <input type="submit" name="sign-out" class="sign-out" value="Sign out">
+                </form>
+            </div>
+        </nav>
+
+        <!--Start header-->
+        <header class="topbar-nav">
+            <nav class="navbar navbar-expand fixed-top">
+                <ul class="navbar-nav me-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link toggle-menu" href="javascript:void();">
+                            <i class="menu-icon fa-solid fa-bars"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="search-bar">
+                            <input type="text" class="form-control" placeholder="Enter keywords">
+                            <a href="javascript:void();">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav align-items-center right-nav-link">
+                    <li class="nav-item dropdown-lg">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                           href="javascript:void();">
+                            <i class="fa-solid fa-envelope-open"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown-lg">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                           href="javascript:void();">
+                            <i class="fa-regular fa-bell"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                            <span class="user-profile">
+                                <img src="../assets/img/others/anhkiet.jpg" class="img-circle" alt="user avatar">
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-item user-details">
+                                <a href="javaScript:void();">
+                                    <div class="media">
+                                        <div class="avatar">
+                                            <img class="align-self-start me-3" src="../assets/img/others/anhkiet.jpg"
+                                                 alt="user avatar">
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="mt-2 user-title">Nguyen Anh Kiet</h6>
+                                            <p class="user-subtitle">20521498@gm.uit.edu.vn</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <i class="fa-solid fa-inbox me-2"></i>
+                                Inbox
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <i class="fa-solid fa-user me-2"></i>
+                                Account
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <i class="fa-solid fa-sliders me-2"></i>
+                                Setting
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <i class="fa-solid fa-power-off me-2"></i>
+                                Logout
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!--End header-->
+
+        <div class="clearfix"></div>
+
+        <!-- Start content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- End content -->
+        <!--Start Back To Top Button-->
+        <a href="javaScript:void();" class="back-to-top">
+            <i class="fa-solid fa-angles-up"></i>
+        </a>
+        <!--End Back To Top Button-->
+        <!--Start footer-->
+        <footer class="footer">
+            <div class="text-center">
+                Copyright © 2022 by Alien
+            </div>
+        </footer>
+        <!--End footer-->
+        <!--start color switcher-->
+        <div class="right-sidebar">
+            <div class="switcher-icon">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="right-sidebar-content">
+                <p>Galaxy Background</p>
+                <hr>
+
+                <ul class="switcher">
+                    <li id="theme1"></li>
+                    <li id="theme2"></li>
+                    <li id="theme3"></li>
+                    <li id="theme4"></li>
+                    <li id="theme5"></li>
+                    <li id="theme6"></li>
+                </ul>
+
+                <p>Gradient Background</p>
+                <hr>
+
+                <ul class="switcher">
+                    <li id="theme7"></li>
+                    <li id="theme8"></li>
+                    <li id="theme9"></li>
+                    <li id="theme10"></li>
+                    <li id="theme11"></li>
+                    <li id="theme12"></li>
+                    <li id="theme13"></li>
+                    <li id="theme14"></li>
+                    <li id="theme15"></li>
+                </ul>
+            </div>
+        </div>
+        <!--end color switcher-->
+    </div>
+
+    <script src="../js/Admin.js"></script>
+</body>
+</html>
+
+<script>
+    function changeBackground() {
+        $(".switcher-icon").on("click", function (e) {
+            e.preventDefault();
+            $(".right-sidebar").toggleClass("right-toggled");
+        });
+
+        $('#theme1').click(theme1);
+        $('#theme2').click(theme2);
+        $('#theme3').click(theme3);
+        $('#theme4').click(theme4);
+        $('#theme5').click(theme5);
+        $('#theme6').click(theme6);
+        $('#theme7').click(theme7);
+        $('#theme8').click(theme8);
+        $('#theme9').click(theme9);
+        $('#theme10').click(theme10);
+        $('#theme11').click(theme11);
+        $('#theme12').click(theme12);
+        $('#theme13').click(theme13);
+        $('#theme14').click(theme14);
+        $('#theme15').click(theme15);
+
+        function theme1() {
+            $('body').attr('class', 'bg-theme bg-theme1');
+        }
+
+        function theme2() {
+            $('body').attr('class', 'bg-theme bg-theme2');
+        }
+
+        function theme3() {
+            $('body').attr('class', 'bg-theme bg-theme3');
+        }
+
+        function theme4() {
+            $('body').attr('class', 'bg-theme bg-theme4');
+        }
+
+        function theme5() {
+            $('body').attr('class', 'bg-theme bg-theme5');
+        }
+
+        function theme6() {
+            $('body').attr('class', 'bg-theme bg-theme6');
+        }
+
+        function theme7() {
+            $('body').attr('class', 'bg-theme bg-theme7');
+        }
+
+        function theme8() {
+            $('body').attr('class', 'bg-theme bg-theme8');
+        }
+
+        function theme9() {
+            $('body').attr('class', 'bg-theme bg-theme9');
+        }
+
+        function theme10() {
+            $('body').attr('class', 'bg-theme bg-theme10');
+        }
+
+        function theme11() {
+            $('body').attr('class', 'bg-theme bg-theme11');
+        }
+
+        function theme12() {
+            $('body').attr('class', 'bg-theme bg-theme12');
+        }
+
+        function theme13() {
+            $('body').attr('class', 'bg-theme bg-theme13');
+        }
+
+        function theme14() {
+            $('body').attr('class', 'bg-theme bg-theme14');
+        }
+
+        function theme15() {
+            $('body').attr('class', 'bg-theme bg-theme15');
+        }
+    }
+
+    function handleHeader() {
+        $(function () {
+            "use strict";
+
+            $(".toggle-menu").on("click", function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+
+            $(document).ready(function () {
+                $(window).on("scroll", function () {
+                    if ($(this).scrollTop() > 60) {
+                        $('.topbar-nav .navbar').addClass('bg-dark');
+                    } else {
+                        $('.topbar-nav .navbar').removeClass('bg-dark');
+                    }
+                });
+
+            });
+
+            $(document).ready(function () {
+                $(window).on("scroll", function () {
+                    if ($(this).scrollTop() > 300) {
+                        $('.back-to-top').fadeIn();
+                    } else {
+                        $('.back-to-top').fadeOut();
+                    }
+                });
+
+                $('.back-to-top').on("click", function () {
+                    $("html, body").animate({ scrollTop: 0 }, 200);
+                    return false;
+                });
+            });
+
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            $('.right-nav-link .nav-item:last-child').on('click', function () {
+                $('.dropdown-menu').toggleClass('show');
+            });
+
+            $('.dropdown-menu').on('click', function (e) {
+                e.stopPropagation();
+            })
+        })
+    }
+
+    function activeAccount() {
+        $(document).ready(function () {
+            $(".btn.btn-info:not('.inactive')").prop('disabled', true);
+
+            $('.inactive').click(function () {
+                $(this).removeClass('.inactive');
+
+                $(this).parent().parent().find("td").eq(3).text("Active");
+                $(this).attr('disabled', true);
+            })
+        })
+    }
+
+    changeBackground();
+
+    handleHeader();
+
+    activeAccount();
+</script>
