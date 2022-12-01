@@ -6,6 +6,7 @@
 @*Inspiration*@
 <link rel="stylesheet" href="~/Content/custom/sign_up.css" />
 <link rel="stylesheet" href="~/Content/custom/base.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
     body {
@@ -84,7 +85,7 @@
 
             <span class="register__already">
                 Already have an account?
-                <a href="" class="register__already-link">Sign in</a>
+                <a href="signIn" class="register__already-link">Sign in</a>
             </span>
         </form>
 
@@ -95,3 +96,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.form-btn').click(function (e) {
+            e.preventDefault();
+
+            var ACCOUNT = [$('#username').val(), $('#email').val(), $('#password').val()];
+            console.log(typeof ACCOUNT)
+            $.ajax({
+                type: "POST",
+                url: "/ACCOUNT/signUpCustomer",
+                data: JSON.stringify(ACCOUNT),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert(data.msg);
+                },
+                error: function () {
+                    alert("Error occured!!")
+                }
+            });
+        })
+    })
+</script>

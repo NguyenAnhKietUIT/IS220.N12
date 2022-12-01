@@ -22,9 +22,19 @@ namespace IS220.N12.Controllers
         }
 
         [HttpPost]
-        public ActionResult signUpCustomer(string username, string gmail, string password)
+        public ActionResult signUpCustomer(string[] values)
         {
-            return View();
+            try
+            {
+                return Json(new
+                {
+                    msg = values[1]
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public ActionResult signUpProperty()

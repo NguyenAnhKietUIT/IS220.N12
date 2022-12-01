@@ -1,5 +1,5 @@
 ﻿@{
-    var customer = Session["Customer"] as IS220.N12.Models.CUSTOMER;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 <!DOCTYPE html>
 
@@ -31,9 +31,9 @@
                         <a href="#" class="app__nav-item-link">Contacts</a>
                     </li>
                     <li class="app__nav-item">
-@if (customer != null)
+@if (account != null)
 {
-                        <a href="~/CUSTOMER/Index" class="app__nav-item-link">@customer.CustomerName</a>
+                        <a href="~/CUSTOMER/Index" class="app__nav-item-link">@account.Username</a>
 } else
 {
                         <a href="~/ACCOUNT/signUpCustomer" class="app__nav-item-link">Sign Up</a>
