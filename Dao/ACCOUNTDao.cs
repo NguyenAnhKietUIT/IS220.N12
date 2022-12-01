@@ -20,6 +20,7 @@ namespace IS220.N12.Dao
                                where acc.Username.Equals(username) && acc.Passwords.Equals(password)
                                select new
                                {
+                                   id = acc.AccountID,
                                    gmail = acc.GMAIL,
                                    role = acc.ROLES
                                };
@@ -30,6 +31,7 @@ namespace IS220.N12.Dao
 
                 foreach (var kq in result)
                 {
+                    account.AccountID = kq.id;
                     account.GMAIL = kq.gmail;
                     account.ROLES = kq.role;
                 }
