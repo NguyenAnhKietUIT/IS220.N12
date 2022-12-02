@@ -312,6 +312,13 @@
     <Content Include="Assets\font-awesome\sprites\brands.svg" />
     <Content Include="Assets\font-awesome\sprites\regular.svg" />
     <Content Include="Assets\font-awesome\sprites\solid.svg" />
+    <Content Include="Assets\img\Admin\1.png" />
+    <Content Include="Assets\img\Admin\2.png" />
+    <Content Include="Assets\img\Admin\3.png" />
+    <Content Include="Assets\img\Admin\4.png" />
+    <Content Include="Assets\img\Admin\5.png" />
+    <Content Include="Assets\img\Admin\6.png" />
+    <Content Include="Assets\img\Admin\admin_background.png" />
     <Content Include="Assets\img\anhkiet.jpg" />
     <Content Include="Assets\img\Background\Property_sign_in.png" />
     <Content Include="Assets\img\Background\Sign_In.png" />
