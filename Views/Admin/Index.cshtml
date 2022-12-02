@@ -205,6 +205,7 @@
             success: function (data) {
                 let html = "";
                 for (let i = 0; i < data.hotels.length; i++) {
+                    console.log(i)
                     html += `
                             <tr>
                                 <td>${data.hotels[i].HotelName}</td>
@@ -216,6 +217,18 @@
                         html += `
                                     <td>Hotel</td>
                                 `
+                    } else if (data.hotels[i].TypeOfHotel == 2) {
+                        html += `
+                                    <td>Apartment</td>
+                                `
+                    } else if (data.hotels[i].TypeOfHotel == 3) {
+                        html += `
+                                    <td>Resort</td>
+                                `
+                    } else {
+                        html += `
+                                    <td>Homestay</td>
+                                `
                     }
 
                     html += `
@@ -225,6 +238,8 @@
                             </tr>
                             `
                 }
+
+                $('#table-property').append(html);
             },
             error: function () {
                 alert("Error occured!!")
