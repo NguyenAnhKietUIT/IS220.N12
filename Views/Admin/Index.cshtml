@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/custom/admin.css" />
+
+<div class="card m-3">
+    <div class="card-content">
+        <div class="row m-0">
+            <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
+                <span class="card-box-title">Total Customer</span>
+                <span class="card-box-quantity">5000+</span>
+            </div>
+            <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
+                <span class="card-box-title">Total Hotel</span>
+                <span class="card-box-quantity">234+</span>
+            </div>
+            <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
+                <span class="card-box-title">Total Reservation</span>
+                <span class="card-box-quantity">1440+</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <!-- Account -->
+        <div class="card ms-3 me-3">
+            <div class="card-header">Account Details</div>
+            <div class="card-content">
+                <table class="table mb-2">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr>
+                        <td>anhkiet</td>
+                        <td>anhkiet@gmail.com</td>
+                        <td>Customer</td>
+                    </tr>
+                    <tr>
+                        <td>mynhung</td>
+                        <td>mynhung@gmail.com</td>
+                        <td>Customer</td>
+                    </tr>
+                    <tr>
+                        <td>thaohong</td>
+                        <td>thaohong@gmail.com</td>
+                        <td>Customer</td>
+                    </tr>
+                    <tr>
+                        <td>thanhphat</td>
+                        <td>thanhphat@gmail.com</td>
+                        <td>Property</td>
+                    </tr>
+                    <tr>
+                        <td>hoailinh</td>
+                        <td>hoailinh@gmail.com</td>
+                        <td>Property</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Customer -->
+        <div class="card ms-3 me-3">
+            <div class="card-header">Customer Details</div>
+            <div class="card-content">
+                <table id="table-customer" class="table mb-2">
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Phone</th>
+                        <th>Sex</th>
+                        <th>Status</th>
+                        <th>Avatar</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Anh Kiet</td>
+                        <td>0348630164</td>
+                        <td>Male</td>
+                        <td>Inactive</td>
+                        <td>
+                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
+                        </td>
+                        <td>
+                            <button class="btn btn-info inactive">Active account</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tran Thi My Nhung</td>
+                        <td>0368909827</td>
+                        <td>Female</td>
+                        <td>Active</td>
+                        <td>
+                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
+                        </td>
+                        <td>
+                            <button class="btn btn-info">Active account</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Thi Tuyet Ngan</td>
+                        <td>0777842792</td>
+                        <td>Female</td>
+                        <td>Inactive</td>
+                        <td>
+                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
+                        </td>
+                        <td>
+                            <button class="btn btn-info inactive">Active account</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Property -->
+        <div class="card ms-3 me-3">
+            <div class="card-header">Property Details</div>
+            <div class="card-content">
+                <table class="table mb-2">
+                    <tr>
+                        <th>Hotel Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Type</th>
+                        <th>Avatar</th>
+                    </tr>
+                    <tr>
+                        <td>Sao Mai</td>
+                        <td>Dong Thap</td>
+                        <td>0874516335</td>
+                        <td>Hotel</td>
+                        <td>
+                            <img src="~/Assets/img/category/iconic_city/city_1.jpg" alt="Avatar">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rosewood</td>
+                        <td>Tuscan</td>
+                        <td>0874516335</td>
+                        <td>Resort</td>
+                        <td>
+                            <img src="~/Assets/img/category/iconic_city/city_1.jpg" alt="Avatar">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

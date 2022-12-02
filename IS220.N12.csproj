@@ -234,6 +234,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ACCOUNTController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BeachController.cs" />
     <Compile Include="Controllers\CampingController.cs" />
     <Compile Include="Controllers\CountrysideController.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Assets\font-awesome\sprites\brands.svg" />
     <Content Include="Assets\font-awesome\sprites\regular.svg" />
     <Content Include="Assets\font-awesome\sprites\solid.svg" />
+    <Content Include="Assets\img\anhkiet.jpg" />
     <Content Include="Assets\img\Background\Property_sign_in.png" />
     <Content Include="Assets\img\Background\Sign_In.png" />
     <Content Include="Assets\img\google_icon.png" />
@@ -426,6 +428,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\custom\admin.css" />
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\inspiration.css" />
@@ -942,6 +945,8 @@
     <Content Include="Views\ACCOUNT\signUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\signUpProperty.cshtml" />
     <Content Include="Views\CUSTOMER\Index.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
