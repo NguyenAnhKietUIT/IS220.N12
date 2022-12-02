@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav__content-list-item active">
+                        <a href="#" class="nav__content-list-item">
                             <i class="fa-solid fa-star"></i>
                             <span>Evaluate</span>
                         </a>
@@ -99,12 +103,15 @@
                                 <a href="javaScript:void();">
                                     <div class="media">
                                         <div class="avatar">
-                                            <img class="align-self-start me-3" src="../assets/img/others/anhkiet.jpg"
+                                            <img class="align-self-start me-3" src="~/Assets/img/anhkiet.jpg"
                                                  alt="user avatar">
                                         </div>
                                         <div class="media-body">
-                                            <h6 class="mt-2 user-title">Nguyen Anh Kiet</h6>
-                                            <p class="user-subtitle">20521498@gm.uit.edu.vn</p>
+@if (account != null)
+{
+                                            <h6 class="mt-2 user-title">@account.Username</h6>
+                                            <p class="user-subtitle">@account.GMAIL</p>
+}
                                         </div>
                                     </div>
                                 </a>

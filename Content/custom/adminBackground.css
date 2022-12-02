@@ -1,0 +1,69 @@
+﻿body {
+    background-image: url(../../Assets/img/Admin/admin_background.png);
+}
+
+#theme1 {
+    background-image: url(../../Assets/img/Admin/1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+#theme2 {
+    background-image: url(../../Assets/img/Admin/2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+#theme3 {
+    background-image: url(../../Assets/img/Admin/3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+#theme4 {
+    background-image: url(../../Assets/img/Admin/4.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+#theme5 {
+    background-image: url(../../Assets/img/Admin/5.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+#theme6 {
+    background-image: url(../../Assets/img/Admin/6.png);
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-image .3s;
+}
+
+body.bg-theme1 {
+    background-image: url(../../Assets/img/Admin/1.png);
+}
+
+body.bg-theme2 {
+    background-image: url(../../Assets/img/Admin/2.png);
+}
+
+body.bg-theme3 {
+    background-image: url(../../Assets/img/Admin/3.png);
+}
+
+body.bg-theme4 {
+    background-image: url(../../Assets/img/Admin/4.png);
+}
+
+body.bg-theme5 {
+    background-image: url(../../Assets/img/Admin/5.png);
+}
+
+body.bg-theme6 {
+    background-image: url(../../Assets/img/Admin/6.png);
+}

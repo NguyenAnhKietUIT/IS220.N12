@@ -436,6 +436,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\custom\admin.css" />
+    <Content Include="Content\custom\adminBackground.css" />
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\inspiration.css" />

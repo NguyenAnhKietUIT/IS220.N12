@@ -91,7 +91,7 @@ namespace IS220.N12.Controllers
                     switch (account.ROLES)
                     {
                         case 1:
-                            return View();
+                            return RedirectToAction("../Admin/Index");
                         case 2:
                             var result2 = from h in context.HOTELs
                                           where h.AccountID == account.AccountID
