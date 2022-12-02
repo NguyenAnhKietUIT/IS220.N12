@@ -126,7 +126,7 @@
         <div class="card ms-3 me-3">
             <div class="card-header">Property Details</div>
             <div class="card-content">
-                <table class="table mb-2">
+                <table id="table-property" class="table mb-2">
                     <tr>
                         <th>Hotel Name</th>
                         <th>Address</th>
@@ -162,6 +162,7 @@
     $(document).ready(function () {
         $('.nav__content-list li:first-child .nav__content-list-item').addClass('active');
 
+        //Overall
         $.ajax({
             type: "GET",
             url: "/Admin/Overall",
@@ -170,6 +171,19 @@
                 $('.js-customer').text(data.totalCustomer);
                 $('.js-hotel').text(data.totalHotel);
                 $('.js-reservation').text(data.totalReservation);
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+
+        //Customer
+        $.ajax({
+            type: "GET",
+            url: "/Admin/ShowCustomer",
+            data: {},
+            success: function (data) {
+                
             },
             error: function () {
                 alert("Error occured!!")
