@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS220.N12.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,29 @@ namespace IS220.N12.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            var accounts = new HotelBookingContext().ACCOUNTs.ToList();
+            return View(accounts);
+        }
+
+        //GET Overall
+        public ActionResult Overall()
+        {
+            HotelBookingContext context= new HotelBookingContext();
+
+            var totalCustomer = (from c in context.CUSTOMERs
+                        select c.CustomerID).Count();
+
+            var totalHotel = (from h in context.HOTELs
+                                 select h.HotelID).Count();
+
+            var totalReservation =  (from r in context.RESERVATIONs
+                                     select r.ReservationID).Count();
+
+            return Json(new {
+                totalCustomer,
+                totalHotel,
+                totalReservation
+            }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Admin/Details/5

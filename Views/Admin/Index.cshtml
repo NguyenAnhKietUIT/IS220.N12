@@ -1,29 +1,30 @@
-﻿@{
+﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
+
+@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/custom/admin.css" />
 <link rel="stylesheet" href="~/Content/custom/adminBackground.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<style>
-
-</style>
+<style></style>
 
 <div class="card m-3">
     <div class="card-content">
         <div class="row m-0">
             <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
                 <span class="card-box-title">Total Customer</span>
-                <span class="card-box-quantity">5000+</span>
+                <span class="card-box-quantity js-customer">5000+</span>
             </div>
             <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
                 <span class="card-box-title">Total Hotel</span>
-                <span class="card-box-quantity">234+</span>
+                <span class="card-box-quantity js-hotel">234+</span>
             </div>
             <div class="col col-xl-4 pt-2 pb-2 d-flex flex-column justify-content-around align-items-center text-white">
                 <span class="card-box-title">Total Reservation</span>
-                <span class="card-box-quantity">1440+</span>
+                <span class="card-box-quantity js-reservation">1440+</span>
             </div>
         </div>
     </div>
@@ -41,31 +42,29 @@
                         <th>Email</th>
                         <th>Type</th>
                     </tr>
-                    <tr>
-                        <td>anhkiet</td>
-                        <td>anhkiet@gmail.com</td>
-                        <td>Customer</td>
-                    </tr>
-                    <tr>
-                        <td>mynhung</td>
-                        <td>mynhung@gmail.com</td>
-                        <td>Customer</td>
-                    </tr>
-                    <tr>
-                        <td>thaohong</td>
-                        <td>thaohong@gmail.com</td>
-                        <td>Customer</td>
-                    </tr>
-                    <tr>
-                        <td>thanhphat</td>
-                        <td>thanhphat@gmail.com</td>
-                        <td>Property</td>
-                    </tr>
-                    <tr>
-                        <td>hoailinh</td>
-                        <td>hoailinh@gmail.com</td>
-                        <td>Property</td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GMAIL)
+                            </td>
+                            @if (item.ROLES == 1)
+                            {
+                                <td>Admin</td>
+                            }
+                            else if (item.ROLES == 2)
+                            {
+                                <td>Property</td>
+                            }
+                            else
+                            {
+                                <td>Customer</td>
+                            }
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
@@ -158,3 +157,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.nav__content-list li:first-child .nav__content-list-item').addClass('active');
+
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Overall",
+            data: {},
+            success: function (data) {
+                $('.js-customer').text(data.totalCustomer);
+                $('.js-hotel').text(data.totalHotel);
+                $('.js-reservation').text(data.totalReservation);
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+    })
+</script>
