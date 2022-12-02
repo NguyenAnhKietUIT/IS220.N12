@@ -18,6 +18,13 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        // Check username exists
+        public JsonResult IsExists(string UserName)
+        {
+            HotelBookingContext context = new HotelBookingContext();
+            return Json(!context.ACCOUNTs.Any(x => x.Username == UserName), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult signUpCustomer()
         {
             return View();

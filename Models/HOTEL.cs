@@ -27,6 +27,7 @@ namespace IS220.N12.Models
         [StringLength(255)]
         public string Address_Hotel { get; set; }
 
+        [Phone]
         public int Phone_Hotel { get; set; }
 
         [Required]
