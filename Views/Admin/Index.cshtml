@@ -9,7 +9,16 @@
 <link rel="stylesheet" href="~/Content/custom/adminBackground.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<style></style>
+<style>
+    .btn.btn-info {
+        padding: 6px 12px;
+        background-color: #0dcaf0;
+    }
+
+    table tr {
+        height: 54px;
+    }
+</style>
 
 <div class="card m-3">
     <div class="card-content">
@@ -82,42 +91,6 @@
                         <th>Avatar</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>Nguyen Anh Kiet</td>
-                        <td>0348630164</td>
-                        <td>Male</td>
-                        <td>Inactive</td>
-                        <td>
-                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
-                        </td>
-                        <td>
-                            <button class="btn btn-info inactive">Active account</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tran Thi My Nhung</td>
-                        <td>0368909827</td>
-                        <td>Female</td>
-                        <td>Active</td>
-                        <td>
-                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
-                        </td>
-                        <td>
-                            <button class="btn btn-info">Active account</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nguyen Thi Tuyet Ngan</td>
-                        <td>0777842792</td>
-                        <td>Female</td>
-                        <td>Inactive</td>
-                        <td>
-                            <img src="~/Assets/img/anhkiet.jpg" alt="Avatar">
-                        </td>
-                        <td>
-                            <button class="btn btn-info inactive">Active account</button>
-                        </td>
-                    </tr>
                 </table>
             </div>
         </div>
@@ -134,24 +107,6 @@
                         <th>Type</th>
                         <th>Avatar</th>
                     </tr>
-                    <tr>
-                        <td>Sao Mai</td>
-                        <td>Dong Thap</td>
-                        <td>0874516335</td>
-                        <td>Hotel</td>
-                        <td>
-                            <img src="~/Assets/img/category/iconic_city/city_1.jpg" alt="Avatar">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rosewood</td>
-                        <td>Tuscan</td>
-                        <td>0874516335</td>
-                        <td>Resort</td>
-                        <td>
-                            <img src="~/Assets/img/category/iconic_city/city_1.jpg" alt="Avatar">
-                        </td>
-                    </tr>
                 </table>
             </div>
         </div>
@@ -162,7 +117,7 @@
     $(document).ready(function () {
         $('.nav__content-list li:first-child .nav__content-list-item').addClass('active');
 
-        //Overall
+        // Overall
         $.ajax({
             type: "GET",
             url: "/Admin/Overall",
@@ -177,13 +132,99 @@
             }
         });
 
-        //Customer
+        // Customer
         $.ajax({
             type: "GET",
             url: "/Admin/ShowCustomer",
             data: {},
             success: function (data) {
-                
+                let html = "";
+                for (let i = 0; i < data.customers.length; i++) {
+                    html += `
+                            <tr>
+                                <td>${data.customers[i].CustomerName}</td>
+                                <td>${data.customers[i].Phone}</td>
+                            `
+                    if (data.customers[i].Sex == 0) {
+                        html += `<td>Male</td>`
+                    } else {
+                        html += `<td>Female</td>`
+                    }
+
+                    if (data.customers[i].Status_Account == 0) {
+                        html += `
+                                <td>Inactive</td>
+                                <td>
+                                    <img src="${data.customers[i].Image_Customer}" alt="Avatar">
+                                </td>
+                                <td>
+                                    <button class="btn btn-info inactive">Active account</button>
+                                </td>
+                            </tr>
+                                `
+                    } else {
+                        html += `
+                                <td>Active</td>
+                                <td>
+                                    <img src="${data.customers[i].Image_Customer}" alt="Avatar">
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Active account</button>
+                                </td>
+                            </tr>
+                            `
+                    }
+                    $('#table-customer').append(html);
+                }
+
+                function activeAccount() {
+                    $(document).ready(function () {
+                        $(".btn.btn-info:not('.inactive')").prop('disabled', true);
+
+                        $('.inactive').click(function () {
+                            $(this).removeClass('.inactive');
+
+                            $(this).parent().parent().find("td").eq(3).text("Active");
+                            $(this).attr('disabled', true);
+                        })
+                    })
+                }
+
+                activeAccount();
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+
+        // Property
+        $.ajax({
+            type: "GET",
+            url: "/Admin/ShowProperty",
+            data: {},
+            success: function (data) {
+                let html = "";
+                for (let i = 0; i < data.hotels.length; i++) {
+                    html += `
+                            <tr>
+                                <td>${data.hotels[i].HotelName}</td>
+                                <td>${data.hotels[i].Address_Hotel}</td>
+                                <td>${data.hotels[i].Phone_Hotel}</td>
+                            `
+
+                    if (data.hotels[i].TypeOfHotel == 1) {
+                        html += `
+                                    <td>Hotel</td>
+                                `
+                    }
+
+                    html += `
+                                <td>
+                                    <img src="${data.hotels[i].Image_Hotel}" alt="Avatar">
+                                </td>
+                            </tr>
+                            `
+                }
             },
             error: function () {
                 alert("Error occured!!")

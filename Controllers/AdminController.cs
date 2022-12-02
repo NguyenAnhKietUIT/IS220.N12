@@ -1,4 +1,5 @@
-﻿using IS220.N12.Models;
+﻿
+using IS220.N12.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace IS220.N12.Controllers
             return View(accounts);
         }
 
-        //GET Overall
+        // GET Overall
         public ActionResult Overall()
         {
             HotelBookingContext context= new HotelBookingContext();
@@ -34,6 +35,64 @@ namespace IS220.N12.Controllers
                 totalCustomer,
                 totalHotel,
                 totalReservation
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET Customer
+        public ActionResult ShowCustomer ()
+        {
+            HotelBookingContext context= new HotelBookingContext();
+            List<CUSTOMER> customers = new List<CUSTOMER>();
+
+            var result  = from c in context.CUSTOMERs
+                          select c;
+
+            foreach (var kq in result)
+            {
+                CUSTOMER customer = new CUSTOMER();
+                customer.CustomerID = kq.CustomerID;
+                customer.CustomerName = kq.CustomerName;
+                customer.Phone = kq.Phone;
+                customer.Sex = kq.Sex;
+                customer.Status_Account = kq.Status_Account;
+                customer.Image_Customer = kq.Image_Customer;
+                customer.AccountID = kq.AccountID;
+
+                customers.Add(customer);
+
+            }
+            return Json(new {
+                customers
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET Customer
+        public ActionResult ShowProperty()
+        {
+            HotelBookingContext context = new HotelBookingContext();
+            List<HOTEL> hotels = new List<HOTEL>();
+
+            var result = from h in context.HOTELs
+                         select h;
+
+            foreach (var kq in result)
+            {
+                HOTEL hotel = new HOTEL();
+                hotel.HotelID = kq.HotelID;
+                hotel.HotelName = kq.HotelName;
+                hotel.Address_Hotel = kq.Address_Hotel;
+                hotel.Phone_Hotel = kq.Phone_Hotel;
+                hotel.TypeOfHotel = kq.TypeOfHotel;
+                hotel.Image_Hotel = kq.Image_Hotel;
+                hotel.AccountID = kq.AccountID;
+                hotel.PlaceID = kq.PlaceID;
+
+                hotels.Add(hotel);
+
+            }
+            return Json(new
+            {
+                hotels
             }, JsonRequestBehavior.AllowGet);
         }
 
