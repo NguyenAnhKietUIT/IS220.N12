@@ -58,6 +58,22 @@
     </form>
 </div>
 
+<script src="~/Assets/js/validator.js"></script>
+<script>
+    Validator({
+        form: '#form',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#full-name'),
+            Validator.minLength('#password', 6),
+            Validator.isEmail('#email'),
+            Validator.isRequired('#confirm-password'),
+            Validator.isConfirmed('#confirm-password')
+        ],
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         $('.form-btn').click(function (e) {
