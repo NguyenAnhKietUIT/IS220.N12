@@ -205,7 +205,6 @@
             success: function (data) {
                 let html = "";
                 for (let i = 0; i < data.hotels.length; i++) {
-                    console.log(i)
                     html += `
                             <tr>
                                 <td>${data.hotels[i].HotelName}</td>

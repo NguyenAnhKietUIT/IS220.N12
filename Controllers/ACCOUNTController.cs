@@ -25,13 +25,13 @@ namespace IS220.N12.Controllers
             return Json(!context.ACCOUNTs.Any(x => x.Username == UserName), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult signUpCustomer()
+        public ActionResult SignUpCustomer()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult signUpCustomer(string[] values)
+        public ActionResult SignUpCustomer(string[] values)
         {
             HotelBookingContext context = new HotelBookingContext();
             ACCOUNTDao dao = new ACCOUNTDao();
@@ -50,13 +50,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        public ActionResult signUpProperty()
+        public ActionResult SignUpProperty()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult signUpProperty(string[] values)
+        public ActionResult SignUpProperty(string[] values)
         {
 
             HotelBookingContext context = new HotelBookingContext();
@@ -76,13 +76,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        public ActionResult signIn()
+        public ActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult signIn(string username, string password)
+        public ActionResult SignIn(string username, string password)
         {
             HotelBookingContext context = new HotelBookingContext();
 
@@ -145,7 +145,7 @@ namespace IS220.N12.Controllers
             } else
             {
                 ViewBag.error = "Login Failed!!!";
-                return RedirectToAction("Login");
+                return RedirectToAction("SignIn");
             }
             return View();
         }

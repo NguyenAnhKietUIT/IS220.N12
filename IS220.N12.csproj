@@ -949,7 +949,7 @@
     <Content Include="Views\Camping\Index.cshtml" />
     <Content Include="Views\Tropical\Index.cshtml" />
     <Content Include="Views\Shared\_LoginRegister.cshtml" />
-    <Content Include="Views\ACCOUNT\signIn.cshtml" />
+    <Content Include="Views\ACCOUNT\SignIn.cshtml" />
     <Content Include="Views\ACCOUNT\signUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\signUpProperty.cshtml" />
     <Content Include="Views\CUSTOMER\Index.cshtml" />
