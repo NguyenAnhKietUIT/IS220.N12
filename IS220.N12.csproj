@@ -949,12 +949,12 @@
     <Content Include="Views\Camping\Index.cshtml" />
     <Content Include="Views\Tropical\Index.cshtml" />
     <Content Include="Views\Shared\_LoginRegister.cshtml" />
-    <Content Include="Views\ACCOUNT\SignIn.cshtml" />
-    <Content Include="Views\ACCOUNT\signUpCustomer.cshtml" />
-    <Content Include="Views\ACCOUNT\signUpProperty.cshtml" />
     <Content Include="Views\CUSTOMER\Index.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\ACCOUNT\SignIn.cshtml" />
+    <Content Include="Views\ACCOUNT\SignUpCustomer.cshtml" />
+    <Content Include="Views\ACCOUNT\SignUpProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
