@@ -1,0 +1,566 @@
+﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/custom/admin.css" />
+<link rel="stylesheet" href="~/Content/custom/adminBackground.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+    .content-wrapper {
+        min-height: 712px;
+    }
+
+    .nav-message {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+        .nav-message div:nth-child(2) {
+            flex: 1;
+            color: #fff;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .nav-message label:hover,
+        .nav-message > div:hover,
+        .nav-paging:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+    .content-wrapper .table input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+    .nav-message label {
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .nav-message div:last-child {
+        color: #fff;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-paging {
+        cursor: pointer;
+        margin-right: 8px;
+    }
+
+    .nav-message div:last-child i {
+        cursor: pointer;
+        padding: 8px 12px;
+    }
+
+        .nav-message div:last-child i:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+        .table tr:hover {
+            color: var(--white-color);
+        }
+
+    .message-icon {
+        display: block;
+    }
+
+    .message-icon-active {
+        display: none;
+        color: yellow;
+    }
+
+    .table {
+        max-height: 1200px;
+    }
+
+        .table tr td:nth-child(1),
+        .table tr td:nth-child(2),
+        .table tr td:nth-child(5) {
+            min-width: 52px;
+            text-align: center;
+        }
+
+        .table tr td:nth-child(3) {
+            text-align: left;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
+        .table tr td:nth-child(4) {
+            min-width: 800px;
+            max-width: 800px;
+            text-align: left;
+            max-height: 32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-line-clamp: 1;
+        }
+
+    .message-trash {
+        padding: 8px 16px;
+    }
+
+    .message-home {
+        color: #fff;
+    }
+
+    .message-home__nav span:first-child {
+        padding: 8px;
+        cursor: pointer;
+        font-size: 20px;
+        margin-right: 16px;
+    }
+
+        .message-home__nav span:first-child:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+    .message-home__nav span:last-child {
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .message-home__main {
+        text-align: justify;
+    }
+
+        .message-home__main span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .message-home__main p {
+            line-height: 1.5;
+        }
+
+    .message-home__reply {
+        position: relative;
+    }
+
+    .btn-reply {
+        color: #fff;
+        outline: none;
+        padding: 8px 16px;
+        border-radius: 16px;
+        border: 1px solid #fff;
+        background-color: transparent;
+    }
+
+        .btn-reply:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+    .message-home__form {
+        width: 400px;
+        position: absolute;
+        top: 0;
+        left: 140px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background-color: #fff;
+        display: none;
+    }
+
+    #message-form p {
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    #message-home__subject {
+        display: block;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+    }
+
+    input[name="message-home__subject"],
+    textarea {
+        width: 100%;
+    }
+
+    textarea {
+        color: #fff;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+    }
+
+    .message-home__action {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #message-home__submit {
+        border: none;
+        outline: none;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: #0b57d0;
+    }
+
+        #message-home__submit:hover {
+            background-color: #0b57d0ce;
+        }
+
+    .message-home__delete {
+        padding: 8px;
+        color: black;
+        cursor: pointer;
+    }
+
+        .message-home__delete:hover {
+            color: rgba(0, 0, 0, 0.6);
+        }
+</style>
+
+<div class="box-list-message">
+    <nav class="nav-message m-3">
+        <div>
+            <input type="checkbox" name="nav-select-all" id="nav-select-all">
+            <label for="nav-select-all">Select all</label>
+        </div>
+
+        <div class="nav-message-delete">
+            <i class="fa-solid fa-trash"></i>
+            <span>Delete</span>
+        </div>
+
+        <div>
+            <span class="nav-paging">1-50 of 569</span>
+            <div>
+                <i class="nav-message-icon-left nav-message-icon-active fa-solid fa-angle-left"></i>
+                <i class="nav-message-icon-right fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card ms-3 me-3">
+                <table class="table">
+                    <tr>
+                        <td><input type="checkbox" class="message-select"></td>
+                        <td>
+                            <i class="message-icon fa-regular fa-star"></i>
+                            <i class="message-icon-active fa-solid fa-star"></i>
+                        </td>
+                        <td>Name 1</td>
+                        <td>
+                            <span class="message-title">
+                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
+                                Balo
+                            </span>
+                            -
+                            <span class="message-content">
+                                Chào các bạn
+                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
+                                Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
+                                - Buổi sáng: 9h00-11h30
+                                - Buổi chiều: 14h00-16h30
+                                Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
+                                Quà tặng:
+                                + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
+                                + Balo cho khóa 2022
+                                + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số
+                                lượng có hạn, phát đến khi hết quà)
+                                Khi nhận quà vui lòng mang theo thẻ sinh viên.
+                                Mọi thắc mắc sinh viên trao đổi tại forum:
+                            </span>
+                        </td>
+                        <td>
+                            <i class="message-trash fa-solid fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="message-select"></td>
+                        <td>
+                            <i class="message-icon fa-regular fa-star"></i>
+                            <i class="message-icon-active fa-solid fa-star"></i>
+                        </td>
+                        <td>Name 2</td>
+                        <td>
+                            <span class="message-title">
+                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
+                                Balo
+                            </span>
+                            -
+                            <span class="message-content">
+                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
+                                lại (đợt cuối cùng)
+                            </span>
+                        </td>
+                        <td>
+                            <i class="message-trash fa-solid fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="message-select"></td>
+                        <td>
+                            <i class="message-icon fa-regular fa-star"></i>
+                            <i class="message-icon-active fa-solid fa-star"></i>
+                        </td>
+                        <td>Name 3</td>
+                        <td>
+                            <span class="message-title">
+                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
+                                Balo
+                            </span>
+                            -
+                            <span class="message-content">
+                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
+                                lại (đợt cuối cùng)
+                            </span>
+                        </td>
+                        <td>
+                            <i class="message-trash fa-solid fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="message-select"></td>
+                        <td>
+                            <i class="message-icon fa-regular fa-star"></i>
+                            <i class="message-icon-active fa-solid fa-star"></i>
+                        </td>
+                        <td>Name 4</td>
+                        <td>
+                            <span class="message-title">
+                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
+                                Balo
+                            </span>
+                            -
+                            <span class="message-content">
+                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
+                                lại (đợt cuối cùng)
+                            </span>
+                        </td>
+                        <td>
+                            <i class="message-trash fa-solid fa-trash"></i>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const checkboxSelectAll = document.getElementById('nav-select-all')
+    const checkboxMessage = document.querySelectorAll('.message-select')
+    const messageTrash = document.querySelectorAll('.message-trash')
+    const starNone = document.querySelectorAll('.message-icon')
+    const starActive = document.querySelectorAll('.message-icon-active')
+    const boxMessage = document.querySelectorAll('.table')
+    const buttonDelete = document.querySelector('.nav-message-delete')
+    const boxListMessage = document.querySelector('.box-list-message')
+    const listMessage = document.querySelectorAll('.table tr')
+
+    function selectAll() {
+        checkboxSelectAll.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                checkboxMessage.forEach(element => {
+                    element.checked = true;
+                    element.parentElement.parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+                })
+            } else {
+                checkboxMessage.forEach(element => {
+                    element.checked = false;
+                    element.parentElement.parentElement.style.backgroundColor = 'transparent'
+                })
+            }
+        })
+    }
+
+    function deleteMessage() {
+        messageTrash.forEach(element => {
+            element.addEventListener('click', () => {
+                element.parentElement.parentElement.remove();
+            })
+        })
+    }
+
+    function starMessage() {
+        starNone.forEach(element => {
+            element.addEventListener('click', () => {
+                element.style.display = 'none';
+                element.parentElement.querySelector('.message-icon-active').style.display = 'block';
+            })
+        })
+
+        starActive.forEach(element => {
+            element.addEventListener('click', () => {
+                element.style.display = 'none';
+                element.parentElement.querySelector('.message-icon').style.display = 'block';
+            })
+        })
+    }
+
+    function selectMessage() {
+        checkboxMessage.forEach(element => {
+            element.addEventListener('change', () => {
+                if (element.checked) {
+                    element.parentElement.parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+                } else {
+                    element.parentElement.parentElement.style.backgroundColor = 'transparent'
+                }
+            })
+        })
+    }
+
+    function deleteMessageChecked() {
+        buttonDelete.addEventListener('click', () => {
+            checkboxMessage.forEach(element => {
+                if (element.checked) {
+                    element.parentElement.parentElement.remove()
+                }
+            })
+        })
+    }
+
+    function handleReplyBox() {
+        const buttonReply = document.querySelector('.btn-reply')
+        const replyBox = document.querySelector('.message-home__form')
+        const deleteBoxReply = document.querySelector('.message-home__delete')
+
+        buttonReply.addEventListener('click', () => {
+            replyBox.style.display = 'block'
+        })
+
+        deleteBoxReply.addEventListener('click', () => {
+            replyBox.style.display = 'none'
+        })
+    }
+
+    function watchMessage() {
+        listMessage.forEach(element => {
+            element.getElementsByTagName("td")[2].addEventListener('click', () => {
+                boxListMessage.style.display = 'none'
+
+                let container = document.querySelector('.content-wrapper')
+                let html = ""
+
+                html += `
+                    <div class="message-home">
+                        <nav class="message-home__nav m-3">
+                            <span>
+                                <i class="message-home__back fa-solid fa-arrow-left"></i>
+                            </span>
+
+                            <span>${element.querySelector('.message-title').textContent}</span>
+                        </nav>
+
+                        <div class="message-home__main m-3">
+                            <span>${element.getElementsByTagName("td")[2].textContent}</span>
+                            <p>${element.querySelector('.message-content').textContent}</p>
+                        </div>
+                            
+                        <div class="message-home__reply">
+                            <button class="btn-reply ms-3">
+                                <i class="fa-solid fa-reply"></i>
+                                Reply
+                            </button>
+                                    
+                            <div class="message-home__form">
+                                <form action="" method="" id="message-form">
+                                    <p>${element.getElementsByTagName("td")[2].textContent}</p>
+                                    <input type="text" name="message-home__subject" id="message-home__subject" placeholder="Subject">
+                                    <textarea name="message-home__content" id="" cols="30" rows="6" placeholder="Your message"></textarea>
+                                    <div class="message-home__action">
+                                        <input type="submit" value="Send" id="message-home__submit">
+                                        <span class="message-home__delete">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                container.innerHTML = html
+
+                handleReplyBox()
+                backAdminMessage()
+            })
+            element.getElementsByTagName("td")[3].addEventListener('click', () => {
+                boxListMessage.style.display = 'none'
+
+                let container = document.querySelector('.content-wrapper')
+                let html = ""
+
+                html += `
+                    <div class="message-home">
+                        <nav class="message-home__nav m-3">
+                            <span>
+                                <i class="message-home__back fa-solid fa-arrow-left"></i>
+                            </span>
+
+                            <span>${element.querySelector('.message-title').textContent}</span>
+                        </nav>
+
+                        <div class="message-home__main m-3">
+                            <span>${element.getElementsByTagName("td")[2].textContent}</span>
+                            <p>${element.querySelector('.message-content').textContent}</p>
+                        </div>
+                            
+                        <div class="message-home__reply">
+                            <button class="btn-reply ms-3">
+                                <i class="fa-solid fa-reply"></i>
+                                Reply
+                            </button>
+                                    
+                            <div class="message-home__form">
+                                <form action="" method="" id="message-form">
+                                    <p>${element.getElementsByTagName("td")[2].textContent}</p>
+                                    <input type="text" name="message-home__subject" id="message-home__subject" placeholder="Subject">
+                                    <textarea name="message-home__content" id="" cols="30" rows="6" placeholder="Your message"></textarea>
+                                    <div class="message-home__action">
+                                        <input type="submit" value="Send" id="message-home__submit">
+                                        <span class="message-home__delete">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                container.innerHTML = html
+
+                handleReplyBox()
+                backAdminMessage()
+            })
+        })
+    }
+
+    function backAdminMessage() {
+        const backHome = document.querySelector('.message-home__back')
+        const messageHome = document.querySelector('.message-home')
+
+        backHome.addEventListener('click', () => {
+            //render message
+            location.reload()
+        })
+    }
+
+    selectAll()
+    deleteMessage()
+    starMessage()
+    selectMessage()
+    deleteMessageChecked()
+    watchMessage()
+</script>

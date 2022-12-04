@@ -96,6 +96,12 @@ namespace IS220.N12.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        // GET Message
+        public ActionResult AdminMessage()
+        {
+            return View();
+        }
+
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
