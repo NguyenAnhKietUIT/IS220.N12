@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
 
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = "Message";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/custom/admin.css" />
-<link rel="stylesheet" href="~/Content/custom/adminBackground.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
@@ -67,6 +66,7 @@
 
     .table {
         margin-bottom: 0;
+        max-height: 1200px;
     }
 
         .table tr:hover {
@@ -81,9 +81,9 @@
         display: none;
         color: yellow;
     }
-
-    .table {
-        max-height: 1200px;
+    
+    .table tr:hover {
+        color: #fff;
     }
 
         .table tr td:nth-child(1),
@@ -113,120 +113,6 @@
     .message-trash {
         padding: 8px 16px;
     }
-
-    .message-home {
-        color: #fff;
-    }
-
-    .message-home__nav span:first-child {
-        padding: 8px;
-        cursor: pointer;
-        font-size: 20px;
-        margin-right: 16px;
-    }
-
-        .message-home__nav span:first-child:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-    .message-home__nav span:last-child {
-        font-size: 28px;
-        font-weight: 500;
-    }
-
-    .message-home__main {
-        text-align: justify;
-    }
-
-        .message-home__main span {
-            display: block;
-            font-size: 20px;
-            margin-bottom: 16px;
-        }
-
-        .message-home__main p {
-            line-height: 1.5;
-        }
-
-    .message-home__reply {
-        position: relative;
-    }
-
-    .btn-reply {
-        color: #fff;
-        outline: none;
-        padding: 8px 16px;
-        border-radius: 16px;
-        border: 1px solid #fff;
-        background-color: transparent;
-    }
-
-        .btn-reply:hover {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-    .message-home__form {
-        width: 400px;
-        position: absolute;
-        top: 0;
-        left: 140px;
-        padding: 8px 16px;
-        border-radius: 8px;
-        background-color: #fff;
-        display: none;
-    }
-
-    #message-form p {
-        color: black;
-        font-size: 20px;
-        font-weight: 500;
-    }
-
-    #message-home__subject {
-        display: block;
-        padding: 4px 8px;
-        margin-bottom: 8px;
-    }
-
-    input[name="message-home__subject"],
-    textarea {
-        width: 100%;
-    }
-
-    textarea {
-        color: #fff;
-        padding: 4px 8px;
-        margin-bottom: 8px;
-    }
-
-    .message-home__action {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    #message-home__submit {
-        border: none;
-        outline: none;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 4px;
-        background-color: #0b57d0;
-    }
-
-        #message-home__submit:hover {
-            background-color: #0b57d0ce;
-        }
-
-    .message-home__delete {
-        padding: 8px;
-        color: black;
-        cursor: pointer;
-    }
-
-        .message-home__delete:hover {
-            color: rgba(0, 0, 0, 0.6);
-        }
 </style>
 
 <div class="box-list-message">
@@ -452,85 +338,38 @@
                 boxListMessage.style.display = 'none'
 
                 let container = document.querySelector('.content-wrapper')
+                container.style.minHeight = '712px'
                 let html = ""
 
                 html += `
-                    <div class="message-home">
-                        <nav class="message-home__nav m-3">
+                    <div class="message-home text-white">
+                        <nav class="message-home__nav m-3 p-2" style="cursor: pointer;font-size: 1.25em;">
                             <span>
                                 <i class="message-home__back fa-solid fa-arrow-left"></i>
                             </span>
 
-                            <span>${element.querySelector('.message-title').textContent}</span>
+                            <span style="font-size: 1.75em;font-weight: 500;">${element.querySelector('.message-title').textContent}</span>
                         </nav>
 
-                        <div class="message-home__main m-3">
-                            <span>${element.getElementsByTagName("td")[2].textContent}</span>
-                            <p>${element.querySelector('.message-content').textContent}</p>
+                        <div class="message-home__main m-3" style="text-align: justify;">
+                            <span class="d-block mb-3" style="font-size: 1.25em;">${element.getElementsByTagName("td")[2].textContent}</span>
+                            <p style="line-height: 1.5;">${element.querySelector('.message-content').textContent}</p>
                         </div>
                             
-                        <div class="message-home__reply">
-                            <button class="btn-reply ms-3">
+                        <div class="message-home__reply position-relative">
+                            <button class="btn-reply m-3" style="color: #fff;outline: none;border-radius: 16px;border: 1px solid #fff;background-color: transparent;padding: 8px 16px;">
                                 <i class="fa-solid fa-reply"></i>
                                 Reply
                             </button>
                                     
-                            <div class="message-home__form">
+                            <div class="message-home__form position-absolute" style="width: 400px;top: 0;left: 140px;border-radius: 8px;background-color: #fff;display: none;padding: 8px 16px;">
                                 <form action="" method="" id="message-form">
-                                    <p>${element.getElementsByTagName("td")[2].textContent}</p>
-                                    <input type="text" name="message-home__subject" id="message-home__subject" placeholder="Subject">
-                                    <textarea name="message-home__content" id="" cols="30" rows="6" placeholder="Your message"></textarea>
-                                    <div class="message-home__action">
-                                        <input type="submit" value="Send" id="message-home__submit">
-                                        <span class="message-home__delete">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    `
-                container.innerHTML = html
-
-                handleReplyBox()
-                backAdminMessage()
-            })
-            element.getElementsByTagName("td")[3].addEventListener('click', () => {
-                boxListMessage.style.display = 'none'
-
-                let container = document.querySelector('.content-wrapper')
-                let html = ""
-
-                html += `
-                    <div class="message-home">
-                        <nav class="message-home__nav m-3">
-                            <span>
-                                <i class="message-home__back fa-solid fa-arrow-left"></i>
-                            </span>
-
-                            <span>${element.querySelector('.message-title').textContent}</span>
-                        </nav>
-
-                        <div class="message-home__main m-3">
-                            <span>${element.getElementsByTagName("td")[2].textContent}</span>
-                            <p>${element.querySelector('.message-content').textContent}</p>
-                        </div>
-                            
-                        <div class="message-home__reply">
-                            <button class="btn-reply ms-3">
-                                <i class="fa-solid fa-reply"></i>
-                                Reply
-                            </button>
-                                    
-                            <div class="message-home__form">
-                                <form action="" method="" id="message-form">
-                                    <p>${element.getElementsByTagName("td")[2].textContent}</p>
-                                    <input type="text" name="message-home__subject" id="message-home__subject" placeholder="Subject">
-                                    <textarea name="message-home__content" id="" cols="30" rows="6" placeholder="Your message"></textarea>
-                                    <div class="message-home__action">
-                                        <input type="submit" value="Send" id="message-home__submit">
-                                        <span class="message-home__delete">
+                                    <p style="display: block;font-size: 1.25em;font-weight: 500;color:black;">${element.getElementsByTagName("td")[2].textContent}</p>
+                                    <input type="text" style="width: 100%;padding: 4px 8px;" name="message-home__subject" id="message-home__subject" class="d-block mb-2" placeholder="Subject">
+                                    <textarea style="width: 100%;padding: 4px 8px" class="text-white mb-2" name="message-home__content" id="message-home__content" cols="30" rows="6" placeholder="Your message"></textarea>
+                                    <div class="d-flex justify-content-between">
+                                        <input type="submit" value="Send" id="message-home__submit" style="border: none;outline: none;border-radius: 4px;background-color: #0b57d0;padding: 8px 16px;" class="text-white">
+                                        <span class="message-home__delete" style="color: black;cursor: pointer;padding: 8px;">
                                             <i class="fa-solid fa-trash"></i>
                                         </span>
                                     </div>
