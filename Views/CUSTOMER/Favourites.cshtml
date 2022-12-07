@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "ViewAllBooking";
+    Layout = "~/Views/Shared/_DetailCustomer.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row flex-nowrap mx-5">
+        <div class="col-auto col-md-3 px-sm-2 mx-5 px-3 fs-5 ">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li>
+                        <a href="~/CUSTOMER/YourAccount" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Your Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/CUSTOMER/ViewAllBooking" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline ">View all bookings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline fw-bold">Favourites</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <label class="app__inbox-input ms-1 d-none d-sm-inline" style="cursor: pointer;">Inbox</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Your Reviews</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-7 mx-md-5 align-self-center justify-content-center pt-5">
+            <!--Favourite - none-->
+            <!--
+            <div class="app__favourite-none">
+                <i class="app__favourite-none-icon fa-regular fa-heart"></i>
+                <span class="app__favourite-none-title">Save your favourites</span>
+                <p class="app__favourite-none-desc">
+                    When you find something you like, use the heart to </br>
+                    save your favourites and you can find it again here.
+                </p>
+            </div>
+                -->
+            <!--Favourite-->
+            <div class="app__view-list app__view-list-status">
+                <h3 class="app__view-title">Your favourites</h3>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/favourite.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title">Hotel name</h4>
+                        <span class="app__view-item-desc">Ho Chi Minh City, Vietnam</span>
+                        <span class="app__view-item-status">8.9/161 reviews</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/favourite.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title">Hotel name</h4>
+                        <span class="app__view-item-desc">Ho Chi Minh City, Vietnam</span>
+                        <span class="app__view-item-status">8.9/161 reviews</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/favourite.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title">Hotel name</h4>
+                        <span class="app__view-item-desc">Ho Chi Minh City, Vietnam</span>
+                        <span class="app__view-item-status">8.9/161 reviews</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/favourite.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title">Hotel name</h4>
+                        <span class="app__view-item-desc">Ho Chi Minh City, Vietnam</span>
+                        <span class="app__view-item-status">8.9/161 reviews</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<script>
+
+    function viewFavorites() {
+        const mainContent = document.querySelector('.app__view-list .app__view-list-status')
+        let favourites = [
+            {
+                img: "../assets/img/others/favourite.png",
+                title: "Hotel name",
+                desc: "Ho Chi Minh City, Vietnam",
+                view: "8.9/161 reviews",
+                price: "$21",
+            },
+            {
+                img: "../assets/img/others/favourite.png",
+                title: "Hotel name",
+                desc: "Ho Chi Minh City, Vietnam",
+                view: "8.9/161 reviews",
+                price: "$21",
+            },
+            {
+                img: "../assets/img/others/favourite.png",
+                title: "Hotel name",
+                desc: "Ho Chi Minh City, Vietnam",
+                view: "8.9/161 reviews",
+                price: "$21",
+            },
+            {
+                img: "../assets/img/others/favourite.png",
+                title: "Hotel name",
+                desc: "Ho Chi Minh City, Vietnam",
+                view: "8.9/161 reviews",
+                price: "$21",
+            },
+        ]
+
+        // let favourites
+        let html = ""
+
+        if (favourites) {
+            html += favourites.map(function (favourite) {
+                return `
+                    <a href="#" class="app__view-item">
+                        <img src="${favourite.img}" alt="Type Room" class="app__view-img">
+                        <div class="app__view-item-info">
+                            <h4 class="app__view-item-title">${favourite.title}</h4>
+                            <span class="app__view-item-desc">${favourite.desc}</span>
+                            <span class="app__view-item-status">${favourite.view}</span>
+                        </div>
+                        <h3 class="app__view-item-price">${favourite.price}</h3>
+                    </a>
+                `
+            }).join('')
+
+            mainContent.innerHTML = html
+    }
+    viewFavorites()
+</script>
+    -->

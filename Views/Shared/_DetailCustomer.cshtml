@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/Content/Homepage.css" />
+    <link rel="stylesheet" href="~/Content/custom/detail.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header class="app__header " style="background-color:#08536B">
+        <div class="container">
+            <nav style="height: 100px;" class="position-relative">
+                <a href="Index" class="text-decoration-none">
+                    <img src="~/Assets/img/logo.png" alt="Logo" style="height: 100px">
+                </a>
+
+                <ul class="list-unstyled position-absolute top-50 end-0 translate-middle-y d-flex" style="font-size: 1.25rem;">
+                    <li class="app__nav-item">
+                        <a href="#" class="app__nav-item-link">Home</a>
+                    </li>
+                    <li class="app__nav-item">
+                        <a href="#" class="app__nav-item-link">Manage Your Stay</a>
+                    </li>
+                    <li class="app__nav-item">
+                        <a href="#" class="app__nav-item-link">Contacts</a>
+                    </li>
+                    <li class="app__nav-item">
+                        <a href="#" class="app__nav-item-link">Name Customer</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/custom/detail.js"></script>
+</body>
+</html>
