@@ -240,9 +240,9 @@
     <Compile Include="Controllers\CountrysideController.cs" />
     <Compile Include="Controllers\CUSTOMERController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
-    <Compile Include="Controllers\HOTELController.cs" />
     <Compile Include="Controllers\IconicCityController.cs" />
     <Compile Include="Controllers\MountainController.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Controllers\TropicalController.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
     <Compile Include="Dao\CUSTOMERDao.cs" />
@@ -957,10 +957,10 @@
     <Content Include="Views\ACCOUNT\SignUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\SignUpProperty.cshtml" />
     <Content Include="Views\Admin\AdminMessage.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\HOTEL\" />
     <Folder Include="Views\RESERVATION\" />
   </ItemGroup>
   <ItemGroup>
