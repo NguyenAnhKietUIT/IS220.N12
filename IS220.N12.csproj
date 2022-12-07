@@ -397,9 +397,6 @@
     <Content Include="Assets\img\Homepage\nha_trang.png" />
     <Content Include="Assets\img\Homepage\resorts.png" />
     <Content Include="Assets\img\logo.png" />
-    <Content Include="Assets\img\others\avatar.png" />
-    <Content Include="Assets\img\others\favourite.png" />
-    <Content Include="Assets\img\others\mother_home.png" />
     <Content Include="Assets\js\validator.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -443,7 +440,6 @@
     <Content Include="Content\custom\adminBackground.css" />
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
-    <Content Include="Content\custom\detail.css" />
     <Content Include="Content\custom\inspiration.css" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
@@ -961,10 +957,6 @@
     <Content Include="Views\ACCOUNT\SignUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\SignUpProperty.cshtml" />
     <Content Include="Views\Admin\AdminMessage.cshtml" />
-    <Content Include="Views\Shared\_DetailCustomer.cshtml" />
-    <Content Include="Views\CUSTOMER\ViewAllBooking.cshtml" />
-    <Content Include="Views\CUSTOMER\YourAccount.cshtml" />
-    <Content Include="Views\CUSTOMER\Favourites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

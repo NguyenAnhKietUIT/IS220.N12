@@ -13,19 +13,6 @@ namespace IS220.N12.Controllers
         {
             return View();
         }
-        public ActionResult ViewAllBooking()
-        {
-            return View();
-        }
-        public ActionResult YourAccount()
-        {
-            return View();
-        }
-
-        public ActionResult Favourites()
-        {
-            return View();
-        }
 
         // GET: CUSTOMER/Details/5
         public ActionResult Details(int id)
