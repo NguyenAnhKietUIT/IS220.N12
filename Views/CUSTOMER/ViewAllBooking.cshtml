@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "ViewAllBooking";
+    Layout = "~/Views/Shared/_DetailCustomer.cshtml";
+}
+<div class="container-fluid">
+    <div class="row flex-nowrap mx-5">
+        <div class="col-auto col-md-3 px-sm-2 mx-5 px-3 fs-5 ">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li>
+                        <a href="~/CUSTOMER/YourAccount" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Your Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/CUSTOMER/ViewAllBooking" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline fw-bold">View all bookings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/CUSTOMER/Favourites" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Favourites</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <label class="app__inbox-input ms-1 d-none d-sm-inline" style="cursor: pointer;">Inbox</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Your Reviews</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-7 mx-md-5 justify-content-center pt-5 ">
+            <h2 class="app__view-message">Your bookings</h2>
+            <div class="app__view-list">
+                <h3 class="app__view-title">Upcoming</h3>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title"> Mother's Home</h4>
+                        <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+                <a href="#" class="app__view-item">
+                    <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                    <div class="app__view-item-info">
+                        <h4 class="app__view-item-title"> Mother's Home</h4>
+                        <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                    </div>
+                    <h3 class="app__view-item-price">$21</h3>
+                </a>
+                <div class="app__view-list app__view-list-status">
+                    <h3 class="app__view-title">In the past</h3>
+                    <a href="#" class="app__view-item">
+                        <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                        <div class="app__view-item-info">
+                            <h4 class="app__view-item-title">Mother's Home</h4>
+                            <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                            <span class="app__view-item-status ${(past.status === 'canceled') ? " app__view-item-status--active"  }">canceled</span>
+                        </div>
+                        <h3 class="app__view-item-price">$21</h3>
+                    </a>
+                    <a href="#" class="app__view-item">
+                        <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                        <div class="app__view-item-info">
+                            <h4 class="app__view-item-title">Mother's Home</h4>
+                            <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                            <span class="app__view-item-status ${(past.status === 'canceled') ? " app__view-item-status--active"}">complete</span>
+                        </div>
+                        <h3 class="app__view-item-price">$21</h3>
+                    </a>
+                    <a href="#" class="app__view-item">
+                        <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                        <div class="app__view-item-info">
+                            <h4 class="app__view-item-title">Mother's Home</h4>
+                            <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                            <span class="app__view-item-status ${(past.status === 'canceled') ? " app__view-item-status--active" }">complete</span>
+                        </div>
+                        <h3 class="app__view-item-price">$21</h3>
+                    </a>
+                    <a href="#" class="app__view-item">
+                        <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                        <div class="app__view-item-info">
+                            <h4 class="app__view-item-title">Mother's Home</h4>
+                            <span class="app__view-item-desc">6 Aug - 7 Aug • Ho Chi Minh City</span>
+                            <span class="app__view-item-status ${(past.status === 'canceled') ? " app__view-item-status--active" }">complete</span>
+                        </div>
+                        <h3 class="app__view-item-price">$21</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--js-->
+<!--
+   function viewAllBookings() {
+   // let upcomings = [
+   //     {
+   //         img: "../assets/img/others/mother_home.png",
+   //         title: "Mother's Home",
+   //         desc: "6 Aug - 7 Aug • Ho Chi Minh City",
+   //         price: "$21",
+   //     },
+   //     {
+   //         img: "../assets/img/others/mother_home.png",
+   //         title: "Mother's Home",
+   //         desc: "6 Aug - 7 Aug • Ho Chi Minh City",
+   //         price: "$21",
+   //     },
+   // ]
+   //
+   // let pasts = [
+   //     {
+   //         img: "../assets/img/others/mother_home.png",
+   //         title: "Mother's Home",
+   //         desc: "6 Aug - 7 Aug • Ho Chi Minh City",
+   //         status: "complete",
+   //         price: "$21",
+   //     },
+   //     {
+   //         img: "../assets/img/others/mother_home.png",
+   //         title: "Mother's Home",
+   //         desc: "6 Aug - 7 Aug • Ho Chi Minh City",
+   //         status: "canceled",
+   //         price: "$21",
+   //     },
+   // ]
+
+   let upcomings
+   let pasts
+
+   let html = ""
+
+   if (upcomings) {
+   html += `
+   <h2 class="app__view-message">Your bookings</h2>
+
+   <div class="app__view-list">
+       <h3 class="app__view-title">Upcoming</h3>
+       `
+
+       html += upcomings.map(function(upcoming){
+       return `
+       <a href="#" class="app__view-item">
+           <img src="${upcoming.img}" alt="Type Room" class="app__view-img">
+           <div class="app__view-item-info">
+               <h4 class="app__view-item-title">${upcoming.title}</h4>
+               <span class="app__view-item-desc">${upcoming.desc}</span>
+           </div>
+           <h3 class="app__view-item-price">${upcoming.price}</h3>
+       </a>
+       `
+       }).join('')
+       html += `
+   </div>`
+   }
+
+   if (pasts) {
+   html += `
+   <div class="app__view-list app__view-list-status">
+       <h3 class="app__view-title">In the past</h3>
+       `
+       html += pasts.map(function(past) {
+       return `
+       <a href="#" class="app__view-item">
+           <img src="${past.img}" alt="Type Room" class="app__view-img">
+           <div class="app__view-item-info">
+               <h4 class="app__view-item-title">${past.title}</h4>
+               <span class="app__view-item-desc">${past.desc}</span>
+               <span class="app__view-item-status ${(past.status === 'canceled') ? " app__view-item-status--active" : "" }">${past.status}</span>
+           </div>
+           <h3 class="app__view-item-price">${past.price}</h3>
+       </a>
+       `
+       }).join('')
+       html += `
+   </div>`
+   }
+
+   if (!upcomings && !pasts) {
+   html += `
+   <span class="app__view-message">You have no bookings yet.</span>
+   <a href="../html/Homepage.html" class="app__view-link">Start exploring</a>
+   `
+   }
+
+   mainContent.innerHTML = html
+   }
+   -->
