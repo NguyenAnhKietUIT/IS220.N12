@@ -8,7 +8,6 @@
 
 * {
     box-sizing: inherit;
-
 }
 
 html {
@@ -16,48 +15,74 @@ html {
     scroll-behavior: smooth;
 }
 
-.app__go-home-link {
-    text-decoration: none;
-    position: fixed;
-    bottom: 36px;
-    right: 28px;
-    z-index: 999;
+/* Navigation */
+.app__nav {
+    height: var(--navbar-height);
+    position: relative;
 }
 
-.app__go-home-icon {
-    font-size: 40px;
-    color: rgba(115, 244, 130, 0.4);
+.app__nav-name-link {
+    text-decoration: none;
+}
+
+.app__nav-name-icon {
+    height: var(--navbar-height);
+}
+
+.app__nav-list {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    list-style: none;
+}
+
+.app__nav-item {
+    transition: all 0.2s linear;
     padding: 8px;
 }
 
-.app__go-home-icon:hover {
-    color: rgba(0, 136, 16, 0.7);
+    .app__nav-item + .app__nav-item {
+        margin-left: 20px;
+    }
+
+    .app__nav-item:last-child {
+        font-weight: 600;
+        margin-right: -8px;
+    }
+
+.app__nav-item-link {
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--search-color);
 }
+
+    .app__nav-item-link:hover {
+        color: var(--white-color);
+    }
 
 .plan-btn {
     text-decoration: none;
-    background-color: #597B9B;
+    background-color: #6c94b9;
     padding: 12px 20px;
     border-radius: 8px;
     color: var(--white-color);
 }
 
-.plan-btn:hover {
-    color: white;
-    background-color: #115696;
-}
+    .plan-btn:hover {
+        background-color: #1167b7;
+    }
 
 /* Form */
 .form {
-    width: 360px;
+    width: 420px;
     display: flex;
     flex-direction: column;
-    padding: 60px; 
+    padding: 32px 60px;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.15);
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .form-title {
@@ -71,9 +96,9 @@ html {
     flex-direction: column;
 }
 
-.form-group + .form-group {
-    margin-bottom: 16px;
-}
+    .form-group + .form-group {
+        margin-bottom: 16px;
+    }
 
 .form-control {
     border: none;
@@ -86,9 +111,9 @@ html {
     border-bottom: 1px solid #fff;
 }
 
-.form-control::placeholder {
-    color: var(--white-color);
-}
+    .form-control::placeholder {
+        color: var(--white-color);
+    }
 
 .input-control {
     cursor: pointer;
@@ -114,9 +139,9 @@ html {
     background-color: #597B9B;
 }
 
-.form-btn:hover {
-    background-color: #115696;
-}
+    .form-btn:hover {
+        background-color: #115696;
+    }
 
 .form-group.invalid .form-control {
     border-color: #f33a58;
@@ -124,4 +149,20 @@ html {
 
 .form-group.invalid .form-message {
     color: #f33a58;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
 }

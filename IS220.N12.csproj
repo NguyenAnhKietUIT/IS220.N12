@@ -235,15 +235,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ACCOUNTController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BeachController.cs" />
-    <Compile Include="Controllers\CampingController.cs" />
-    <Compile Include="Controllers\CountrysideController.cs" />
     <Compile Include="Controllers\CUSTOMERController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
-    <Compile Include="Controllers\IconicCityController.cs" />
-    <Compile Include="Controllers\MountainController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
-    <Compile Include="Controllers\TropicalController.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
     <Compile Include="Dao\CUSTOMERDao.cs" />
     <Compile Include="Dao\DISCOUNTDao.cs" />
@@ -398,8 +392,12 @@
     <Content Include="Assets\img\Homepage\resorts.png" />
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\others\avatar.png" />
+    <Content Include="Assets\img\others\beach_1.jpg" />
+    <Content Include="Assets\img\others\beach_2.jpg" />
     <Content Include="Assets\img\others\favourite.png" />
+    <Content Include="Assets\img\others\india.jpg" />
     <Content Include="Assets\img\others\mother_home.png" />
+    <Content Include="Assets\img\others\mountain.jpg" />
     <Content Include="Assets\js\validator.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -442,12 +440,10 @@
     <Content Include="Content\custom\admin.css" />
     <Content Include="Content\custom\adminBackground.css" />
     <Content Include="Content\custom\base.css" />
-    <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\detail.css" />
-    <Content Include="Content\custom\inspiration.css" />
+    <Content Include="Content\custom\Homepage.css" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
-    <Content Include="Content\Homepage.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -926,6 +922,7 @@
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Scripts\custom\Homepage.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
@@ -945,14 +942,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Homepage.cshtml" />
     <Content Include="Views\Homepage\Index.cshtml" />
-    <Content Include="Views\Beach\Index.cshtml" />
-    <Content Include="Views\Mountain\Index.cshtml" />
-    <Content Include="Views\IconicCity\Index.cshtml" />
-    <Content Include="Views\Countryside\Index.cshtml" />
-    <Content Include="Views\Camping\Index.cshtml" />
-    <Content Include="Views\Tropical\Index.cshtml" />
     <Content Include="Views\Shared\_LoginRegister.cshtml" />
     <Content Include="Views\CUSTOMER\Index.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
