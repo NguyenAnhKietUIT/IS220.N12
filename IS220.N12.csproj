@@ -922,6 +922,8 @@
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Scripts\custom\AdminAnalytics.js" />
+    <Content Include="Scripts\custom\AdminMessage.js" />
     <Content Include="Scripts\custom\Homepage.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
@@ -956,6 +958,7 @@
     <Content Include="Views\CUSTOMER\YourAccount.cshtml" />
     <Content Include="Views\CUSTOMER\ViewAllBooking.cshtml" />
     <Content Include="Views\CUSTOMER\Favourites.cshtml" />
+    <Content Include="Views\Admin\AdminAnalytics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,6 +102,11 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult AdminAnalytics()
+        {
+            return View();
+        }
+
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {

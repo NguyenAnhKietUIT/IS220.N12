@@ -35,7 +35,14 @@
                             <a href="#" class="app__nav-item-link">Contacts</a>
                         </li>
                         <li class="app__nav-item">
-                            <a href="~/ACCOUNT/SignUpCustomer" class="app__nav-item-link">Sign Up</a>
+                            @if (account != null)
+                            {
+                                <a href="~/CUSTOMER/YourAccount" class="app__nav-item-link">@account.Username</a>
+                            }
+                            else
+                            {
+                                <a href="~/ACCOUNT/SignUpCustomer" class="app__nav-item-link">Sign Up</a>
+                            }
                         </li>
                     </ul>
                 </nav>
