@@ -444,6 +444,7 @@
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\category.css" />
     <Content Include="Content\custom\detail.css" />
+    <Content Include="Content\custom\property.css" />
     <Content Include="Content\custom\inspiration.css" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
@@ -954,18 +955,21 @@
     <Content Include="Views\Camping\Index.cshtml" />
     <Content Include="Views\Tropical\Index.cshtml" />
     <Content Include="Views\Shared\_LoginRegister.cshtml" />
-    <Content Include="Views\CUSTOMER\Index.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\ACCOUNT\SignIn.cshtml" />
     <Content Include="Views\ACCOUNT\SignUpCustomer.cshtml" />
     <Content Include="Views\ACCOUNT\SignUpProperty.cshtml" />
     <Content Include="Views\Admin\AdminMessage.cshtml" />
-    <Content Include="Views\Property\Index.cshtml" />
     <Content Include="Views\Shared\_DetailCustomer.cshtml" />
     <Content Include="Views\CUSTOMER\YourAccount.cshtml" />
     <Content Include="Views\CUSTOMER\ViewAllBooking.cshtml" />
     <Content Include="Views\CUSTOMER\Favourites.cshtml" />
+    <Content Include="Views\Property\HomeProperty.cshtml" />
+    <Content Include="Views\Shared\_Home_Property.cshtml" />
+    <Content Include="Views\Property\Reservations.cshtml" />
+    <Content Include="Views\Property\Update_Information.cshtml" />
+    <Content Include="Views\Property\Property_Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,12 +3,12 @@
     Layout = "~/Views/Shared/_DetailCustomer.cshtml";
 }
 <div class="container-fluid">
-    <div class="row flex-nowrap mx-5">
+    <div class="row flex-nowrap menu">
         <div class="col-auto col-md-3 px-sm-2 mx-5 px-3 fs-5 ">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5">
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
-                        <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <a href="~/CUSTOMER/YourAccount" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline fw-bold">Your Account</span>
                         </a>
                     </li>
@@ -32,10 +32,16 @@
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Your Reviews</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Sign Out</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="col-7 col pt-5">
+        <div class="vr"></div>
+        <div class="col-7 col pt-5 mx-5">
             <h1>User Details</h1>
             <form action="" method="POST" class="form-detail" id="form-detail">
                 <div class="form-avatar">

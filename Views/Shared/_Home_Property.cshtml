@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.2-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="~/Content/custom/property.css">
+    <title>Trivia</title>
+</head>
+<body>
+    <header style="background-color: #08536B">
+        <div>
+            <nav class="container app__nav d-flex justify-content-between align-items-center">
+                <div class="position-relative">
+                    <a href="./Home_Property.html" class="text-decoration-none">
+                        <img src="~/Assets/img/logo.png" alt="Logo" class="app__nav-img">
+                        <span class="app__nav-detail position-absolute text-white">For Property</span>
+                    </a>
+                </div>
+                <div class="app__nav-search">
+                    <i class="px-2 py-3 fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="app__nav-search-input" name="app__nav-search-input" placeholder="Search for reservation">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div>
+        <div class="app__content-nav">
+            <div class="container grid wide" id="mydiv">
+                <nav class="navList d-flex justify-content-between align-items-center">
+                    <a href="~/Property/HomeProperty"
+                       class="active text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-house"></i>
+                        <figcaption>Home</figcaption>
+                    </a>
+                    <a href="~/Views/Property/HomeProperty"
+                       class="text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-calendar-days"></i>
+                        <figcaption>Rates & availability</figcaption>
+                    </a>
+                    <a href="~/Property/Reservations"
+                       class="bring_out text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-check-to-slot"></i>
+                        <figcaption>Reservations</figcaption>
+                    </a>
+                    <div class="position-relative">
+                        <label for="app__content-nav-input"
+                               class="text-decoration-none app__content-nav-item p-3 text-center">
+                            <i class="pb-1 fa-solid fa-pen-to-square"></i>
+                            <figcaption>Property</figcaption>
+                        </label>
+                        <input type="checkbox" hidden name="app__content-nav-input" id="app__content-nav-input">
+                        <div class="app__content-edit-box position-absolute text-dark">
+                            <ul class="list-unstyled">
+                                <li class="p-2">
+                                    <a href="~/Property/Update_Information"
+                                       class="text-decoration-none text-dark">Update Information</a>
+                                </li>
+                                <li class="p-2">
+                                    <a href="~/Property/Property_Review" class="text-decoration-none text-dark">
+                                        Guest reviews
+                                    </a>
+                                </li>
+                                <li class="p-2">
+                                    <label for="app__inbox-input" style="width: 100%;cursor: pointer;">Inbox</label>
+                                </li>
+                                <li class="p-2">Log out</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+        <input type="checkbox" hidden name="app__inbox-input" id="app__inbox-input">
+        <label for="app__inbox-input" class="app__inbox-overlay"></label>
+        <div class="app__inbox">
+            <div class="row m-0 h-100 overflow-auto">
+                <div class="col-4" style="border-right: 1px solid #ccc;">
+                    <ul class="list-unstyled">
+                        <li class="app__inbox-item pb-2">
+                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 1</h6>
+                            <span class="ps-2 pe-2 app__inbox-item-content">
+                                Chào các bạn
+                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
+                                Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
+                                - Buổi sáng: 9h00-11h30
+                                - Buổi chiều: 14h00-16h30
+                                Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
+                                Quà tặng:
+                                + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
+                                + Balo cho khóa 2022
+                                + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số lượng có
+                                hạn, phát đến khi hết quà)
+                                Khi nhận quà vui lòng mang theo thẻ sinh viên.
+                                Mọi thắc mắc sinh viên trao đổi tại forum:
+                                https://forum.uit.edu.vn/node/559392
+                            </span>
+                        </li>
+                        <li class="app__inbox-item pb-2">
+                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 2</h6>
+                            <span class="ps-2 pe-2 app__inbox-item-content">
+                                Chào các bạn
+                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8 app__inbox-message"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const boxMessage = document.querySelector('.app__inbox-message')
+        const itemMessages = document.querySelectorAll('.app__inbox-item')
+
+        function showBoxSend() {
+            const btnReply = document.querySelector('.app__inbox-message-reply')
+            const boxSend = document.querySelector('.app__inbox-message-send')
+
+            btnReply.addEventListener('click', () => {
+                boxSend.style.display = 'flex'
+            })
+        }
+
+        function loadMessage() {
+            itemMessages.forEach(element => {
+                element.addEventListener('click', () => {
+                    element.style.backgroundColor = 'white'
+
+                    let html = ""
+
+                    html += `
+                             <div class="app__inbox-message-header">
+                                 <p class="px-3 py-2 app__inbox-message-title">${element.querySelector('.app__inbox-item-title').textContent}</p>
+                                 <button class="me-3 px-3 app__inbox-message-reply">Reply</button>
+                             </div>
+
+                             <div class="px-3 py-2 d-flex flex-column justify-content-between" style="height: calc(100vh - 56px);">
+                                 <p class="app__inbox-message-main">${element.querySelector('.app__inbox-item-content').textContent}</p>
+
+                                 <div class="justify-content-between app__inbox-message-send">
+                                     <textarea name="app__inbox-message-textarea" id="app__inbox-message-textarea" cols="30" rows="8" placeholder="Enter message"></textarea>
+                                     <input type="submit" value="Send" class="app__inbox-message-input px-3">
+                                 </div>
+                             </div>
+                             `
+
+                    boxMessage.innerHTML = html;
+
+                    showBoxSend()
+
+                })
+            })
+        }
+        
+        loadMessage()
+
+       </script>
+</body>
+</html>

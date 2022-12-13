@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "HomeProperty";
+    Layout = "~/Views/Shared/_Home_Property.cshtml";
+}
+<div class="container app__content-main ">
+    <div class="grid wide">
+        <div class="app__overview border-bottom">
+            <div class="app__overview-title">
+                <span>Reservation overview</span>
+                <i class="fa-regular fa-calendar-days"></i>
+            </div>
+
+            <div class="d-flex mb-3">
+                <div class="app__overview-content-item text-center">
+                    <p>Total</p>
+                    <span>0</span>
+                </div>
+                <div class="app__overview-content-item text-center">
+                    <p>Arrivals</p>
+                    <span>0</span>
+                </div>
+                <div class="app__overview-content-item text-center">
+                    <p>Departures</p>
+                    <span>0</span>
+                </div>
+                <div class="app__overview-content-item text-center">
+                    <p>Reviews</p>
+                    <span>0</span>
+                </div>
+                <div></div>
+            </div>
+
+            <div>
+                <a href="./Property_Reservation.html"
+                   class="app__overview-link float-end text-decoration-none">View all reservation</a>
+            </div>
+        </div>
+
+        <div class="app__analytic mt-3">
+            <p class="app__analytic-title">Analytics</p>
+
+            <div class="d-flex pb-4">
+                <div class="app__form-filter d-flex flex-column">
+                    <label for="select-date">Statistics filters</label>
+                    <select name="select-date" id="select-date">
+                        <option value="date">Date</option>
+                        <option value="month">Month</option>
+                        <option value="year">Year</option>
+                    </select>
+                </div>
+                <div class="app__form-filter d-flex flex-column">
+                    <label for="input-date-arrival">From</label>
+                    <input type="date" name="input-date-arrival" id="input-date-arrival">
+                </div>
+                <div class="app__form-filter d-flex flex-column">
+                    <label for="input-date-departure">Until</label>
+                    <input type="date" name="input-date-departure" id="input-date-departure">
+                </div>
+            </div>
+
+            <canvas id="analytics" style="width: 100%;max-width: 1200px; max-height: 600px;"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+     function addActive() {
+              $(document).ready(function () {
+
+
+            $('nav.navList > a')
+                    .click(function (e) {
+                $(this).addClass('active');
+            });
+        });
+        }
+
+        addActive()
+</script>

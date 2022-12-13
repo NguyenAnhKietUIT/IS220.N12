@@ -9,10 +9,27 @@ namespace IS220.N12.Controllers
     public class PropertyController : Controller
     {
         // GET: Property
-        public ActionResult Index()
+        public ActionResult HomeProperty()
         {
             return View();
         }
+
+        public ActionResult Reservations()
+        {
+            return View();
+        }
+
+        public ActionResult Update_Information()
+        {
+            return View();
+        }
+
+        public ActionResult Property_Review()
+        {
+            return View();
+        }
+
+
 
         // GET: Property/Details/5
         public ActionResult Details(int id)
