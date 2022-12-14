@@ -6,50 +6,27 @@ using System.Web.Mvc;
 
 namespace IS220.N12.Controllers
 {
-    public class PropertyController : Controller
+    public class SearchController : Controller
     {
-        // GET: Property
-        public ActionResult HomeProperty()
+        // GET: Search
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Reservations()
-        {
-            return View();
-        }
-
-        public ActionResult Update_Information()
-        {
-            return View();
-        }
-
-        public ActionResult Property_Review()
-        {
-            return View();
-        }
-
-
-        public ActionResult Property_Search()
-        {
-            return View();
-        }
-
-
-
-        // GET: Property/Details/5
+        // GET: Search/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Property/Create
+        // GET: Search/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Property/Create
+        // POST: Search/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -65,13 +42,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        // GET: Property/Edit/5
+        // GET: Search/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Property/Edit/5
+        // POST: Search/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -87,13 +64,13 @@ namespace IS220.N12.Controllers
             }
         }
 
-        // GET: Property/Delete/5
+        // GET: Search/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Property/Delete/5
+        // POST: Search/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
