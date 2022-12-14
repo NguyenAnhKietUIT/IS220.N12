@@ -47,6 +47,16 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult Review()
+        {
+            return View();
+        }
+
+        public ActionResult Detail_Review()
+        {
+            return View();
+        }
+
         // GET: CUSTOMER/Details/5
         public ActionResult Details(int id)
         {

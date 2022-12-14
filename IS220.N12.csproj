@@ -1028,6 +1028,8 @@
     <Content Include="Views\CUSTOMER\Reservation.cshtml" />
     <Content Include="Views\Homepage\Search.cshtml" />
     <Content Include="Views\Homepage\Search_Detail.cshtml" />
+    <Content Include="Views\CUSTOMER\Review.cshtml" />
+    <Content Include="Views\CUSTOMER\Detail_Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
