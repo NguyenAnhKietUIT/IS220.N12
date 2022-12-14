@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/custom/base.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
+    <title>@ViewBag.Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .app__header {
+            background-color: #08536B;
+        }
+
+        .app__nav-img {
+            height: var(--navbar-height);
+        }
+
+        .app__nav-detail {
+            top: 68px;
+            right: -16px;
+            font-size: 8px;
+        }
+
+        .app__nav-search {
+            width: 350px;
+            border-radius: 16px;
+            color: var(--text-color);
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+            .app__nav-search i {
+                cursor: pointer;
+            }
+
+        #app__nav-search-input {
+            border: none;
+            outline: none;
+            padding: 8px 16px 8px 4px;
+            width: calc(100% - 40px);
+        }
+
+        .app__content-nav {
+            background: rgba(8, 83, 107, 0.24);
+        }
+
+        .app__content-nav-item {
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+            .app__content-nav-item:hover {
+                color: #000;
+            }
+
+            .app__content-nav-item i {
+                font-size: 32px;
+            }
+
+        .app__content-edit-box {
+            z-index: 1;
+            top: 84px;
+            right: 24px;
+            width: 200%;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+            display: none;
+        }
+
+        #app__content-nav-input:checked ~ .app__content-edit-box {
+            display: block;
+        }
+
+        .app__content-edit-box > ul li {
+            cursor: pointer;
+        }
+
+            .app__content-edit-box > ul li:hover {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .app__content-edit-box > ul li:first-child {
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+            .app__content-edit-box > ul li:last-child {
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+
+        .btn-sign-out {
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            background-color: transparent;
+        }
+
+        p, ul {
+            margin-bottom: 0;
+        }
+
+        /* Inbox */
+        .app__inbox-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            animation: fadeIn 0.3s linear;
+        }
+
+        #app__inbox-input:checked ~ .app__inbox-overlay {
+            display: block;
+        }
+
+        #app__inbox-input:checked ~ .app__inbox {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .app__inbox {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            width: 1100px;
+            max-width: 100%;
+            background-color: var(--white-color);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s linear;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row > * {
+            padding: 0;
+        }
+
+        .app__inbox-item {
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+            .app__inbox-item:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+        .app__inbox-item-content {
+            color: var(--text-color);
+            text-align: justify;
+            overflow: hidden;
+            display: block;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .app__inbox-message-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .app__inbox-message-reply {
+            border: none;
+            outline: none;
+            height: 36px;
+            color: #fff;
+            border-radius: 12px;
+            background-color: blue;
+        }
+
+            .app__inbox-message-reply:hover {
+                background-color: rgba(0, 0, 255, 0.7);
+            }
+
+        .app__inbox-message-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .app__inbox-message-main {
+            height: 416px;
+            overflow-y: auto;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        .app__inbox-message-send {
+            display: none;
+        }
+
+        #app__inbox-message-textarea {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .app__inbox-message-input {
+            margin-left: 16px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="app__header">
+        <div class="container">
+            <nav class="app__nav d-flex justify-content-between align-items-center">
+                <div class="position-relative">
+                    <a href="./Home_Property.html" class="text-decoration-none">
+                        <img src="../assets/img/logo.png" alt="Logo" class="app__nav-img">
+                        <span class="app__nav-detail position-absolute text-white">For Property</span>
+                    </a>
+                </div>
+
+                <div class="app__nav-search">
+                    <i class="px-2 py-3 fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="app__nav-search-input" name="app__nav-search-input"
+                           placeholder="Search for reservation">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <div class="app__content-nav">
+            <div class="container">
+                <nav class="d-flex justify-content-between align-items-center">
+                    <a href="Index"
+                       class="text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-house"></i>
+                        <figcaption>Home</figcaption>
+                    </a>
+                    <a href="./Property_Rates.html"
+                       class="text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-calendar-days"></i>
+                        <figcaption>Rates & availability</figcaption>
+                    </a>
+                    <a href="./Property_Reservation.html"
+                       class="text-decoration-none app__content-nav-item p-3 text-center">
+                        <i class="pb-1 fa-solid fa-check-to-slot"></i>
+                        <figcaption>Reservations</figcaption>
+                    </a>
+                    <div class="position-relative">
+                        <label for="app__content-nav-input"
+                               class="text-decoration-none app__content-nav-item p-3 text-center">
+                            <i class="pb-1 fa-solid fa-pen-to-square"></i>
+                            <figcaption>Property</figcaption>
+                        </label>
+                        <input type="checkbox" hidden name="app__content-nav-input" id="app__content-nav-input">
+
+                        <div class="app__content-edit-box position-absolute text-dark">
+                            <ul class="list-unstyled">
+                                <li class="p-2">
+                                    <a href="./Property_Information.html"
+                                       class="text-decoration-none text-dark">Update Information</a>
+                                </li>
+                                <li class="p-2">
+                                    <a href="./Property_Review.html" class="text-decoration-none text-dark">
+                                        Guest
+                                        reviews
+                                    </a>
+                                </li>
+                                <li class="p-2">
+                                    <a href="./Manage_Room.html" class="text-decoration-none text-dark">Manage Rooms</a>
+                                </li>
+                                <li class="p-2">
+                                    <label for="app__inbox-input" style="width: 100%;cursor: pointer;">Inbox</label>
+                                </li>
+                                <li class="p-2">
+                                    <button class="btn-sign-out">Sign out</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <input type="checkbox" hidden name="app__inbox-input" id="app__inbox-input">
+        <label for="app__inbox-input" class="app__inbox-overlay"></label>
+        <div class="app__inbox">
+            <div class="row m-0 h-100 overflow-auto">
+                <div class="col-4" style="border-right: 1px solid #ccc;">
+                    <ul class="list-unstyled">
+                        <li class="app__inbox-item pb-2">
+                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 1</h6>
+                            <span class="ps-2 pe-2 app__inbox-item-content">
+                                Chào các bạn
+                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
+                                Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
+                                - Buổi sáng: 9h00-11h30
+                                - Buổi chiều: 14h00-16h30
+                                Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
+                                Quà tặng:
+                                + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
+                                + Balo cho khóa 2022
+                                + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số lượng có
+                                hạn, phát đến khi hết quà)
+                                Khi nhận quà vui lòng mang theo thẻ sinh viên.
+                                Mọi thắc mắc sinh viên trao đổi tại forum:
+                                https://forum.uit.edu.vn/node/559392
+                            </span>
+                        </li>
+                        <li class="app__inbox-item pb-2">
+                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 2</h6>
+                            <span class="ps-2 pe-2 app__inbox-item-content">
+                                Chào các bạn
+                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8 app__inbox-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/custom/Inbox.js"></script>
+</body>
+</html>

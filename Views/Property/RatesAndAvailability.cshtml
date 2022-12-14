@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Rates And Availability";
+    Layout = "~/Views/Shared/_PropertyLayout.cshtml";
+}
+
+<style>
+    .app__content-nav-item:nth-child(2) {
+        color: black;
+        border-bottom: 4px solid #000;
+    }
+
+    .btn-clear {
+        border-color: #c1c1c1;
+        padding: 4px 8px;
+    }
+
+        .btn-clear:hover {
+            background-color: #c8c8c8;
+        }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+    }
+
+    .table > :not(caption) > * > th {
+        color: white;
+        background-color: #08536B;
+    }
+
+    tr:nth-child(n + 2) {
+        border-width: 1px;
+    }
+</style>
+
+<div class="app__content-main">
+    <div class="container">
+        <div class="mt-5 d-flex justify-content-between">
+            <select name="select-room" id="select-room">
+                <option value="">Types of room</option>
+                <option value="standard">Standard</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="deluxe">Deluxe</option>
+            </select>
+
+            <select name="select-status" id="select-status" class="ms-3">
+                <option value="">Room status</option>
+                <option value="booked">Booked</option>
+                <option value="checked-in">Checked in</option>
+                <option value="checked-out">Checked out</option>
+                <option value="canceled">Canceled</option>
+                <option value="no-show">No show</option>
+            </select>
+
+            <input type="date" name="input-date" id="input-date" class="ms-3">
+
+            <button class="ms-3 btn-clear">Clear filters</button>
+            <div style="flex: 1;"></div>
+        </div>
+
+        <table class="table mt-5">
+            <tr>
+                <th>Quantity</th>
+                <th>Room types</th>
+                <th>Standard rates</th>
+                <th>Room status</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Standard</td>
+                <td>320000 VND</td>
+                <td>Booked</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Supervisor</td>
+                <td>320000 VND</td>
+                <td>Checked in</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Deluxe</td>
+                <td>320000 VND</td>
+                <td>No show</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    const roomFilter = document.getElementById('select-room')
+    const statusFilter = document.getElementById('select-status')
+    const dateFilter = document.getElementById('input-date')
+    const buttonClearFilter = document.querySelector('.btn-clear')
+
+    function clearFilter() {
+        buttonClearFilter.addEventListener('click', () => {
+            roomFilter.value = ""
+            statusFilter.value = ""
+            dateFilter.value = null
+        })
+    }
+
+    clearFilter()
+</script>

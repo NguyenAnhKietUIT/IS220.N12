@@ -491,6 +491,8 @@
     <Content Include="Content\custom\base.css" />
     <Content Include="Content\custom\Customer_Information.css" />
     <Content Include="Content\custom\Homepage.css" />
+    <Content Include="Content\custom\Search.css" />
+    <Content Include="Content\custom\Search_Detail.css" />
     <Content Include="Scripts\custom\Inbox.js" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
@@ -975,6 +977,7 @@
     <Content Include="Scripts\custom\AdminAnalytics.js" />
     <Content Include="Scripts\custom\AdminMessage.js" />
     <Content Include="Scripts\custom\Homepage.js" />
+    <Content Include="Scripts\custom\Search_Detail.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
@@ -1015,6 +1018,16 @@
     <Content Include="Views\CUSTOMER\Review_Property.cshtml" />
     <Content Include="Views\CUSTOMER\Success.cshtml" />
     <Content Include="Views\CUSTOMER\Error.cshtml" />
+    <Content Include="Views\Shared\_PropertyLayout.cshtml" />
+    <Content Include="Views\CUSTOMER\Detail_Booking.cshtml" />
+    <Content Include="Views\Property\Manage_Room.cshtml" />
+    <Content Include="Views\Property\Information.cshtml" />
+    <Content Include="Views\Property\RatesAndAvailability.cshtml" />
+    <Content Include="Views\Property\Manage_Reservation.cshtml" />
+    <Content Include="Views\Property\Manage_Review.cshtml" />
+    <Content Include="Views\CUSTOMER\Reservation.cshtml" />
+    <Content Include="Views\Homepage\Search.cshtml" />
+    <Content Include="Views\Homepage\Search_Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

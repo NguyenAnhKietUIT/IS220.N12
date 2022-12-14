@@ -22,6 +22,11 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult Detail_Booking()
+        {
+            return View();
+        }
+
         public ActionResult Review_Property()
         {
             return View();
@@ -33,6 +38,11 @@ namespace IS220.N12.Controllers
         }
 
         public ActionResult Error()
+        {
+            return View();
+        }
+
+        public ActionResult Reservation()
         {
             return View();
         }

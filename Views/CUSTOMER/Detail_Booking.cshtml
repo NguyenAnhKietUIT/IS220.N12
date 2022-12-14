@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/custom/base.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <title>Detail Booking</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h4, h5, p {
+            margin-bottom: 0;
+        }
+
+        .app__header {
+            background-color: #08536B;
+        }
+
+        .btn {
+            color: white;
+            border-radius: 16px;
+        }
+
+        .btn-review {
+            background-color: #08536BBF;
+        }
+
+            .btn-review:hover {
+                color: white;
+                background-color: rgba(8, 83, 107, 0.9);
+            }
+
+        /* Review */
+        .img_hotel {
+            width: 150px;
+            height: 150px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .border {
+            border-radius: 20px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 800px;
+            border-radius: 20px;
+            border-color: #dee2e6;
+            padding: 8px 16px;
+            margin-top: 8px;
+        }
+
+        input {
+            width: 120px;
+            padding: 0 4px;
+            margin-left: 8px;
+        }
+
+        .rate-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="app__header">
+        <nav class="app__nav container">
+            <a href="./Homepage.html" class="app__nav-name-link">
+                <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
+            </a>
+
+            <ul class="app__nav-list hide-on-mobile-tablet">
+                <li class="app__nav-item">
+                    <a href="./Homepage/Index" class="app__nav-item-link">Home</a>
+                </li>
+                <li class="app__nav-item">
+                    <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                </li>
+                <li class="app__nav-item">
+                    <a href="#" class="app__nav-item-link">Name Customer</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container" style="height: 250px;">
+        <h2 class="mt-5">Manage Your Booking</h2>
+
+        <div class="mt-4 d-flex w-100">
+            <img src="../assets/img/others/Rectangle 25.png" alt="Room image" style="width: 250px;height: 250px;">
+
+            <div class="ms-5 d-flex flex-column justify-content-between" style="flex: 1;">
+                <h4>Hotel Name</h4>
+                <p>Reservation number: </p>
+                <p>Phone numbers:</p>
+                <p>Address:</p>
+                <p><b>Rating Score: </b>9.0</p>
+                <!-- If status === "Ready" -->
+                <p><b>29 November, 2021 - 30 November, 2021</b></p>
+                <p><b>Check-in time: 12:00 - Check-out time: 14:00</b></p>
+                <!-- Else -->
+                <!-- <p><b>Check-in: 29 November, 2021</b></p>
+                <p><b>Check-out: 30 November, 2021</b></p> -->
+                <p><b>Status: Ready</b></p>
+            </div>
+        </div>
+
+        <div class="mt-4" style="margin-left: 298px;">
+            <!-- If status === "Ready" -->
+            <!-- <button type="button" class="btn btn-danger">Cancel Your Booking</button> -->
+            <!-- Else if status === "Completed" -->
+            <a href="Review_Property" class="btn btn-review text-decoration-none">Write your review</a>
+
+            <!-- Else -> no button -->
+        </div>
+    </div>
+</body>
+</html>

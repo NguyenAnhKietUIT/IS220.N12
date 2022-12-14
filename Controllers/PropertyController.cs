@@ -14,6 +14,31 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult Manage_Room()
+        {
+            return View();
+        }
+
+        public ActionResult Information()
+        {
+            return View();
+        }
+
+        public ActionResult RatesAndAvailability()
+        {
+            return View();
+        }
+
+        public ActionResult Manage_Reservation()
+        {
+            return View();
+        }
+
+        public ActionResult Manage_Review()
+        {
+            return View();
+        }
+
         // GET: Property/Details/5
         public ActionResult Details(int id)
         {

@@ -34,6 +34,16 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        public ActionResult Search_Detail()
+        {
+            return View();
+        }
+
         // GET: Homepage/Details/5
         public ActionResult Details(int id)
         {

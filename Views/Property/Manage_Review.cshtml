@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Manage_Review";
+    Layout = "~/Views/Shared/_PropertyLayout.cshtml";
+}
+
+<style>
+    .app__content-nav-last {
+        color: black;
+        border-bottom: 4px solid #000;
+    }
+
+        .app__content-nav-last i {
+            color: black;
+        }
+
+    .app__content-main {
+        background-color: #eff2f7;
+        margin-bottom: 16px;
+        max-height: 1000px;
+        overflow-y: auto;
+    }
+
+    .app__content-header-action {
+        width: 200px;
+        border-radius: 16px;
+        background-color: #fff;
+    }
+
+    select {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: orange;
+        background-color: transparent;
+    }
+
+    .table {
+        color: #9da5ac;
+    }
+
+        .table th {
+            font-size: 12px;
+        }
+
+    .table-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .review-info p:last-child {
+        color: #91b4dc;
+    }
+
+    .table tr th:last-child,
+    .table tr td:last-child {
+        max-width: 600px;
+        text-align: justify;
+    }
+
+    /* 7b7e85 91b4dc */
+</style>
+
+<div class="container mt-4">
+    <div class="app__content-main">
+        <p class="d-flex p-3 justify-content-between align-items-center border-bottom" style="color: #7a808b; font-size: 20px;">Reviews</p>
+
+        <div class="ms-3 me-3 mt-3">
+            <table class="table mb-0">
+                <tr>
+                    <th>NAME</th>
+                    <th class="text-center">RATING</th>
+                    <th>REVIEW</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="../assets/img/others/anhkiet.jpg" alt="Avatar" class="table-avatar">
+                            <div class="review-info ms-3">
+                                <p class="h6">Nguyen Anh Kiet</p>
+                                <p>nguyenanhkiet@gmail.com</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center h5">9</td>
+                    <td>
+                        Chào các bạn!
+                        Ngày hội Sinh viên và Doanh nghiệp - UIT Career Day 2022 sẽ diễn ra từ 7h30 - 13h00 thứ sáu
+                        ngày 9/12/2022 tại Trường Đại học Công nghệ Thông tin
+                        Nhằm giúp các bạn tự giới thiệu đến các công ty tham gia Ngày hội Việc làm UIT Career Day 2022,
+                        được doanh nghiệp gặp gỡ và phỏng vấn ngay tại Trường, sau đó các bạn có thể đi thực tập hoặc đi làm luôn
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="../assets/img/others/anhkiet.jpg" alt="Avatar" class="table-avatar">
+                            <div class="review-info ms-3">
+                                <p class="h6">Nguyen Anh Kiet</p>
+                                <p>nguyenanhkiet@gmail.com</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center h5">9</td>
+                    <td>
+                        Chào các bạn!
+                        Ngày hội Sinh viên và Doanh nghiệp - UIT Career Day 2022 sẽ diễn ra từ 7h30 - 13h00 thứ sáu
+                        ngày 9/12/2022 tại Trường Đại học Công nghệ Thông tin
+                        Nhằm giúp các bạn tự giới thiệu đến các công ty tham gia Ngày hội Việc làm UIT Career Day 2022,
+                        được doanh nghiệp gặp gỡ và phỏng vấn ngay tại Trường, sau đó các bạn có thể đi thực tập hoặc đi làm luôn
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="../assets/img/others/anhkiet.jpg" alt="Avatar" class="table-avatar">
+                            <div class="review-info ms-3">
+                                <p class="h6">Nguyen Anh Kiet</p>
+                                <p>nguyenanhkiet@gmail.com</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center h5">9</td>
+                    <td>
+                        Chào các bạn!
+                        Ngày hội Sinh viên và Doanh nghiệp - UIT Career Day 2022 sẽ diễn ra từ 7h30 - 13h00 thứ sáu
+                        ngày 9/12/2022 tại Trường Đại học Công nghệ Thông tin
+                        Nhằm giúp các bạn tự giới thiệu đến các công ty tham gia Ngày hội Việc làm UIT Career Day 2022,
+                        được doanh nghiệp gặp gỡ và phỏng vấn ngay tại Trường, sau đó các bạn có thể đi thực tập hoặc đi làm luôn
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "Information";
+    Layout = "~/Views/Shared/_PropertyLayout.cshtml";
+}
+
+<style>
+    .app__content-nav-last {
+        color: black;
+        border-bottom: 4px solid #000;
+    }
+
+        .app__content-nav-last i {
+            color: black;
+        }
+
+    .form {
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .form-label,
+    .form-message {
+        text-align: left;
+    }
+
+    .form-label {
+        font-weight: 700;
+    }
+
+    .form-group + .form-group {
+        margin-top: 16px;
+        margin-bottom: 0;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="time"],
+    .form-group select {
+        width: 350px;
+    }
+
+    .form-btn {
+        width: 100px;
+        margin-top: 24px;
+    }
+
+    .form-group div label {
+        cursor: pointer;
+    }
+
+    input[type="submit"]:disabled,
+    button:disabled,
+    button:disabled:hover {
+        background: #ccc;
+    }
+</style>
+
+<div class="mt-3 mb-5 container">
+    <p class="app__analytic-title">Update information</p>
+
+    <form action="" method="POST" class="form" id="form">
+        <div class="form-group">
+            <label for="name" class="form-label">Property name<span style="color: red;">*</span></label>
+            <input id="name" name="name" type="text" class="form-control edit-active" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="overview" class="form-label">Overview<span style="color: red;">*</span></label>
+            <textarea name="overview" id="overview" cols="30" rows="4" class="form-control edit-active" disabled></textarea>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="phonenumber" class="form-label">Phone numbers<span style="color: red;">*</span></label>
+            <input id="phonenumber" name="phonenumber" type="text" class="form-control edit-active" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="gmail" class="form-label">Gmail</label>
+            <input id="gmail" name="gmail" type="text" class="form-control" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="location" class="form-label">Location<span style="color: red;">*</span></label>
+            <textarea name="location" id="location" cols="30" rows="2" class="form-control edit-active" disabled></textarea>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="check-in" class="form-label">
+                Check-in time
+                <i class="fa-regular fa-clock"></i>
+                <span style="color: red;">*</span>
+            </label>
+            <input id="check-in" name="check-in" type="time" class="form-control edit-active" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="check-out" class="form-label">
+                Check-out time
+                <i class="fa-regular fa-clock"></i>
+                <span style="color: red;">*</span>
+            </label>
+            <input id="check-out" name="check-out" type="time" class="form-control edit-active" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Types of property<span style="color: red;">*</span></label>
+            <div class="d-flex flex-column">
+                <div>
+                    <input type="radio" name="property" id="hotel" class="edit-active" disabled>
+                    <label for="hotel">Hotel</label>
+                </div>
+                <div>
+                    <input type="radio" name="property" id="resort" class="edit-active" disabled>
+                    <label for="resort">Resort</label>
+                </div>
+                <div>
+                    <input type="radio" name="property" id="apartment" class="edit-active" disabled>
+                    <label for="apartment">Apartment</label>
+                </div>
+                <div>
+                    <input type="radio" name="property" id="homestay" class="edit-active" disabled>
+                    <label for="homestay">Homestay</label>
+                </div>
+            </div>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Types of category<span style="color: red;">*</span></label>
+            <div class="d-flex flex-column">
+                <div>
+                    <input type="checkbox" name="category" id="beach" class="edit-active" disabled>
+                    <label for="beach">Beaches</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" id="mountain" class="edit-active" disabled>
+                    <label for="mountain">Mountain</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" id="iconic-city" class="edit-active" disabled>
+                    <label for="iconic-city">Iconic cities</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" id="countryside" class="edit-active" disabled>
+                    <label for="countryside">Countryside</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" id="camping" class="edit-active" disabled>
+                    <label for="camping">Camping</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" id="tropical" class="edit-active" disabled>
+                    <label for="tropical">Tropical</label>
+                </div>
+            </div>
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Available services</label>
+            <div class="row ms-0 me-0">
+                <div class="col">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <input type="checkbox" name="service" id="gym" class="edit-active" disabled>
+                            <label for="gym">Gym</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="service" id="massage" class="edit-active" disabled>
+                            <label for="massage">Massage</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="service" id="laundry" class="edit-active" disabled>
+                            <label for="laundry">Laundry</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="service" id="billiard" class="edit-active" disabled>
+                            <label for="billiard">Billiard</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="service" id="terrace" class="edit-active" disabled>
+                            <label for="terrace">Terrace</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ms-5 mt-3 d-flex flex-column">
+                <label class="form-label">Add one service</label>
+                <input type="text" placeholder="Enter your service..." style="outline: none;border: none;" class="px-2 py-1 border-bottom edit-active" disabled>
+            </div>
+
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="image" class="form-label">Upload Image<span style="color: red;">*</span></label>
+            <input type="file" name="image" id="image" onchange="readURL(this);" class="edit-active" disabled>
+            <span class="form-message"></span>
+        </div>
+
+        <img src="" alt="Image Property" id="img-property" hidden class="mt-2">
+
+        <div class="d-flex">
+            <button type="button" class="form-btn">Update</button>
+            <input type="submit" class="form-btn  ms-5" value="Save" disabled>
+        </div>
+    </form>
+</div>
+
+<script src="~/Assets/js/validator.js"></script>
+
+<script>
+    const information = document.querySelectorAll('.edit-active');
+    const buttonUpdate = document.querySelector('button[type="button"]');
+    const buttonSave = document.querySelector('input[type="submit"]');
+
+    buttonUpdate.addEventListener('click', () => {
+        buttonUpdate.disabled = true;
+        buttonSave.disabled = false;
+
+        information.forEach(element => {
+            element.disabled = false;
+        })
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-property').removeAttr("hidden")
+                $('#img-property').attr('src', e.target.result).width(400).height(300);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    Validator({
+        form: '#form',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#name'),
+            Validator.isRequired('#overview'),
+            Validator.isRequired('#phonenumber'),
+            Validator.isPhoneNumber('#phonenumber'),
+            Validator.isRequired('#gmail'),
+            Validator.isEmail('#gmail'),
+            Validator.isRequired('#location'),
+            Validator.isRequired('#check-in'),
+            Validator.isRequired('#check-out'),
+            Validator.isRequired('input[name="property"]'),
+            Validator.isRequired('input[name="category"]'),
+            Validator.isRequired('#image'),
+        ],
+    });
+</script>

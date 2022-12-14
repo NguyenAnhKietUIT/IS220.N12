@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Manage Room";
+    Layout = "~/Views/Shared/_PropertyLayout.cshtml";
+}
+
+<style>
+    .app__content-nav-last {
+        color: black;
+        border-bottom: 4px solid #000;
+    }
+
+        .app__content-nav-last i {
+            color: black;
+        }
+
+    .table th {
+        background-color: #3c6ea7;
+        color: white;
+    }
+
+    .table tr th:nth-child(n + 3),
+    .table tr td:nth-child(n + 3) {
+        text-align: center;
+    }
+
+    .table tr td {
+        border: 1px solid #ccc;
+    }
+
+    .table td img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    input, select {
+        width: 200px;
+        height: 32px;
+        margin-top: 4px;
+        padding: 2px 4px;
+    }
+
+    .bed-num-message,
+    .price-message {
+        display: none;
+    }
+
+    input[name="image"] {
+        width: 250px;
+    }
+</style>
+
+<div class="app__content-main mt-4" style="max-width: 1200px;margin: 0 auto;">
+    <div class="">
+        <form action="">
+            <input type="text" id="room-id" hidden>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                    <label for="room-name"><b>Room Name</b><span style="color: red;">*</span></label>
+                    <input type="text" name="room-name" id="room-name" required>
+                </div>
+                <div class="d-flex flex-column">
+                    <label for="type-room"><b>Type Of Room</b><span style="color: red;">*</span></label>
+                    <select name="type-room" id="type-room" required>
+                        <option value="">Choose type of room</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Deluxe">Deluxe</option>
+                        <option value="Supervisor">Supervisor</option>
+                    </select>
+                </div>
+                <div class="d-flex flex-column">
+                    <label for="bed-num"><b>Number Of Bed</b><span style="color: red;">*</span></label>
+                    <div class="d-flex align-items-center">
+                        <input type="number" name="bed-num" id="bed-num" min="1" max="5">
+                        <span class="ms-1 text-danger bed-num-message">Number of bed must be between 1 and 5</span>
+                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <label for="price"><b>Price</b><span style="color: red;">*</span></label>
+                    <div class="d-flex align-items-center">
+                        <input type="number" name="price" id="price" min="600000" required>
+                        <span class="ms-1 text-danger price-message">Price must be at least 600000 VND</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column mt-3">
+                <label for="image"><b>Image</b><span style="color: red;">*</span></label>
+                <input type="file" name="image" id="image" onchange="readURL(this);" required>
+            </div>
+
+            <img src="" alt="Image Room" id="img-room" hidden class="mt-2">
+
+            <input type="submit" value="Save" class="btn btn-primary mt-4 py-0">
+        </form>
+    </div>
+
+    <table class="table mt-4">
+        <tr>
+            <th class="d-none"></th>
+            <th style="width: 16%;">Room Name</th>
+            <th style="width: 16%;">Type Of Room</th>
+            <th style="width: 16%;">Number of Bed</th>
+            <th style="width: 16%;">Price</th>
+            <th style="width: 16%;">Image</th>
+            <th style="width: 20%;">Function</th>
+        </tr>
+        <tr>
+            <td class="d-none">1</td>
+            <td>Indigo</td>
+            <td>Standard</td>
+            <td>2</td>
+            <td>6500000 VND</td>
+            <td>
+                <img src="../assets/img/others/hotel.jpg" alt="">
+            </td>
+            <td>
+                <button type="button" class="btn btn-info">Update</button>
+                <button type="button" class="btn btn-danger ms-3">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    const roomId = document.getElementById('room-id');
+    const roomName = document.getElementById('room-name');
+    const typeRoom = document.getElementById('type-room');
+    const bedNum = document.getElementById('bed-num');
+    const price = document.getElementById('price');
+    const imageRoom = document.getElementById('img-room');
+    const buttonUpdate = document.querySelectorAll('.btn.btn-info');
+
+    buttonUpdate.forEach(element => {
+        element.addEventListener('click', () => {
+            let array = element.parentElement.parentElement.getElementsByTagName("td");
+
+            roomId.value = array[0].textContent;
+            roomName.value = array[1].textContent;
+            typeRoom.value = array[2].textContent;
+            bedNum.value = array[3].textContent;
+            price.value = parseInt(array[4].textContent);
+            document.getElementById('image').removeAttribute("required")
+            imageRoom.src = array[5].getElementsByTagName("img")[0].currentSrc;
+            imageRoom.removeAttribute("hidden");
+            imageRoom.style.display = "block";
+            imageRoom.style.width = "300px";
+            imageRoom.style.height = "200px";
+        })
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-room').removeAttr("hidden")
+                $('#img-room').attr("style", "display: block");
+                $('#img-room').attr('src', e.target.result).width(300).height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
