@@ -1,8 +1,7 @@
-﻿@model IS220.N12.ACCOUNT
+﻿@model IS220.N12.Models.ACCOUNT
 
 @{
     ViewBag.Title = "Sign In";
-    Layout = "";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +16,7 @@
     <title>Sign In</title>
 </head>
 <body>
-    <div class="bg-image" style="background-image: url('./../Assets/img/Background/Sign_In.png');  ">
+    <div class="bg-image" style="background-image: url('./../Assets/img/Background/Sign_In.png');">
         <header class="app__header">
             <div class="container">
                 <nav style="height: 100px;" class="position-relative">
@@ -27,9 +26,6 @@
                     <ul class="list-unstyled position-absolute top-50 end-0 translate-middle-y d-flex" style="font-size: 1.25rem;">
                         <li class="app__nav-item">
                             <a href="~/Homepage/Index" class="app__nav-item-link">Home</a>
-                        </li>
-                        <li class="app__nav-item">
-                            <a href="#" class="app__nav-item-link">Manage Your Stay</a>
                         </li>
                         <li class="app__nav-item">
                             <a href="#" class="app__nav-item-link">Contacts</a>
@@ -57,7 +53,7 @@
                 </a>
             </div>
             <div class="col-sm-6 align-self-center" style="margin-top: 20px">
-                <form action="" method="post" class="form" id="form">
+                <form action="" method="post" class="form" id="form" style="width: 350px;">
                     <h3 class="text-white form-title">
                         Sign Into <br /> Your Account
                     </h3>

@@ -1,4 +1,5 @@
 ﻿using IS220.N12.Dao;
+using IS220.N12.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -113,7 +114,7 @@ namespace IS220.N12.Controllers
                                 hotel.Address_Hotel = kq.Address_Hotel;
                                 hotel.Detail_Hotel = kq.Detail_Hotel;
                                 hotel.Phone_Hotel = kq.Phone_Hotel;
-                                hotel.TypeID = kq.TypeID;
+                                hotel.TypeName = kq.TypeName;
                                 hotel.Image_Hotel = kq.Image_Hotel;
                                 hotel.AccountID = kq.AccountID;
                                 hotel.PlaceID = kq.PlaceID;
@@ -143,7 +144,7 @@ namespace IS220.N12.Controllers
 
                             Session["Customer"] = customer;
 
-                            return RedirectToAction("../Homepage/Index");
+                            return RedirectToAction("../CUSTOMER/YourAccount");
                     }
                 }
             } else
@@ -151,6 +152,11 @@ namespace IS220.N12.Controllers
                 ViewBag.error = "Login Failed!!!";
                 return RedirectToAction("SignIn");
             }
+            return View();
+        }
+
+        public ActionResult Edit_Password()
+        {
             return View();
         }
 

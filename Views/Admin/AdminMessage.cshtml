@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IS220.N12.ACCOUNT>
+﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
 @{
     ViewBag.Title = "Message";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -250,3 +250,7 @@
 </div>
 
 <script src="~/Scripts/custom/AdminMessage.js"></script>
+
+<script>
+    $('.nav__content-list li:last-child .nav__content-list-item').addClass('active');
+</script>

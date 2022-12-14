@@ -253,6 +253,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ACCOUNT.cs" />
+    <Compile Include="Models\CONTACT.cs" />
+    <Compile Include="Models\CUSTOMER.cs" />
+    <Compile Include="Models\DISCOUNT.cs" />
+    <Compile Include="Models\EVALUATE_CUSTOMER.cs" />
+    <Compile Include="Models\EVALUATE_HOTEL.cs" />
+    <Compile Include="Models\HOTEL.cs" />
+    <Compile Include="Models\HotelBookingContext.cs" />
+    <Compile Include="Models\ImageOfPlace.cs" />
+    <Compile Include="Models\PLACE.cs" />
+    <Compile Include="Models\RESERVATION.cs" />
+    <Compile Include="Models\ROOM.cs" />
+    <Compile Include="Models\SERVICE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,8 +312,17 @@
     <Content Include="Assets\img\Admin\6.png" />
     <Content Include="Assets\img\Admin\admin_background.png" />
     <Content Include="Assets\img\anhkiet.jpg" />
+    <Content Include="Assets\img\Background\Frame_100.png" />
+    <Content Include="Assets\img\Background\Frame_98.png" />
+    <Content Include="Assets\img\Background\Frame_99.png" />
+    <Content Include="Assets\img\Background\image_1.png" />
+    <Content Include="Assets\img\Background\image_2.png" />
+    <Content Include="Assets\img\Background\image_3.png" />
+    <Content Include="Assets\img\Background\image_33.png" />
+    <Content Include="Assets\img\Background\image_4.png" />
     <Content Include="Assets\img\Background\Property_sign_in.png" />
     <Content Include="Assets\img\Background\Sign_In.png" />
+    <Content Include="Assets\img\favicon.png" />
     <Content Include="Assets\img\google_icon.png" />
     <Content Include="Assets\img\Background\Sign_Up_page_for_customers.png" />
     <Content Include="Assets\img\category\beach\Frame_98.png" />
@@ -375,14 +397,56 @@
     <Content Include="Assets\img\Homepage\mountain.jpg" />
     <Content Include="Assets\img\Homepage\nha_trang.png" />
     <Content Include="Assets\img\Homepage\resorts.png" />
+    <Content Include="Assets\img\home_page\apartments.png" />
+    <Content Include="Assets\img\home_page\backgroud_theme.png" />
+    <Content Include="Assets\img\home_page\ha_giang.png" />
+    <Content Include="Assets\img\home_page\hoi_an.png" />
+    <Content Include="Assets\img\home_page\homestay.png" />
+    <Content Include="Assets\img\home_page\home_page.png" />
+    <Content Include="Assets\img\home_page\hotels.png" />
+    <Content Include="Assets\img\home_page\ho_chi_minh.png" />
+    <Content Include="Assets\img\home_page\nha_trang.png" />
+    <Content Include="Assets\img\home_page\resorts.png" />
+    <Content Include="Assets\img\inspiration\image_1.png" />
+    <Content Include="Assets\img\inspiration\image_10.png" />
+    <Content Include="Assets\img\inspiration\image_11.png" />
+    <Content Include="Assets\img\inspiration\image_12.png" />
+    <Content Include="Assets\img\inspiration\image_13.png" />
+    <Content Include="Assets\img\inspiration\image_14.png" />
+    <Content Include="Assets\img\inspiration\image_15.png" />
+    <Content Include="Assets\img\inspiration\image_2.png" />
+    <Content Include="Assets\img\inspiration\image_3.png" />
+    <Content Include="Assets\img\inspiration\image_4.png" />
+    <Content Include="Assets\img\inspiration\image_5.png" />
+    <Content Include="Assets\img\inspiration\image_6.png" />
+    <Content Include="Assets\img\inspiration\image_7.png" />
+    <Content Include="Assets\img\inspiration\image_8.png" />
+    <Content Include="Assets\img\inspiration\image_9.png" />
+    <Content Include="Assets\img\inspiration\Rectangle_39.png" />
     <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\others\1.png" />
+    <Content Include="Assets\img\others\2.png" />
+    <Content Include="Assets\img\others\3.png" />
+    <Content Include="Assets\img\others\4.png" />
+    <Content Include="Assets\img\others\5.png" />
+    <Content Include="Assets\img\others\6.png" />
+    <Content Include="Assets\img\others\admin_background.png" />
+    <Content Include="Assets\img\others\anhkiet.jpg" />
+    <Content Include="Assets\img\others\arrow.png" />
     <Content Include="Assets\img\others\avatar.png" />
     <Content Include="Assets\img\others\beach_1.jpg" />
     <Content Include="Assets\img\others\beach_2.jpg" />
     <Content Include="Assets\img\others\favourite.png" />
+    <Content Include="Assets\img\others\hotel.jpg" />
     <Content Include="Assets\img\others\india.jpg" />
     <Content Include="Assets\img\others\mother_home.png" />
     <Content Include="Assets\img\others\mountain.jpg" />
+    <Content Include="Assets\img\others\Rectangle 25.png" />
+    <Content Include="Assets\img\others\Rectangle_10.png" />
+    <Content Include="Assets\img\others\Rectangle_11.png" />
+    <Content Include="Assets\img\others\Rectangle_12.png" />
+    <Content Include="Assets\img\others\Rectangle_13.png" />
+    <Content Include="Assets\img\others\Rectangle_9.png" />
     <Content Include="Assets\js\validator.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -425,8 +489,9 @@
     <Content Include="Content\custom\admin.css" />
     <Content Include="Content\custom\adminBackground.css" />
     <Content Include="Content\custom\base.css" />
-    <Content Include="Content\custom\detail.css" />
+    <Content Include="Content\custom\Customer_Information.css" />
     <Content Include="Content\custom\Homepage.css" />
+    <Content Include="Scripts\custom\Inbox.js" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
     <Content Include="Content\PagedList.css" />
@@ -931,7 +996,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Homepage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginRegister.cshtml" />
-    <Content Include="Views\CUSTOMER\Index.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\ACCOUNT\SignIn.cshtml" />
@@ -939,15 +1003,21 @@
     <Content Include="Views\ACCOUNT\SignUpProperty.cshtml" />
     <Content Include="Views\Admin\AdminMessage.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
-    <Content Include="Views\Shared\_DetailCustomer.cshtml" />
     <Content Include="Views\CUSTOMER\YourAccount.cshtml" />
     <Content Include="Views\CUSTOMER\ViewAllBooking.cshtml" />
-    <Content Include="Views\CUSTOMER\Favourites.cshtml" />
     <Content Include="Views\Admin\AdminAnalytics.cshtml" />
+    <Content Include="Views\Shared\_EmptyLayout.cshtml" />
+    <Content Include="Views\Homepage\Article_1.cshtml" />
+    <Content Include="Views\Homepage\Article_2.cshtml" />
+    <Content Include="Views\Homepage\Article_3.cshtml" />
+    <Content Include="Views\Homepage\Article_4.cshtml" />
+    <Content Include="Views\ACCOUNT\Edit_Password.cshtml" />
+    <Content Include="Views\CUSTOMER\Review_Property.cshtml" />
+    <Content Include="Views\CUSTOMER\Success.cshtml" />
+    <Content Include="Views\CUSTOMER\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\RESERVATION\" />
   </ItemGroup>
   <ItemGroup>

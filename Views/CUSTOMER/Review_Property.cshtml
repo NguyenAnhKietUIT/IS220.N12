@@ -1,0 +1,150 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/custom/base.css" />
+    <title>Review Property</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h4, h5, p {
+            margin-bottom: 0;
+        }
+
+        .app__header {
+            background-color: #08536B;
+        }
+
+        .btn {
+            color: white;
+            border-radius: 16px;
+        }
+
+        .btn-review {
+            background-color: #08536BBF;
+        }
+
+            .btn-review:hover {
+                color: white;
+                background-color: rgba(8, 83, 107, 0.9);
+            }
+
+        /* Review */
+        .img_hotel {
+            width: 150px;
+            height: 150px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .border {
+            border-radius: 20px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 800px;
+            border-radius: 20px;
+            border-color: #dee2e6;
+            padding: 8px 16px;
+            margin-top: 8px;
+        }
+
+        input {
+            width: 120px;
+            padding: 0 4px;
+            margin-left: 8px;
+        }
+
+        .rate-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="app__header">
+            <nav class="app__nav" style="max-width: 1200px;margin: 0 auto;">
+                <a href="./Homepage.html" class="app__nav-name-link">
+                    <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
+                </a>
+
+                <ul class="app__nav-list hide-on-mobile-tablet">
+                    <li class="app__nav-item">
+                        <a href="./Homepage.html" class="app__nav-item-link">Home</a>
+                    </li>
+                    <li class="app__nav-item">
+                        <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                    </li>
+                    <li class="app__nav-item">
+                        <a href="#" class="app__nav-item-link">Name Customer</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div style="max-width: 1200px;margin: 0 auto;height: 250px;">
+            <h2 class="mt-5">Writing your review</h2>
+
+            <div class="border mt-4 d-flex" style="width: 800px;">
+                <img src="../assets/img/others/Rectangle 25.png" alt="" class="img_hotel">
+
+                <div class="ms-4 my-2 d-flex flex-column justify-content-between" style="flex: 1;">
+                    <h5>Hotel Name</h5>
+                    <p>Address: </p>
+                    <p>6 August, 2021 - 7 August, 2021</p>
+                    <p>Status: <b>Completed</b></p>
+                </div>
+            </div>
+
+            <div class="mt-3 d-flex flex-column">
+                <label for="review">Your review</label>
+                <textarea name="review" id="review" cols="35" rows="6" placeholder="Leave your review here..."></textarea>
+            </div>
+
+            <div class="mt-3">
+                <label for="rating">Your rating</label>
+                <input type="number" name="rating" id="rating" min="0" max="10" step="0.01">
+                <span class="ms-1 text-danger rate-message">Rating must be between 0 and 10</span>
+            </div>
+
+            <button type="button" class="btn btn-review mt-4">Log review</button>
+        </div>
+    </div>
+
+    <script>
+        const rating = document.getElementById("rating");
+        const rateMessage = document.querySelector(".rate-message");
+
+        rating.addEventListener("blur", () => {
+            if (rating.value != null && (rating.value < 0 || rating.value > 10)) {
+                rateMessage.style.display = 'inline-block';
+            }
+        })
+
+        rating.addEventListener("focus", () => {
+            rateMessage.style.display = 'none';
+        })
+    </script>
+
+</body>
+</html>

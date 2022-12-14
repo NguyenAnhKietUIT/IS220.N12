@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS220.N12.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -83,7 +84,7 @@ namespace IS220.N12.Controllers
                 hotel.Address_Hotel = kq.Address_Hotel;
                 hotel.Detail_Hotel = kq.Detail_Hotel;
                 hotel.Phone_Hotel = kq.Phone_Hotel;
-                hotel.TypeID = kq.TypeID;
+                hotel.TypeName = kq.TypeName;
                 hotel.Image_Hotel = kq.Image_Hotel;
                 hotel.AccountID = kq.AccountID;
                 hotel.PlaceID = kq.PlaceID;

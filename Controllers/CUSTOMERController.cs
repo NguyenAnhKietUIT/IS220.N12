@@ -22,7 +22,17 @@ namespace IS220.N12.Controllers
             return View();
         }
 
-        public ActionResult Favourites()
+        public ActionResult Review_Property()
+        {
+            return View();
+        }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
+
+        public ActionResult Error()
         {
             return View();
         }

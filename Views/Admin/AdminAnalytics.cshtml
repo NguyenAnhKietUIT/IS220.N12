@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IS220.N12.ACCOUNT>
+﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
 @{
     ViewBag.Title = "Analytics";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -96,3 +96,7 @@
 </div>
 
 <script src="~/Scripts/custom/AdminAnalytics.js"></script>
+
+<script>
+    $('.nav__content-list li:nth-child(2) .nav__content-list-item').addClass('active');
+</script>

@@ -1,5 +1,5 @@
 ﻿@{
-    var account = Session["Account"] as IS220.N12.ACCOUNT;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 <!DOCTYPE html>
 
@@ -14,22 +14,153 @@
     <link rel="stylesheet" href="~/Content/custom/base.css" />
     <link rel="stylesheet" href="~/Content/custom/Homepage.css" />
     <title>Trivia</title>
+    <style>
+        .app__category-item:hover,
+        .app__category-item:hover i {
+            color: var(--white-color);
+        }
+
+        form .fa-solid {
+            color: var(--search-color);
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: var(--search-color);
+            background-color: transparent;
+        }
+
+            input[type="text"]::placeholder {
+                color: var(--search-color);
+            }
+
+        input[type=date] {
+            width: 120px;
+            border: none;
+            outline: none;
+            display: none;
+            padding-left: 8px;
+            color: var(--search-color);
+            background-color: transparent;
+            font-family: Helvetica, sans-serif;
+        }
+
+            input[type=date]:hover {
+                color: #fff;
+                cursor: pointer;
+            }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(1);
+        }
+
+        input[type="range"] {
+            position: absolute;
+            height: 0;
+            width: 0;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .app__inspiration-item-desc {
+            font-size: 14px;
+            color: var(--text-color);
+            height: 44px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        /* Content inspiration */
+        .app__inspiration {
+            margin: 48px auto 80px;
+        }
+
+        .app__inspiration-item {
+            display: block;
+            position: relative;
+            text-decoration: none;
+            background-color: var(--white-color);
+            border-radius: 8px;
+            box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+            transition: transform ease-in 0.1s;
+            will-change: transform;
+        }
+
+            .app__inspiration-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 0 2px 2px rgb(0 0 0 / 5%);
+            }
+
+        .app__inspiration-item__img {
+            width: 100%;
+            border-radius: 24px;
+            padding: 12px 12px 4px;
+        }
+
+        .app__inspiration-item-info {
+            padding: 0 12px;
+            text-align: justify;
+        }
+
+        .app__inspiration-item-title {
+            color: var(--black-color);
+            font-size: 18px;
+        }
+
+        .app__inspiration-item-desc {
+            font-size: 14px;
+            color: var(--text-color);
+            height: 44px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .app__inspiration .col.large {
+            height: 570px;
+        }
+
+            .app__inspiration .col.large .app__inspiration-item__img {
+                height: 495px;
+            }
+
+        .app__inspiration .col:last-child a:first-child .app__inspiration-item__img {
+            height: 200px;
+        }
+
+        .app__inspiration .col:last-child .row:last-child {
+            margin-top: 16px;
+        }
+
+            .app__inspiration .col:last-child .row:last-child .app__inspiration-item__img {
+                width: 100%;
+                height: 150px;
+            }
+    </style>
 </head>
 <body>
     <div id="app">
         <header class="app__header">
             <div class="container">
                 <nav class="app__nav">
-                    <a href="Index" class="app__nav-name-link">
+                    <a href="./Homepage.html" class="app__nav-name-link">
                         <img src="~/Assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
                     </a>
 
-                    <ul class="app__nav-list hide-on-mobile-tablet ps-0">
+                    <ul class="app__nav-list hide-on-mobile-tablet">
                         <li class="app__nav-item">
-                            <a href="Index" class="app__nav-item-link text-white">Home</a>
+                            <a href="Index" class="app__nav-item-link">Home</a>
                         </li>
+
                         <li class="app__nav-item">
-                            <a href="#" class="app__nav-item-link">Contacts</a>
+                            <a href="" class="app__nav-item-link">Contacts</a>
                         </li>
                         <li class="app__nav-item">
                             @if (account != null)
@@ -49,81 +180,85 @@
                     <h2>Plan your next trip from now!</h2>
                 </div>
 
-                <ul class="app__search-list ps-0">
-                    <li class="app__search-item">
-                        <a href="#" class="app__search-icon-link">
-                            <i class="app__search-icon fa-solid fa-magnifying-glass"></i>
-                        </a>
-                        <input type="text" name="app__search-input" placeholder="Search destinations, hotels">
-
-                        <div class="app__search-history">
-                            <h3 class="app__search-history-heading">Search history</h3>
-                            <ul class="app__search-history-list">
-                                <li class="app__search-history-item">Ho Chi Minh</li>
-                                <li class="app__search-history-item">Ha Noi</li>
-                                <li class="app__search-history-item">Da Nang</li>
-                            </ul>
+                <form action=""
+                      class="d-flex justify-content-around align-items-center"
+                      style="height: 60px;
+                    margin-top: 64px;
+                    border-radius: 12px;
+                    background-color: rgba(255, 255, 255, 0.4);">
+                    <div class="py-1 d-flex align-items-center">
+                        <i class="pe-2 fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="search-destination"
+                               placeholder="Search destinations, hotels"
+                               style="width: 320px;">
+                    </div>
+                    <div class="py-1 position-relative" style="width: 140px;">
+                        <div class="d-flex align-items-center">
+                            <i class="pe-2 fa-solid fa-plane-departure"></i>
+                            <div class="app__status-in">Check in</div>
+                            <input type="date" name="check-in-date" id="app__check-in"
+                                   min="2017-10-14" max="2050-12-31">
                         </div>
-                    </li>
-                    <li class="app__search-item position-relative">
-                        <a href="#" class="app__search-icon-link">
-                            <i class="app__search-icon fa-solid fa-plane-departure"></i>
-                        </a>
-                        <div class="app__status-in">Check in</div>
-                        <input type="date" id="app__check-in" class="app__check-status" value="2022-11-11"
-                               min="2017-10-14" max="2050-12-31">
                         <p class="position-absolute toast-message-in p-1 text-center">
                             The maximum interval between two
                             days is thirty
                         </p>
-                    </li>
-                    <li class="app__search-item position-relative">
-                        <a href="#" class="app__search-icon-link">
-                            <i class="app__search-icon fa-solid fa-money-check"></i>
-                        </a>
-                        <div class="app__status-out">Check out</div>
-                        <input type="date" id="app__check-out" class="app__check-status" value="2022-11-11"
-                               min="2017-10-14" max="2050-12-31">
+                    </div>
+                    <div class="py-1 position-relative" style="width: 140px;">
+                        <div class="d-flex align-items-center">
+                            <i class="pe-2 fa-solid fa-money-check"></i>
+                            <div class="app__status-out">Check out</div>
+                            <input type="date" name="check-out-date" id="app__check-out"
+                                   min="2017-10-14" max="2050-12-31">
+                        </div>
                         <p class="position-absolute toast-message-out p-1 text-center">
                             The maximum interval between two
                             days is thirty
                         </p>
-                    </li>
-                    <li class="app__search-item">
-                        <a href="#" class="app__search-icon-link">
-                            <i class="app__search-icon fa-solid fa-people-group"></i>
-                        </a>
-                        <div class="app__search-quantity">
-                            <span>1</span>
-                            bed,
-                            <span>2</span>
-                            adults
+                    </div>
+                    <div class="d-flex py-1 position-relative">
+                        <div class="d-flex align-items-center">
+                            <i class="pe-2 fa-solid fa-people-group"></i>
+                            <div class="app__search-quantity">
+                                <span>1</span>
+                                bed,
+                                <span>2</span>
+                                adults
+                            </div>
                         </div>
 
                         <div class="box-quantity">
-                            <div class="box-quantity__item">
-                                <span>Bed</span>
-                                <div>
-                                    <button class="btn-minus-bed">-</button>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <input type="range" name="bed-num" id="bed-num" min="1" max="30" step="1" value="1">
+                                <div class="">
+                                    <label for="bed-num">Beds</label>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center" style="width: 110px;">
+                                    <button type="button" class="btn-minus-bed">-</button>
                                     <span class="amount-bed">1</span>
-                                    <button class="btn-add-bed">+</button>
+                                    <button type="button" class="btn-add-bed">+</button>
                                 </div>
                             </div>
-                            <div class="box-quantity__item">
-                                <span>People</span>
-                                <div>
-                                    <button class="btn-minus-people">-</button>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <input type="range" name="per-num" id="per-num" min="1" step="1" value="1">
+                                <div class="">
+                                    <label for="per-num">Adults</label>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center" style="width: 110px;">
+                                    <button type="button" class="btn-minus-people">-</button>
                                     <span class="amount-people">2</span>
-                                    <button class="btn-add-people">+</button>
+                                    <button type="button" class="btn-add-people">+</button>
                                 </div>
                             </div>
-                            <button class="btn-accept">Accept</button>
+                            <button type="button" class="btn-accept">Accept</button>
                         </div>
-                    </li>
-                    <li class="app__search-item">
-                        <a href="#" class="app__search-btn">Search</a>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="d-flex py-1">
+                        <a href="#" class="text-decoration-none">
+                            <input type="submit" class="app__search-btn" value="Search">
+                        </a>
+                    </div>
+                </form>
 
                 <div class="mt-5">
                     <h3 class="app__categories-title">Top Categories</h3>
@@ -158,7 +293,7 @@
             </div>
         </header>
 
-        <div class="app__content container">
+        <div class="app__content" style="max-width: 1200px;margin: 0 auto;">
             <div class="app__content-home">
                 <div class="mt-5">
                     <h3 class="app__selection-title">Top Destinations</h3>
@@ -166,28 +301,28 @@
                     <div class="row">
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/hoi_an.png" alt="Hoi An"
+                                <img src="../assets/img/home_page/hoi_an.png" alt="Hoi An"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Hoi An</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/ha_giang.png" alt="Ha Giang"
+                                <img src="../assets/img/home_page/ha_giang.png" alt="Ha Giang"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Ha Giang</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/nha_trang.png" alt="Nha Trang"
+                                <img src="../assets/img/home_page/nha_trang.png" alt="Nha Trang"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Nha Trang</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/ho_chi_minh.png" alt="Ho Chi Minh"
+                                <img src="../assets/img/home_page/ho_chi_minh.png" alt="Ho Chi Minh"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Ho Chi Minh</span>
                             </a>
@@ -201,28 +336,28 @@
                     <div class="row">
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/hotels.png" alt="Hotels"
+                                <img src="../assets/img/home_page/hotels.png" alt="Hotels"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Hotels</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/apartments.png" alt="Apartments"
+                                <img src="../assets/img/home_page/apartments.png" alt="Apartments"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Apartments</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/resorts.png" alt="Resorts"
+                                <img src="../assets/img/home_page/resorts.png" alt="Resorts"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Resorts</span>
                             </a>
                         </div>
                         <div class="app__selection-item col">
                             <a href="#" class="app__selection-item-link">
-                                <img src="~/Assets/img/Homepage/homestay.png" alt="Homestay"
+                                <img src="../assets/img/home_page/homestay.png" alt="Homestay"
                                      class="app__selection-item-img">
                                 <span class="app__selection-item-desc">Homestay</span>
                             </a>
@@ -593,7 +728,7 @@
                     <div class="row">
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/country_side/countryside_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -621,7 +756,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/country_side/countryside_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -649,7 +784,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/country_side/countryside_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -677,7 +812,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/country_side/countryside_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -712,7 +847,7 @@
                     <div class="row">
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/camping/camping_1.png" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -740,7 +875,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/camping/camping_1.png" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -768,7 +903,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/camping/camping_1.png" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -796,7 +931,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/camping/camping_1.png" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -831,7 +966,7 @@
                     <div class="row">
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/tropical/tropical_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -859,7 +994,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/tropical/tropical_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -887,7 +1022,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/tropical/tropical_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -915,7 +1050,7 @@
                         </div>
                         <div class="col">
                             <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/tropical/tropical_1.jpg" alt=""
+                                <img src="../assets/img/category/beach/mauritius.png" alt=""
                                      class="home-location-item__img">
 
                                 <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
@@ -946,7 +1081,7 @@
 
                 <div class="app__background-theme">
                     <a href="#" class="app__background-theme-link">
-                        <img src="~/Assets/img/Homepage/backgroud_theme.png" alt="" class="app__background-theme-img">
+                        <img src="../assets/img/home_page/backgroud_theme.png" alt="" class="app__background-theme-img">
                         <div class="app__background-theme-desc">
                             <h3 class="app__background-theme-title">Plan your trip with<br> travel expert</h3>
                             <span class="app__background-theme-detail">
@@ -962,51 +1097,71 @@
 
                     <div class="row">
                         <div class="col large">
-                            <a href="#" class="app__inspiration-item">
-                                <img src="~/Assets/img/others/india.jpg" alt="Inspiration"
+                            <a href="Article_1" class="app__inspiration-item">
+                                <img src="../assets/img/inspiration/image_1.png" alt="Inspiration"
                                      class="app__inspiration-item__img">
 
                                 <div class="app__inspiration-item-info">
-                                    <span class="app__inspiration-item-title">India</span>
-                                    <span class="app__inspiration-item-desc">Travel community</span>
-                                    <span class="app__inspiration-item-view">155,073 travelers</span>
+                                    <span class="app__inspiration-item-title">Exploring Vung Tau Beach City</span>
+                                    <p class="app__inspiration-item-desc">
+                                        Travel community Vung Tau – A coastal city is
+                                        always an attractive destination for tourists. However, there are many people
+                                        who do not have much time for a multi-day trip to Vung Tau but only 1 day to stay in
+                                        the coastal city. So in a short day in Vung Tau, where should I go? What to do?
+                                        Do not panic because the 1 day Vung Tau tour below can help you enjoy the short
+                                        but experience completely Vung Tau trip!
+                                    </p>
+                                    <p class="pt-1"></p>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col large">
-                            <a href="#" class="app__inspiration-item">
-                                <img src="~/Assets/img/others/mountain.jpg" alt="Inspiration"
+                            <a href="Article_2" class="app__inspiration-item">
+                                <img src="../assets/img/inspiration/image_7.png" alt="Inspiration"
                                      class="app__inspiration-item__img">
 
                                 <div class="app__inspiration-item-info">
-                                    <span class="app__inspiration-item-title">Mountains</span>
-                                    <span class="app__inspiration-item-desc">Travel community</span>
-                                    <span class="app__inspiration-item-view">155,073 travelers</span>
+                                    <span class="app__inspiration-item-title">
+                                        Paragliding over million-year-old dormant volcano in Central Highlands
+                                    </span>
+                                    <p class="app__inspiration-item-desc">
+                                        Visitors have flocked to Gia Lai Province in the Central Highlands to
+                                        paraglide over Chu Dang Ya volcano, active millions of years ago.
+                                    </p>
+                                    <p class="pt-1"></p>
                                 </div>
                             </a>
                             <div class="row">
                                 <div class="col">
-                                    <a href="#" class="app__inspiration-item">
-                                        <img src="~/Assets/img/others/beach_1.jpg" alt="Inspiration"
+                                    <a href="Article_3" class="app__inspiration-item">
+                                        <img src="../assets/img/inspiration/image_11.png" alt="Inspiration"
                                              class="app__inspiration-item__img">
 
                                         <div class="app__inspiration-item-info">
-                                            <span class="app__inspiration-item-title">Beach</span>
-                                            <span class="app__inspiration-item-desc">Travel community</span>
-                                            <span class="app__inspiration-item-view">155,073 travelers</span>
+                                            <span class="app__inspiration-item-title">Camping by Central Highlands lake Ta Dung</span>
+                                            <p class="app__inspiration-item-desc">
+                                                TTa Dung Lake in Vietnam's Central Highlands offers mesmerizing camping
+                                                given its charming emerald hue, dotted with forest-green islands.
+                                            </p>
+                                            <p class="pt-1"></p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="app__inspiration-item">
-                                        <img src="~/Assets/img/others/beach_2.jpg" alt="Inspiration"
+                                    <a href="Article_4" class="app__inspiration-item">
+                                        <img src="../assets/img/inspiration/image_14.png" alt="Inspiration"
                                              class="app__inspiration-item__img">
 
                                         <div class="app__inspiration-item-info">
-                                            <span class="app__inspiration-item-title">India</span>
-                                            <span class="app__inspiration-item-desc">Travel community</span>
-                                            <span class="app__inspiration-item-view">155,073 travelers</span>
+                                            <span class="app__inspiration-item-title">2 treks for discovering Vietnam’s rural heartlands</span>
+                                            <p class="app__inspiration-item-desc">
+                                                Jungle-cloaked hills that once shook with the sound of combat are now the serene setting for
+                                                adventurous hikes to remote villages, lofty lookouts, tumbling waterfalls and the summit of Indochina’s
+                                                highest mountain. With plenty of local guides and trekking agencies on hand to help you to the top of
+                                                the trails, all you really need to do is pick a route – and set out.
+                                            </p>
+                                            <p class="pt-1"></p>
                                         </div>
                                     </a>
                                 </div>
@@ -1018,13 +1173,13 @@
         </div>
 
         <!--Start Back To Top Button-->
-        <a href="javaScript:void();" class="back-to-top">
-            <i class="fa-solid fa-angles-up"></i>
+        <a href="javaScript:void();" class="back-to-top text-center position-fixed">
+            <i class="text-dark fa-solid fa-angles-up"></i>
         </a>
         <!--End Back To Top Button-->
 
         <footer class="app__footer">
-            <div class="container">
+            <div style="max-width: 1200px;margin: 0 auto;">
                 <div class="app__footer-contact">
                     <h3 class="app__footer-contact-title">
                         Enter your e-mail address and get<br> notified of exclusive offers
@@ -1036,7 +1191,9 @@
                         </div>
 
                         <div class="app__footer-btn">
-                            <a href="#" class="app__search-btn">Get Started</a>
+                            <a href="#" class="text-decoration-none">
+                                <input type="submit" class="app__search-btn" value="Get Started">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1133,6 +1290,22 @@
         </footer>
 
         <script src="~/Scripts/custom/Homepage.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(window).on("scroll", function () {
+                    if ($(this).scrollTop() > 300) {
+                        $('.back-to-top').fadeIn();
+                    } else {
+                        $('.back-to-top').fadeOut();
+                    }
+                });
+
+                $('.back-to-top').on("click", function () {
+                    $("html, body").animate({ scrollTop: 0 }, 200);
+                    return false;
+                });
+            });
+        </script>
     </div>
 </body>
 </html>
