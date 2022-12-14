@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,10 @@ namespace IS220.N12.Models
         }
 
         public int RoomID { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string RoomName { get; set; }
 
         [Required]
         [StringLength(255)]

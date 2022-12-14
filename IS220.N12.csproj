@@ -230,14 +230,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ACCOUNT.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\CONTACT.cs" />
     <Compile Include="Controllers\ACCOUNTController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CUSTOMERController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Models\CUSTOMER.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
     <Compile Include="Dao\CUSTOMERDao.cs" />
     <Compile Include="Dao\DISCOUNTDao.cs" />
@@ -250,25 +253,20 @@
     <Compile Include="Dao\SERVICEDao.cs" />
     <Compile Include="Dao\SERVICE_SUPPLIEDDao.cs" />
     <Compile Include="Dao\TYPE_HOTELDao.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ACCOUNT.cs" />
-    <Compile Include="Models\CUSTOMER.cs" />
     <Compile Include="Models\DISCOUNT.cs" />
     <Compile Include="Models\EVALUATE_CUSTOMER.cs" />
     <Compile Include="Models\EVALUATE_HOTEL.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\HOTEL.cs" />
     <Compile Include="Models\HotelBookingContext.cs" />
     <Compile Include="Models\ImageOfPlace.cs" />
-    <Compile Include="Models\ImageOfType.cs" />
     <Compile Include="Models\PLACE.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RESERVATION.cs" />
     <Compile Include="Models\ROOM.cs" />
     <Compile Include="Models\SERVICE.cs" />
-    <Compile Include="Models\SERVICE_SUPPLIED.cs" />
-    <Compile Include="Models\TYPE_HOTEL.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\font-awesome\css\all.css" />

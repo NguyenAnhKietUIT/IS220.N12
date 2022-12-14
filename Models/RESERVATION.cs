@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -15,6 +15,14 @@ namespace IS220.N12.Models
 
         public int RoomID { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        public string NameCheckInPerson { get; set; }
+
+        [Required]
+        [StringLength(12)]
+        public string PhoneCheckInPerson { get; set; }
+
         [Column(TypeName = "smalldatetime")]
         public DateTime? CheckIn { get; set; }
 
@@ -26,8 +34,6 @@ namespace IS220.N12.Models
 
         public int Status_Reservation { get; set; }
 
-        public int? ServiceID { get; set; }
-
         public int? DiscountID { get; set; }
 
         public virtual CUSTOMER CUSTOMER { get; set; }
@@ -35,7 +41,5 @@ namespace IS220.N12.Models
         public virtual DISCOUNT DISCOUNT { get; set; }
 
         public virtual ROOM ROOM { get; set; }
-
-        public virtual SERVICE SERVICE { get; set; }
     }
 }

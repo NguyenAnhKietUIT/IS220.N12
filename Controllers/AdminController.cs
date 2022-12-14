@@ -1,6 +1,4 @@
-﻿
-using IS220.N12.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -80,12 +78,16 @@ namespace IS220.N12.Controllers
                 HOTEL hotel = new HOTEL();
                 hotel.HotelID = kq.HotelID;
                 hotel.HotelName = kq.HotelName;
+                hotel.CheckInTime = kq.CheckInTime;
+                hotel.CheckOutTime = kq.CheckOutTime;
                 hotel.Address_Hotel = kq.Address_Hotel;
+                hotel.Detail_Hotel = kq.Detail_Hotel;
                 hotel.Phone_Hotel = kq.Phone_Hotel;
-                hotel.TypeOfHotel = kq.TypeOfHotel;
+                hotel.TypeID = kq.TypeID;
                 hotel.Image_Hotel = kq.Image_Hotel;
                 hotel.AccountID = kq.AccountID;
                 hotel.PlaceID = kq.PlaceID;
+                hotel.TypeOfCategory = kq.TypeOfCategory;
 
                 hotels.Add(hotel);
 

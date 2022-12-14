@@ -1,5 +1,4 @@
 ﻿using IS220.N12.Dao;
-using IS220.N12.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -109,12 +108,16 @@ namespace IS220.N12.Controllers
                             {
                                 hotel.HotelID = kq.HotelID;
                                 hotel.HotelName = kq.HotelName;
+                                hotel.CheckInTime = kq.CheckInTime;
+                                hotel.CheckOutTime = kq.CheckOutTime;
                                 hotel.Address_Hotel = kq.Address_Hotel;
+                                hotel.Detail_Hotel = kq.Detail_Hotel;
                                 hotel.Phone_Hotel = kq.Phone_Hotel;
-                                hotel.TypeOfHotel = kq.TypeOfHotel;
+                                hotel.TypeID = kq.TypeID;
                                 hotel.Image_Hotel = kq.Image_Hotel;
                                 hotel.AccountID = kq.AccountID;
                                 hotel.PlaceID = kq.PlaceID;
+                                hotel.TypeOfCategory = kq.TypeOfCategory;
                             }
 
                             Session["Hotel"] = hotel;
@@ -130,6 +133,7 @@ namespace IS220.N12.Controllers
                             {
                                 customer.CustomerID = kq.CustomerID;
                                 customer.CustomerName = kq.CustomerName;
+                                customer.Country = kq.Country;
                                 customer.Phone = kq.Phone;
                                 customer.Sex = kq.Sex;
                                 customer.Status_Account = kq.Status_Account;

@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -9,17 +9,10 @@ namespace IS220.N12.Models
     public partial class EVALUATE_HOTEL
     {
         [Key]
-        [Column(Order = 0)]
         public int evaHotelID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CustomerID { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int HotelID { get; set; }
 
         public int Point { get; set; }
@@ -31,5 +24,12 @@ namespace IS220.N12.Models
         [Required]
         [StringLength(255)]
         public string Image_Feedback { get; set; }
+
+        [Column(TypeName = "smalldatetime")]
+        public DateTime TimeComment { get; set; }
+
+        public virtual CUSTOMER CUSTOMER { get; set; }
+
+        public virtual HOTEL HOTEL { get; set; }
     }
 }

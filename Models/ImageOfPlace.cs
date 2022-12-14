@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -17,5 +17,7 @@ namespace IS220.N12.Models
         public string Link_Image { get; set; }
 
         public int? PlaceID { get; set; }
+
+        public virtual PLACE PLACE { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,7 @@ namespace IS220.N12.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SERVICE()
         {
-            RESERVATIONs = new HashSet<RESERVATION>();
-            SERVICE_SUPPLIED = new HashSet<SERVICE_SUPPLIED>();
+            HOTELs = new HashSet<HOTEL>();
         }
 
         public int ServiceID { get; set; }
@@ -23,9 +22,6 @@ namespace IS220.N12.Models
         public string ServiceName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RESERVATION> RESERVATIONs { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SERVICE_SUPPLIED> SERVICE_SUPPLIED { get; set; }
+        public virtual ICollection<HOTEL> HOTELs { get; set; }
     }
 }

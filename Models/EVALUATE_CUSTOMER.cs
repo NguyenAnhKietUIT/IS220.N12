@@ -1,4 +1,4 @@
-namespace IS220.N12.Models
+namespace IS220.N12
 {
     using System;
     using System.Collections.Generic;
@@ -9,17 +9,10 @@ namespace IS220.N12.Models
     public partial class EVALUATE_CUSTOMER
     {
         [Key]
-        [Column(Order = 0)]
         public int evaCustomerID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int HotelID { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CustomerID { get; set; }
 
         public int Point { get; set; }
