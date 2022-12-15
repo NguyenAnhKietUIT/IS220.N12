@@ -33,9 +33,8 @@ namespace IS220.N12.Controllers
         [HttpPost]
         public ActionResult SignUpCustomer(string[] values)
         {
-            HotelBookingContext context = new HotelBookingContext();
             ACCOUNTDao dao = new ACCOUNTDao();
-            dao.signUp(context, values);
+            dao.signUp(values);
 
             try
             {
@@ -59,9 +58,8 @@ namespace IS220.N12.Controllers
         public ActionResult SignUpProperty(string[] values)
         {
 
-            HotelBookingContext context = new HotelBookingContext();
             ACCOUNTDao dao = new ACCOUNTDao();
-            dao.signUp(context, values);
+            dao.signUp(values);
 
             try
             {
@@ -89,7 +87,7 @@ namespace IS220.N12.Controllers
             if (ModelState.IsValid)
             {
                 ACCOUNTDao dao = new ACCOUNTDao();
-                ACCOUNT account = dao.signIn(context, username, password);
+                ACCOUNT account = dao.signIn(username, password);
 
                 if (account != null)
                 {

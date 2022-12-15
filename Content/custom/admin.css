@@ -506,11 +506,6 @@ body.bg-theme15 {
     font-weight: 600;
 }
 
-.card-content {
-    max-height: 360px;
-    overflow-y: auto;
-}
-
 .card .table td,
 .card .table th {
     padding-right: 1rem;

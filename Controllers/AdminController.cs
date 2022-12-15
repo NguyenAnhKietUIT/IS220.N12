@@ -1,4 +1,5 @@
-﻿using IS220.N12.Models;
+﻿using IS220.N12.Dao;
+using IS220.N12.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,11 @@ namespace IS220.N12.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
-            var accounts = new HotelBookingContext().ACCOUNTs.ToList();
-            return View(accounts);
+            var accountDao = new ACCOUNTDao();
+            var model = accountDao.ListAllPaging(page, pageSize);
+            return View(model);
         }
 
         // GET Overall
@@ -51,6 +53,7 @@ namespace IS220.N12.Controllers
                 CUSTOMER customer = new CUSTOMER();
                 customer.CustomerID = kq.CustomerID;
                 customer.CustomerName = kq.CustomerName;
+                customer.Country = kq.Country;
                 customer.Phone = kq.Phone;
                 customer.Sex = kq.Sex;
                 customer.Status_Account = kq.Status_Account;

@@ -14,6 +14,11 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         public ActionResult Article_1()
         {
             return View();

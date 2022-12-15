@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace IS220.N12.Dao
 {
     public class ACCOUNTDao
     {
-        public ACCOUNT signIn(HotelBookingContext context, string username, string password)
+        private HotelBookingContext context = new HotelBookingContext();
+        public ACCOUNT signIn(string username, string password)
         {
             var resultQuery = context.ACCOUNTs.Where(a => a.Username.Equals(username) 
                                                         && a.Passwords.Equals(password));
@@ -41,7 +43,7 @@ namespace IS220.N12.Dao
             return null;
         }
 
-        public void signUp(HotelBookingContext context, string[] values)
+        public void signUp(string[] values)
         {
             ACCOUNT account = new ACCOUNT();
             account.Username = values[0];
@@ -51,6 +53,11 @@ namespace IS220.N12.Dao
 
             context.ACCOUNTs.Add(account);
             context.SaveChanges();
+        }
+
+        public IEnumerable<ACCOUNT> ListAllPaging(int page, int pageSize)
+        {
+            return context.ACCOUNTs.OrderByDescending(x => x.AccountID).ToPagedList(page, pageSize);
         }
     }
 }
