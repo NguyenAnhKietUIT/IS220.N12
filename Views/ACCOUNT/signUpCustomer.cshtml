@@ -7,7 +7,6 @@
 
 @*Inspiration*@
 <link rel="stylesheet" href="~/Content/custom/sign_up.css" />
-<link rel="stylesheet" href="~/Content/custom/base.css" />
 
 <style>
     body {
@@ -36,7 +35,7 @@
     </div>
 
     <div class="col">
-        <form action="" method="post" class="form" id="form" style="width: 350px;">
+        <form action="" method="post" class="form" id="form" style="width: 450px;">
             <h3 class="form-title">
                 Create An Account
             </h3>
@@ -99,6 +98,8 @@
 </div>
 
 <script src="~/Assets/js/validator.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script>
     Validator({
         form: '#form',
@@ -128,7 +129,7 @@
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    alert(data.msg);
+                    console.log(data.msg);
                     $('#username').val("");
                     $('#email').val("");
                     $('#password').val("");

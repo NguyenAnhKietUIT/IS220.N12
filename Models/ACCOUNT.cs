@@ -5,6 +5,7 @@ namespace IS220.N12.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("ACCOUNT")]
     public partial class ACCOUNT
@@ -20,6 +21,7 @@ namespace IS220.N12.Models
 
         [Required]
         [StringLength(255)]
+        [Remote("IsExists", "ACCOUNT", ErrorMessage ="Username already exist")]
         public string Username { get; set; }
 
         [Required]

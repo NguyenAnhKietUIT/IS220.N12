@@ -102,26 +102,26 @@ namespace IS220.N12.Controllers
                                           where h.AccountID == account.AccountID
                                           select h;
 
-                            HOTEL hotel = new HOTEL();
+                            HOTEL property = new HOTEL();
                             foreach (var kq in result2)
                             {
-                                hotel.HotelID = kq.HotelID;
-                                hotel.HotelName = kq.HotelName;
-                                hotel.CheckInTime = kq.CheckInTime;
-                                hotel.CheckOutTime = kq.CheckOutTime;
-                                hotel.Address_Hotel = kq.Address_Hotel;
-                                hotel.Detail_Hotel = kq.Detail_Hotel;
-                                hotel.Phone_Hotel = kq.Phone_Hotel;
-                                hotel.TypeName = kq.TypeName;
-                                hotel.Image_Hotel = kq.Image_Hotel;
-                                hotel.AccountID = kq.AccountID;
-                                hotel.PlaceID = kq.PlaceID;
-                                hotel.TypeOfCategory = kq.TypeOfCategory;
+                                property.HotelID = kq.HotelID;
+                                property.HotelName = kq.HotelName;
+                                property.CheckInTime = kq.CheckInTime;
+                                property.CheckOutTime = kq.CheckOutTime;
+                                property.Address_Hotel = kq.Address_Hotel;
+                                property.Detail_Hotel = kq.Detail_Hotel;
+                                property.Phone_Hotel = kq.Phone_Hotel;
+                                property.TypeName = kq.TypeName;
+                                property.Image_Hotel = kq.Image_Hotel;
+                                property.AccountID = kq.AccountID;
+                                property.PlaceID = kq.PlaceID;
+                                property.TypeOfCategory = kq.TypeOfCategory;
                             }
 
-                            Session["Hotel"] = hotel;
+                            Session["Property"] = property;
 
-                            return View();
+                            return RedirectToAction("../Property/Index");
                         case 3:
                             var result3 = from c in context.CUSTOMERs
                                          where c.AccountID == account.AccountID
@@ -147,10 +147,28 @@ namespace IS220.N12.Controllers
                 }
             } else
             {
-                ViewBag.error = "Login Failed!!!";
                 return RedirectToAction("SignIn");
             }
             return View();
+        }
+
+        public ActionResult SignOut()
+        {
+            if (Session["Account"] != null)
+            {
+                Session.Remove("Account");
+            }
+
+            if (Session["Customer"] != null)
+            {
+                Session.Remove("Customer");
+            }
+
+            if (Session["Property"] != null)
+            {
+                Session.Remove("Property");
+            }
+            return RedirectToAction("../Homepage/Index");
         }
 
         public ActionResult Edit_Password()
