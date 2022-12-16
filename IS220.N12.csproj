@@ -251,8 +251,6 @@
     <Compile Include="Dao\RESERVATIONDao.cs" />
     <Compile Include="Dao\ROOMDao.cs" />
     <Compile Include="Dao\SERVICEDao.cs" />
-    <Compile Include="Dao\SERVICE_SUPPLIEDDao.cs" />
-    <Compile Include="Dao\TYPE_HOTELDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
