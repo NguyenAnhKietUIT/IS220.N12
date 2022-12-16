@@ -295,7 +295,7 @@
 
         <div class="app__content" style="max-width: 1200px;margin: 0 auto;">
             <div class="app__content-home">
-                <div class="mt-5">
+                <div class="mt-5" id="top-destinations">
                     <h3 class="app__selection-title">Top Destinations</h3>
 
                     <div class="row">
@@ -1303,6 +1303,21 @@
                 $('.back-to-top').on("click", function () {
                     $("html, body").animate({ scrollTop: 0 }, 200);
                     return false;
+                });
+
+                console.log($('#top-destinations'));
+
+                // Get data top destinations
+                $.ajax({
+                    type: "GET",
+                    url: "/Place/TopDestinations",
+                    data: {},
+                    success: function (data) {
+
+                    },
+                    error: function () {
+                        alert("Error occured!!")
+                    }
                 });
             });
         </script>

@@ -21,7 +21,7 @@ namespace IS220.N12.Models
 
         [Required]
         [StringLength(255)]
-        [Remote("IsExists", "ACCOUNT", ErrorMessage ="Username already exist")]
+        [Remote("IsExists", "ACCOUNT", ErrorMessage ="Username is already exist")]
         public string Username { get; set; }
 
         [Required]

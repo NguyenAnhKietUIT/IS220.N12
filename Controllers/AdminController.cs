@@ -100,9 +100,12 @@ namespace IS220.N12.Controllers
         }
 
         // GET Message
-        public ActionResult AdminMessage()
+        public ActionResult AdminMessage(int page = 1, int pageSize = 10)
         {
-            return View();
+            var contactDao = new CONTACTDao();
+            var model = contactDao.ListAllPaging(page, pageSize);
+
+            return View(model);
         }
 
         public ActionResult AdminAnalytics()
@@ -112,12 +115,9 @@ namespace IS220.N12.Controllers
 
         public ActionResult DataAnalytics()
         {
-            var statusReservation = new int[] {1, 2, 3};
-
             var query1 = from h in context.HOTELs
                          join r in context.ROOMs on h.HotelID equals r.HotelID
                          join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                         where statusReservation.Contains(re.Status_Reservation)
                          group h by h.TypeOfCategory into gr
                          select new
                          {
@@ -131,7 +131,7 @@ namespace IS220.N12.Controllers
             var query2 = from h in context.HOTELs
                          join r in context.ROOMs on h.HotelID equals r.HotelID
                          join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                         where (re.CheckIn.Value.Year == DateTime.Now.Year) && (statusReservation.Contains(re.Status_Reservation))
+                         where (re.CheckIn.Value.Year == DateTime.Now.Year)
                          group re by re.CheckIn.Value.Month into gr
                          select new
                          {
@@ -146,7 +146,6 @@ namespace IS220.N12.Controllers
             var query3 = (from h in context.HOTELs
                                join r in context.ROOMs on h.HotelID equals r.HotelID
                                join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                               where statusReservation.Contains(re.Status_Reservation)
                                group h by h.TypeName into gr
                                select new
                                {
@@ -161,7 +160,6 @@ namespace IS220.N12.Controllers
             var query4 = (from h in context.HOTELs
                           join r in context.ROOMs on h.HotelID equals r.HotelID
                           join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                          where statusReservation.Contains(re.Status_Reservation)
                           group h by re.CheckIn.Value.Month into gr
                           select new
                           {
@@ -189,12 +187,12 @@ namespace IS220.N12.Controllers
             // Property được yêu thích nhất
             var query6 = (from h in context.HOTELs
                           join e in context.EVALUATE_HOTEL on h.HotelID equals e.HotelID
-                          group new { h, e } by new { h.HotelID, h.HotelName } into gr
+                          group new { h, e } by new { h.HotelID, h.HotelName} into gr
                           select new
                           {
                               key = gr.Key.HotelName,
-                              average = gr.Average(i => i.e.Point)
-                          }).FirstOrDefault();
+                              average = gr.Sum(i => i.e.Point) / gr.Count()
+                          }).OrderByDescending(x => x.average).FirstOrDefault();
 
             string favouriteProperty = query6.key;
             string favouritePropertyValue = query6.average.ToString();

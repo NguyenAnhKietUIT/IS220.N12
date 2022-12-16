@@ -238,8 +238,10 @@
     <Compile Include="Controllers\CUSTOMERController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
+    <Compile Include="Dao\CONTACTDao.cs" />
     <Compile Include="Dao\CUSTOMERDao.cs" />
     <Compile Include="Dao\DISCOUNTDao.cs" />
     <Compile Include="Dao\EVALUATE_CUSTOMERDao.cs" />
@@ -1034,6 +1036,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Place\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

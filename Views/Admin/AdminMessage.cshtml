@@ -1,4 +1,6 @@
-﻿@model IEnumerable<IS220.N12.Models.ACCOUNT>
+﻿@model PagedList.IPagedList<IS220.N12.Models.CONTACT>
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Message";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -42,27 +44,6 @@
         color: #fff;
     }
 
-    .nav-message div:last-child {
-        color: #fff;
-        display: flex;
-        align-items: center;
-    }
-
-    .nav-paging {
-        cursor: pointer;
-        margin-right: 8px;
-    }
-
-    .nav-message div:last-child i {
-        cursor: pointer;
-        padding: 8px 12px;
-    }
-
-        .nav-message div:last-child i:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-
     .table {
         margin-bottom: 0;
         max-height: 1200px;
@@ -80,17 +61,17 @@
         display: none;
         color: yellow;
     }
-    
+
     .table tr:hover {
         color: #fff;
     }
 
-        .table tr td:nth-child(1),
-        .table tr td:nth-child(2),
-        .table tr td:nth-child(5) {
-            min-width: 52px;
-            text-align: center;
-        }
+    .table tr td:nth-child(1),
+    .table tr td:nth-child(2),
+    .table tr td:nth-child(5) {
+        min-width: 52px;
+        text-align: center;
+    }
 
     .table tr td:nth-child(3) {
         text-align: left;
@@ -103,24 +84,42 @@
         -webkit-line-clamp: 1;
     }
 
-        .table tr td:nth-child(4) {
-            min-width: 800px;
-            max-width: 800px;
-            text-align: left;
-            max-height: 32px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            -webkit-line-clamp: 1;
-        }
+    .table tr td:nth-child(4) {
+        min-width: 800px;
+        max-width: 800px;
+        text-align: left;
+        max-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-line-clamp: 1;
+    }
 
     .message-trash {
         padding: 8px 16px;
     }
+
+    .pagination {
+        margin-left: 8px;
+        margin-bottom: 8px;
+    }
+
+        .pagination li a {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4px 12px;
+            text-decoration: none;
+        }
+
+        .pagination li:hover,
+        .pagination .active {
+            color: white;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
 </style>
 
 <div class="box-list-message">
-    <nav class="nav-message m-3">
+    <nav class="nav-message m-3 pb-3">
         <div>
             <input type="checkbox" name="nav-select-all" id="nav-select-all">
             <label for="nav-select-all">Select all</label>
@@ -132,11 +131,7 @@
         </div>
 
         <div>
-            <span class="nav-paging">1-50 of 569</span>
-            <div>
-                <i class="nav-message-icon-left nav-message-icon-active fa-solid fa-angle-left"></i>
-                <i class="nav-message-icon-right fa-solid fa-angle-right"></i>
-            </div>
+            @Html.PagedListPager(Model, page => Url.Action("AdminMessage", new { page }))
         </div>
     </nav>
 
@@ -144,105 +139,29 @@
         <div class="col-12 col-lg-12">
             <div class="card ms-3 me-3">
                 <table class="table">
-                    <tr>
-                        <td><input type="checkbox" class="message-select"></td>
-                        <td>
-                            <i class="message-icon fa-regular fa-star"></i>
-                            <i class="message-icon-active fa-solid fa-star"></i>
-                        </td>
-                        <td>Name 1</td>
-                        <td>
-                            <span class="message-title">
-                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
-                                Balo
-                            </span>
-                            -
-                            <span class="message-content">
-                                Chào các bạn
-                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
-                                Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
-                                - Buổi sáng: 9h00-11h30
-                                - Buổi chiều: 14h00-16h30
-                                Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
-                                Quà tặng:
-                                + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
-                                + Balo cho khóa 2022
-                                + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số
-                                lượng có hạn, phát đến khi hết quà)
-                                Khi nhận quà vui lòng mang theo thẻ sinh viên.
-                                Mọi thắc mắc sinh viên trao đổi tại forum:
-                            </span>
-                        </td>
-                        <td>
-                            <i class="message-trash fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="message-select"></td>
-                        <td>
-                            <i class="message-icon fa-regular fa-star"></i>
-                            <i class="message-icon-active fa-solid fa-star"></i>
-                        </td>
-                        <td>Name 2</td>
-                        <td>
-                            <span class="message-title">
-                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
-                                Balo
-                            </span>
-                            -
-                            <span class="message-content">
-                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
-                                lại (đợt cuối cùng)
-                            </span>
-                        </td>
-                        <td>
-                            <i class="message-trash fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="message-select"></td>
-                        <td>
-                            <i class="message-icon fa-regular fa-star"></i>
-                            <i class="message-icon-active fa-solid fa-star"></i>
-                        </td>
-                        <td>Name 3</td>
-                        <td>
-                            <span class="message-title">
-                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
-                                Balo
-                            </span>
-                            -
-                            <span class="message-content">
-                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
-                                lại (đợt cuối cùng)
-                            </span>
-                        </td>
-                        <td>
-                            <i class="message-trash fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="message-select"></td>
-                        <td>
-                            <i class="message-icon fa-regular fa-star"></i>
-                            <i class="message-icon-active fa-solid fa-star"></i>
-                        </td>
-                        <td>Name 4</td>
-                        <td>
-                            <span class="message-title">
-                                Thông báo về việc phát quà tặng Mũ bảo hiểm,
-                                Balo
-                            </span>
-                            -
-                            <span class="message-content">
-                                Chào các bạn Ngày mai UIT Store sẽ mở phát quà trở
-                                lại (đợt cuối cùng)
-                            </span>
-                        </td>
-                        <td>
-                            <i class="message-trash fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><input type="checkbox" class="message-select"></td>
+                            <td>
+                                <i class="message-icon fa-regular fa-star"></i>
+                                <i class="message-icon-active fa-solid fa-star"></i>
+                            </td>
+                            <td>@item.fullName</td>
+                            <td>
+                                <span class="message-title">
+                                    @item.topicName
+                                </span>
+                                -
+                                <span class="message-content">
+                                    @item.message
+                                </span>
+                            </td>
+                            <td>
+                                <i class="message-trash fa-solid fa-trash"></i>
+                            </td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
