@@ -27,22 +27,26 @@
     }
 
     .analytic-item-value {
-        font-size: 24px;
+        font-size: 1em;
+    }
+
+    h5 {
+        font-size: 1.15em;
     }
 </style>
 
 <div class="row">
     <div class="col-4 d-flex flex-column justify-content-between">
         <div class="analytic-item text-white pt-2 ps-3 pe-3 ms-3 me-3 mt-3">
-            <h5>Favourite type</h5>
+            <h5>Type property with the most booking</h5>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="ms-3 d-flex flex-column align-items-center">
-                    <span class="analytic-item-title">Name</span>
-                    <span class="p-2 analytic-item-value">Beach</span>
+                    <span class="analytic-item-title">Type name</span>
+                    <span class="p-2 analytic-item-value" id="favourite-type-name">Beach</span>
                 </div>
                 <div class="me-3 d-flex flex-column align-items-center">
                     <span class="analytic-item-title">Booking Quantity</span>
-                    <span class="p-2 analytic-item-value">9999</span>
+                    <span class="p-2 analytic-item-value" id="favourite-type-value">9999</span>
                 </div>
             </div>
         </div>
@@ -51,11 +55,11 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="ms-3 d-flex flex-column align-items-center">
                     <span class="analytic-item-title">Month</span>
-                    <span class="p-2 analytic-item-value">12</span>
+                    <span class="p-2 analytic-item-value" id="most-moth">12</span>
                 </div>
                 <div class="me-3 d-flex flex-column align-items-center">
                     <span class="analytic-item-title">Booking Quantity</span>
-                    <span class="p-2 analytic-item-value">9999</span>
+                    <span class="p-2 analytic-item-value" id="most-month-value">9999</span>
                 </div>
             </div>
         </div>
@@ -63,25 +67,25 @@
             <h5>Hotel with the most booking</h5>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="ms-3 d-flex flex-column align-items-center">
-                    <span class="analytic-item-title">Hotel Name</span>
-                    <span class="p-2 analytic-item-value">Hotel</span>
+                    <span class="analytic-item-title">Property Name</span>
+                    <span class="p-2 analytic-item-value" id="most-hotel">Hotel</span>
                 </div>
                 <div class="me-3 d-flex flex-column align-items-center">
                     <span class="analytic-item-title">Booking Quantity</span>
-                    <span class="p-2 analytic-item-value">9999</span>
+                    <span class="p-2 analytic-item-value" id="most-hotel-value">9999</span>
                 </div>
             </div>
         </div>
         <div class="analytic-item text-white pt-2 ps-3 pe-3 ms-3 me-3 mt-3">
-            <h5>The most favourite hotel</h5>
+            <h5>The most favourite property</h5>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="ms-3 d-flex flex-column align-items-center">
-                    <span class="analytic-item-title">Hotel Name</span>
-                    <span class="p-2 analytic-item-value">Hotel</span>
+                    <span class="analytic-item-title">Property Name</span>
+                    <span class="p-2 analytic-item-value" id="favourite-property">Property</span>
                 </div>
                 <div class="me-3 d-flex flex-column align-items-center">
                     <span class="analytic-item-title">Average Score</span>
-                    <span class="p-2 analytic-item-value">9999</span>
+                    <span class="p-2 analytic-item-value" id="favourite-property-value">9999</span>
                 </div>
             </div>
         </div>
@@ -95,8 +99,112 @@
     <canvas id="booking-year" class="mt-5" style="width:100%; height: 500px;"></canvas>
 </div>
 
-<script src="~/Scripts/custom/AdminAnalytics.js"></script>
-
 <script>
-    $('.nav__content-list li:nth-child(2) .nav__content-list-item').addClass('active');
+    $(document).ready(function () {
+        $('.nav__content-list li:nth-child(2) .nav__content-list-item').addClass('active');
+
+        // Overall
+        $.ajax({
+            type: "GET",
+            url: "/Admin/DataAnalytics",
+            data: {},
+            success: function (data) {
+                function drawPieChart() {
+                    const xValues = data.categoryName;
+                    const yValues = data.categoryAmount;
+                    const barColors = ["#B1DFAE", " #CAEBBA", "#E6F2D3", "#B0E3F5", "#92C7F0", "#78AEE3"];
+                    const barColorsHover = ["rgb(177 223 174 / 0.6)", "rgb(202 235 186 / 0.6)", "rgb(230 242 211 / 0.6)",
+                        "rgb(176 227 245 / 0.6)", "rgb(146 199 240 / 0.6)", "rgb(120 174 227 / 0.6)"]
+
+                    new Chart("property-statistic-by-category", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                hoverBackgroundColor: barColorsHover,
+                                data: yValues,
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Real estate statistics by category",
+                                fontColor: "white",
+                                fontSize: 16,
+                            },
+                        }
+                    });
+                }
+
+                function drawLineChart() {
+                    const xMonths = data.monthChart;
+                    const yValues = data.amountBookingChart;
+                    console.log(data.month)
+
+                    new Chart("booking-year", {
+                        type: "line",
+                        data: {
+                            labels: xMonths,
+                            datasets: [{
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "rgba(255, 255, 255, 1)",
+                                borderColor: "rgba(255, 255, 255, 0.2)",
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: "Statistics of bookings in the year",
+                                fontColor: "white",
+                                fontSize: 16,
+                            },
+                            scales: {
+                                yAxes: [
+                                    {
+                                        ticks: {
+                                            fontColor: "white",
+                                            min: 0,
+                                            max: 100,
+                                            beginAtZero: true,
+                                        },
+                                    }
+                                ],
+                                xAxes: [
+                                    {
+                                        ticks: {
+                                            fontColor: "white",
+                                        }
+                                    }
+                                ],
+                            }
+                        }
+                    });
+                }
+
+                function dataSet() {
+                    $('#favourite-type-name').html(data.favouriteTypeName);
+                    $('#favourite-type-value').html(data.favouriteTypeValue);
+                    $('#most-moth').html(data.mostMonth);
+                    $('#most-month-value').html(data.mostMonthValue);
+                    $('#most-hotel').html(data.mostHotel);
+                    $('#most-hotel-value').html(data.mostHotelValue);
+                    $('#favourite-property').html(data.favouriteProperty);
+                    $('#favourite-property-value').html(data.favouritePropertyValue);
+                }
+
+                drawPieChart();
+                drawLineChart();
+                dataSet();
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+    })
 </script>

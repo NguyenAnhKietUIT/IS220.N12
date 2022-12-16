@@ -10,6 +10,7 @@ namespace IS220.N12.Controllers
 {
     public class AdminController : Controller
     {
+        HotelBookingContext context = new HotelBookingContext();
         // GET: Admin
         public ActionResult Index(int page = 1, int pageSize = 5)
         {
@@ -21,8 +22,6 @@ namespace IS220.N12.Controllers
         // GET Overall
         public ActionResult Overall()
         {
-            HotelBookingContext context= new HotelBookingContext();
-
             var totalCustomer = (from c in context.CUSTOMERs
                         select c.CustomerID).Count();
 
@@ -42,7 +41,6 @@ namespace IS220.N12.Controllers
         // GET Customer
         public ActionResult ShowCustomer ()
         {
-            HotelBookingContext context= new HotelBookingContext();
             List<CUSTOMER> customers = new List<CUSTOMER>();
 
             var result  = from c in context.CUSTOMERs
@@ -71,7 +69,6 @@ namespace IS220.N12.Controllers
         // GET Customer
         public ActionResult ShowProperty()
         {
-            HotelBookingContext context = new HotelBookingContext();
             List<HOTEL> hotels = new List<HOTEL>();
 
             var result = from h in context.HOTELs
@@ -111,6 +108,125 @@ namespace IS220.N12.Controllers
         public ActionResult AdminAnalytics()
         {
             return View();
+        }
+
+        public ActionResult DataAnalytics()
+        {
+            var statusReservation = new int[] {1, 2, 3};
+
+            var query1 = from h in context.HOTELs
+                         join r in context.ROOMs on h.HotelID equals r.HotelID
+                         join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                         where statusReservation.Contains(re.Status_Reservation)
+                         group h by h.TypeOfCategory into gr
+                         select new
+                         {
+                             key = gr.Key,
+                             amount = gr.Count()
+                         };
+
+            List<string> categoryName = new List<string>();
+            List<string> categoryAmount = new List<string>();
+
+            var query2 = from h in context.HOTELs
+                         join r in context.ROOMs on h.HotelID equals r.HotelID
+                         join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                         where (re.CheckIn.Value.Year == DateTime.Now.Year) && (statusReservation.Contains(re.Status_Reservation))
+                         group re by re.CheckIn.Value.Month into gr
+                         select new
+                         {
+                             key = gr.Key,
+                             amount = gr.Count()
+                         };
+
+            List<string> monthChart = new List<string>();
+            List<string> amountBookingChart = new List<string>();
+
+            // Thống kê loại hình property được đặt nhiều nhất
+            var query3 = (from h in context.HOTELs
+                               join r in context.ROOMs on h.HotelID equals r.HotelID
+                               join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                               where statusReservation.Contains(re.Status_Reservation)
+                               group h by h.TypeName into gr
+                               select new
+                               {
+                                   key = gr.Key,
+                                   amount = gr.Count()
+                               }).OrderByDescending(x => x.amount).FirstOrDefault();
+
+            string favouriteTypeName = query3.key;
+            string favouriteTypeValue = query3.amount.ToString();
+
+            // Thống kê tháng được đặt nhiều nhất
+            var query4 = (from h in context.HOTELs
+                          join r in context.ROOMs on h.HotelID equals r.HotelID
+                          join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                          where statusReservation.Contains(re.Status_Reservation)
+                          group h by re.CheckIn.Value.Month into gr
+                          select new
+                          {
+                              key = gr.Key,
+                              amount = gr.Count()
+                          }).OrderByDescending(x => x.amount).FirstOrDefault();
+
+            string mostMonth = query4.key.ToString();
+            string mostMonthValue = query4.amount.ToString();
+
+            // Propety được book nhiêu nhất
+            var query5 = (from h in context.HOTELs
+                                   join r in context.ROOMs on h.HotelID equals r.HotelID
+                                   join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                                   group h by h.HotelName into gr
+                                   select new
+                                   {
+                                       key = gr.Key,
+                                       amount = gr.Count()
+                                   }).OrderByDescending(x => x.amount).FirstOrDefault();
+
+            string mostHotel = query5.key;
+            string mostHotelValue = query5.amount.ToString();
+
+            // Property được yêu thích nhất
+            var query6 = (from h in context.HOTELs
+                          join e in context.EVALUATE_HOTEL on h.HotelID equals e.HotelID
+                          group new { h, e } by new { h.HotelID, h.HotelName } into gr
+                          select new
+                          {
+                              key = gr.Key.HotelName,
+                              average = gr.Average(i => i.e.Point)
+                          }).FirstOrDefault();
+
+            string favouriteProperty = query6.key;
+            string favouritePropertyValue = query6.average.ToString();
+
+
+            foreach (var kq1 in query1)
+            {
+                categoryName.Add(kq1.key);
+                categoryAmount.Add(kq1.amount.ToString());
+            }
+
+            foreach (var kq2 in query2)
+            {
+                monthChart.Add(kq2.key.ToString());
+                amountBookingChart.Add(kq2.amount.ToString());
+            }
+
+            return Json(new
+            {
+                categoryName,
+                categoryAmount,
+                monthChart,
+                amountBookingChart,
+                favouriteTypeName,
+                favouriteTypeValue,
+                mostMonth,
+                mostMonthValue,
+                mostHotel,
+                mostHotelValue,
+                favouriteProperty,
+                favouritePropertyValue
+            }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Admin/Details/5
