@@ -11,7 +11,7 @@ namespace IS220.N12.Models
         [Key]
         public int evaCustomerID { get; set; }
 
-        public int HotelID { get; set; }
+        public int PropertyID { get; set; }
 
         public int CustomerID { get; set; }
 
@@ -23,6 +23,6 @@ namespace IS220.N12.Models
 
         public virtual CUSTOMER CUSTOMER { get; set; }
 
-        public virtual HOTEL HOTEL { get; set; }
+        public virtual PROPERTY PROPERTY { get; set; }
     }
 }

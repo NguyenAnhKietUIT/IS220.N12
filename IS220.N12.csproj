@@ -246,8 +246,8 @@
     <Compile Include="Dao\DISCOUNTDao.cs" />
     <Compile Include="Dao\EVALUATE_CUSTOMERDao.cs" />
     <Compile Include="Dao\EVALUATE_HOTELDao.cs" />
-    <Compile Include="Dao\HOTELDao.cs" />
     <Compile Include="Dao\PLACEDao.cs" />
+    <Compile Include="Dao\PROPERTYDao.cs" />
     <Compile Include="Dao\RESERVATIONDao.cs" />
     <Compile Include="Dao\ROOMDao.cs" />
     <Compile Include="Dao\SERVICEDao.cs" />
@@ -259,11 +259,10 @@
     <Compile Include="Models\CUSTOMER.cs" />
     <Compile Include="Models\DISCOUNT.cs" />
     <Compile Include="Models\EVALUATE_CUSTOMER.cs" />
-    <Compile Include="Models\EVALUATE_HOTEL.cs" />
-    <Compile Include="Models\HOTEL.cs" />
+    <Compile Include="Models\EVALUATE_PROPERTY.cs" />
     <Compile Include="Models\HotelBookingContext.cs" />
-    <Compile Include="Models\ImageOfPlace.cs" />
     <Compile Include="Models\PLACE.cs" />
+    <Compile Include="Models\PROPERTY.cs" />
     <Compile Include="Models\RESERVATION.cs" />
     <Compile Include="Models\ROOM.cs" />
     <Compile Include="Models\SERVICE.cs" />
@@ -977,6 +976,7 @@
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\custom\AdminMessage.js" />
     <Content Include="Scripts\custom\Homepage.js" />
+    <Content Include="Scripts\custom\Pagination.js" />
     <Content Include="Scripts\custom\Search_Detail.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
@@ -1034,7 +1034,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Place\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

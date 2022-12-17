@@ -34,9 +34,9 @@ namespace IS220.N12.Models
         [StringLength(1000)]
         public string Image_Room { get; set; }
 
-        public int HotelID { get; set; }
+        public int PropertyID { get; set; }
 
-        public virtual HOTEL HOTEL { get; set; }
+        public virtual PROPERTY PROPERTY { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RESERVATION> RESERVATIONs { get; set; }

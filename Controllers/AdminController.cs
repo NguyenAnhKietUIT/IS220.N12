@@ -25,8 +25,8 @@ namespace IS220.N12.Controllers
             var totalCustomer = (from c in context.CUSTOMERs
                         select c.CustomerID).Count();
 
-            var totalHotel = (from h in context.HOTELs
-                                 select h.HotelID).Count();
+            var totalHotel = (from p in context.PROPERTies
+                                 select p.PropertyID).Count();
 
             var totalReservation =  (from r in context.RESERVATIONs
                                      select r.ReservationID).Count();
@@ -69,33 +69,33 @@ namespace IS220.N12.Controllers
         // GET Customer
         public ActionResult ShowProperty()
         {
-            List<HOTEL> hotels = new List<HOTEL>();
+            List<PROPERTY> properties = new List<PROPERTY>();
 
-            var result = from h in context.HOTELs
-                         select h;
+            var result = from p in context.PROPERTies
+                         select p;
 
             foreach (var kq in result)
             {
-                HOTEL hotel = new HOTEL();
-                hotel.HotelID = kq.HotelID;
-                hotel.HotelName = kq.HotelName;
-                hotel.CheckInTime = kq.CheckInTime;
-                hotel.CheckOutTime = kq.CheckOutTime;
-                hotel.Address_Hotel = kq.Address_Hotel;
-                hotel.Detail_Hotel = kq.Detail_Hotel;
-                hotel.Phone_Hotel = kq.Phone_Hotel;
-                hotel.TypeName = kq.TypeName;
-                hotel.Image_Hotel = kq.Image_Hotel;
-                hotel.AccountID = kq.AccountID;
-                hotel.PlaceID = kq.PlaceID;
-                hotel.TypeOfCategory = kq.TypeOfCategory;
+                PROPERTY property = new PROPERTY();
+                property.PropertyID = kq.PropertyID;
+                property.PropertyName = kq.PropertyName;
+                property.CheckInTime = kq.CheckInTime;
+                property.CheckOutTime = kq.CheckOutTime;
+                property.Address_Property = kq.Address_Property;
+                property.Detail_Property = kq.Detail_Property;
+                property.Phone_Property = kq.Phone_Property;
+                property.TypeName = kq.TypeName;
+                property.Image_Property = kq.Image_Property;
+                property.AccountID = kq.AccountID;
+                property.PlaceID = kq.PlaceID;
+                property.TypeOfCategory = kq.TypeOfCategory;
 
-                hotels.Add(hotel);
+                properties.Add(property);
 
             }
             return Json(new
             {
-                hotels
+                properties
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -115,10 +115,10 @@ namespace IS220.N12.Controllers
 
         public ActionResult DataAnalytics()
         {
-            var query1 = from h in context.HOTELs
-                         join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query1 = from p in context.PROPERTies
+                         join r in context.ROOMs on p.PropertyID equals r.PropertyID
                          join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                         group h by h.TypeOfCategory into gr
+                         group p by p.TypeOfCategory into gr
                          select new
                          {
                              key = gr.Key,
@@ -128,8 +128,8 @@ namespace IS220.N12.Controllers
             List<string> categoryName = new List<string>();
             List<string> categoryAmount = new List<string>();
 
-            var query2 = from h in context.HOTELs
-                         join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query2 = from p in context.PROPERTies
+                         join r in context.ROOMs on p.PropertyID equals r.PropertyID
                          join re in context.RESERVATIONs on r.RoomID equals re.RoomID
                          where (re.CheckIn.Value.Year == DateTime.Now.Year)
                          group re by re.CheckIn.Value.Month into gr
@@ -143,10 +143,10 @@ namespace IS220.N12.Controllers
             List<string> amountBookingChart = new List<string>();
 
             // Thống kê loại hình property được đặt nhiều nhất
-            var query3 = (from h in context.HOTELs
-                               join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query3 = (from p in context.PROPERTies
+                               join r in context.ROOMs on p.PropertyID equals r.PropertyID
                                join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                               group h by h.TypeName into gr
+                               group p by p.TypeName into gr
                                select new
                                {
                                    key = gr.Key,
@@ -157,10 +157,10 @@ namespace IS220.N12.Controllers
             string favouriteTypeValue = query3.amount.ToString();
 
             // Thống kê tháng được đặt nhiều nhất
-            var query4 = (from h in context.HOTELs
-                          join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query4 = (from p in context.PROPERTies
+                          join r in context.ROOMs on p.PropertyID equals r.PropertyID
                           join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                          group h by re.CheckIn.Value.Month into gr
+                          group p by re.CheckIn.Value.Month into gr
                           select new
                           {
                               key = gr.Key,
@@ -171,10 +171,10 @@ namespace IS220.N12.Controllers
             string mostMonthValue = query4.amount.ToString();
 
             // Propety được book nhiêu nhất
-            var query5 = (from h in context.HOTELs
-                                   join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query5 = (from p in context.PROPERTies
+                                   join r in context.ROOMs on p.PropertyID equals r.PropertyID
                                    join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                                   group h by h.HotelName into gr
+                                   group p by p.PropertyName into gr
                                    select new
                                    {
                                        key = gr.Key,
@@ -185,12 +185,12 @@ namespace IS220.N12.Controllers
             string mostHotelValue = query5.amount.ToString();
 
             // Property được yêu thích nhất
-            var query6 = (from h in context.HOTELs
-                          join e in context.EVALUATE_HOTEL on h.HotelID equals e.HotelID
-                          group new { h, e } by new { h.HotelID, h.HotelName} into gr
+            var query6 = (from p in context.PROPERTies
+                          join e in context.EVALUATE_PROPERTY on p.PropertyID equals e.PropertyID
+                          group new { p, e } by new { p.PropertyID, p.PropertyName} into gr
                           select new
                           {
-                              key = gr.Key.HotelName,
+                              key = gr.Key.PropertyName,
                               average = gr.Sum(i => i.e.Point) / gr.Count()
                           }).OrderByDescending(x => x.average).FirstOrDefault();
 

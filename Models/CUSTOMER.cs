@@ -13,7 +13,7 @@ namespace IS220.N12.Models
         public CUSTOMER()
         {
             EVALUATE_CUSTOMER = new HashSet<EVALUATE_CUSTOMER>();
-            EVALUATE_HOTEL = new HashSet<EVALUATE_HOTEL>();
+            EVALUATE_PROPERTY = new HashSet<EVALUATE_PROPERTY>();
             RESERVATIONs = new HashSet<RESERVATION>();
         }
 
@@ -47,7 +47,7 @@ namespace IS220.N12.Models
         public virtual ICollection<EVALUATE_CUSTOMER> EVALUATE_CUSTOMER { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EVALUATE_HOTEL> EVALUATE_HOTEL { get; set; }
+        public virtual ICollection<EVALUATE_PROPERTY> EVALUATE_PROPERTY { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RESERVATION> RESERVATIONs { get; set; }

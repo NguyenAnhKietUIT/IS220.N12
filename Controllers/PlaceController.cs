@@ -19,17 +19,30 @@ namespace IS220.N12.Controllers
 
         public ActionResult TopDestinations()
         {
-            var query3 = (from h in context.HOTELs
-                          join r in context.ROOMs on h.HotelID equals r.HotelID
+            var query = (from p in context.PROPERTies
+                          join r in context.ROOMs on p.PropertyID equals r.PropertyID
                           join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                          join p in context.PLACEs on h.PlaceID equals p.PlaceID
-                          group p by new { p.PlaceID, p.PlaceName } into gr
+                          join pl in context.PLACEs on p.PlaceID equals pl.PlaceID
+                          group pl by new { pl.PlaceID, pl.PlaceName, pl.ImageOfPlace } into gr
                           select new
                           {
                               key = gr.Key,
                               amount = gr.Count()
-                          }).OrderByDescending(x => x.amount).FirstOrDefault();
-            return View();
+                          }).OrderByDescending(x => x.amount).Take(4);
+
+            List<string> placeName = new List<string>();
+            List<string> placeImage = new List<string>();
+
+            foreach (var kq in query)
+            {
+                placeName.Add(kq.key.PlaceName);
+                placeImage.Add(kq.key.ImageOfPlace);
+            }
+
+            return Json(new
+            {
+                placeName, placeImage
+            }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Place/Details/5

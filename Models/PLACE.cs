@@ -12,8 +12,7 @@ namespace IS220.N12.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PLACE()
         {
-            HOTELs = new HashSet<HOTEL>();
-            ImageOfPlaces = new HashSet<ImageOfPlace>();
+            PROPERTies = new HashSet<PROPERTY>();
         }
 
         public int PlaceID { get; set; }
@@ -22,10 +21,11 @@ namespace IS220.N12.Models
         [StringLength(250)]
         public string PlaceName { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOTEL> HOTELs { get; set; }
+        [Required]
+        [StringLength(1000)]
+        public string ImageOfPlace { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImageOfPlace> ImageOfPlaces { get; set; }
+        public virtual ICollection<PROPERTY> PROPERTies { get; set; }
     }
 }

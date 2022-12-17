@@ -12,7 +12,7 @@ namespace IS220.N12.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SERVICE()
         {
-            HOTELs = new HashSet<HOTEL>();
+            PROPERTies = new HashSet<PROPERTY>();
         }
 
         public int ServiceID { get; set; }
@@ -22,6 +22,6 @@ namespace IS220.N12.Models
         public string ServiceName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOTEL> HOTELs { get; set; }
+        public virtual ICollection<PROPERTY> PROPERTies { get; set; }
     }
 }

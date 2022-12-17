@@ -17,10 +17,9 @@ namespace IS220.N12.Models
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<DISCOUNT> DISCOUNTs { get; set; }
         public virtual DbSet<EVALUATE_CUSTOMER> EVALUATE_CUSTOMER { get; set; }
-        public virtual DbSet<EVALUATE_HOTEL> EVALUATE_HOTEL { get; set; }
-        public virtual DbSet<HOTEL> HOTELs { get; set; }
-        public virtual DbSet<ImageOfPlace> ImageOfPlaces { get; set; }
+        public virtual DbSet<EVALUATE_PROPERTY> EVALUATE_PROPERTY { get; set; }
         public virtual DbSet<PLACE> PLACEs { get; set; }
+        public virtual DbSet<PROPERTY> PROPERTies { get; set; }
         public virtual DbSet<RESERVATION> RESERVATIONs { get; set; }
         public virtual DbSet<ROOM> ROOMs { get; set; }
         public virtual DbSet<SERVICE> SERVICEs { get; set; }
@@ -33,7 +32,7 @@ namespace IS220.N12.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ACCOUNT>()
-                .HasMany(e => e.HOTELs)
+                .HasMany(e => e.PROPERTies)
                 .WithRequired(e => e.ACCOUNT)
                 .WillCascadeOnDelete(false);
 
@@ -59,7 +58,7 @@ namespace IS220.N12.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CUSTOMER>()
-                .HasMany(e => e.EVALUATE_HOTEL)
+                .HasMany(e => e.EVALUATE_PROPERTY)
                 .WithRequired(e => e.CUSTOMER)
                 .WillCascadeOnDelete(false);
 
@@ -76,50 +75,54 @@ namespace IS220.N12.Models
                 .Property(e => e.Reduction)
                 .HasPrecision(19, 4);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PLACE>()
+                .Property(e => e.ImageOfPlace)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PLACE>()
+                .HasMany(e => e.PROPERTies)
+                .WithRequired(e => e.PLACE)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PROPERTY>()
                 .Property(e => e.CheckInTime)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .Property(e => e.CheckOutTime)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOTEL>()
-                .Property(e => e.Phone_Hotel)
+            modelBuilder.Entity<PROPERTY>()
+                .Property(e => e.Phone_Property)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .Property(e => e.TypeName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .Property(e => e.TypeOfCategory)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .HasMany(e => e.EVALUATE_CUSTOMER)
-                .WithRequired(e => e.HOTEL)
+                .WithRequired(e => e.PROPERTY)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<HOTEL>()
-                .HasMany(e => e.EVALUATE_HOTEL)
-                .WithRequired(e => e.HOTEL)
+            modelBuilder.Entity<PROPERTY>()
+                .HasMany(e => e.EVALUATE_PROPERTY)
+                .WithRequired(e => e.PROPERTY)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .HasMany(e => e.ROOMs)
-                .WithRequired(e => e.HOTEL)
+                .WithRequired(e => e.PROPERTY)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<HOTEL>()
+            modelBuilder.Entity<PROPERTY>()
                 .HasMany(e => e.SERVICEs)
-                .WithMany(e => e.HOTELs)
-                .Map(m => m.ToTable("SERVICE_SUPPLIED").MapLeftKey("HotelID").MapRightKey("ServiceID"));
-
-            modelBuilder.Entity<PLACE>()
-                .HasMany(e => e.HOTELs)
-                .WithRequired(e => e.PLACE)
-                .WillCascadeOnDelete(false);
+                .WithMany(e => e.PROPERTies)
+                .Map(m => m.ToTable("SERVICE_SUPPLIED").MapLeftKey("PropertyID").MapRightKey("ServiceID"));
 
             modelBuilder.Entity<RESERVATION>()
                 .Property(e => e.PhoneCheckInPerson)

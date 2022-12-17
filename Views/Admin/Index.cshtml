@@ -11,15 +11,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
-    .card-content {
-        max-height: 400px;
-        overflow-y: auto;
-    }
-
-    .card-content::-webkit-scrollbar {
-        display: none;
-    }
-
     .btn.btn-info {
         padding: 6px 12px;
         background-color: #0dcaf0;
@@ -110,42 +101,20 @@
         <!-- Customer -->
         <div class="card ms-3 me-3">
             <div class="card-header">Customer Details</div>
-            <div class="card-content">
-                <table id="table-customer" class="table mb-2">
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>Country</th>
-                        <th>Phone</th>
-                        <th>Sex</th>
-                        <th>Status</th>
-                        <th>Avatar</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-            </div>
+            <div class="card-content" id="card-content-customer"></div>
         </div>
 
         <!-- Property -->
         <div class="card ms-3 me-3">
             <div class="card-header">Property Details</div>
-            <div class="card-content">
-                <table id="table-property" class="table mb-2">
-                    <tr>
-                        <th>Hotel Name</th>
-                        <th>Check-in time</th>
-                        <th>Check-out time</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Type</th>
-                        <th>Avatar</th>
-                    </tr>
-                </table>
-            </div>
+            <div class="card-content" id="card-content-property"></div>
         </div>
     </div>
 </div>
 
+<script src="~/Scripts/custom/Pagination.js"></script>
 <script>
+
     $(document).ready(function () {
         $('.nav__content-list li:first-child .nav__content-list-item').addClass('active');
 
@@ -170,7 +139,19 @@
             url: "/Admin/ShowCustomer",
             data: {},
             success: function (data) {
-                let html = "";
+                let html = `
+                            <table id="table-customer" class="table mb-2">
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Country</th>
+                                    <th>Phone</th>
+                                    <th>Sex</th>
+                                    <th>Status</th>
+                                    <th>Avatar</th>
+                                    <th>Action</th>
+                                </tr>
+                            `;
+
                 for (let i = 0; i < data.customers.length; i++) {
                     html += `
                             <tr>
@@ -194,7 +175,7 @@
                                     <button class="btn btn-info inactive">Active account</button>
                                 </td>
                             </tr>
-                                `
+                                `;
                     } else {
                         html += `
                                 <td>Active</td>
@@ -205,10 +186,13 @@
                                     <button class="btn btn-info">Active account</button>
                                 </td>
                             </tr>
-                            `
+                            `;
                     }
-                    $('#table-customer').append(html);
                 }
+                html += `</table>`;
+
+                $('#card-content-customer').append(html);
+                paginationTable('customer');
 
                 function activeAccount() {
                     $(document).ready(function () {
@@ -236,13 +220,25 @@
             url: "/Admin/ShowProperty",
             data: {},
             success: function (data) {
-                let html = "";
-                for (let i = 0; i < data.hotels.length; i++) {
+                let html = `
+                            <table id="table-property" class="table mb-2">
+                                <tr>
+                                    <th>Hotel Name</th>
+                                    <th>Check-in time</th>
+                                    <th>Check-out time</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th>Avatar</th>
+                                </tr>
+                            `;
+
+                for (let i = 0; i < data.properties.length; i++) {
                     html += `
                             <tr>
-                                <td>${data.hotels[i].HotelName}</td>
-                                <td class="text-center">${data.hotels[i].CheckInTime}</td>
-                                <td class="text-center">${data.hotels[i].CheckOutTime}</td>
+                                <td>${data.properties[i].PropertyName}</td>
+                                <td class="text-center">${data.properties[i].CheckInTime}</td>
+                                <td class="text-center">${data.properties[i].CheckOutTime}</td>
                                 <td style="text-align: left;
                                             width: 400px;
                                             max-width: 400px;
@@ -250,17 +246,19 @@
                                             overflow: hidden;
                                             text-overflow: ellipsis;
                                             white-space: nowrap;
-                                            -webkit-line-clamp: 1;">${data.hotels[i].Address_Hotel}</td>
-                                <td>${data.hotels[i].Phone_Hotel}</td>
-                                <td>${data.hotels[i].TypeName}</td>
+                                            -webkit-line-clamp: 1;">${data.properties[i].Address_Property}</td>
+                                <td>${data.properties[i].Phone_Property}</td>
+                                <td>${data.properties[i].TypeName}</td>
                                 <td>
-                                    <img src="${data.hotels[i].Image_Hotel}" alt="Avatar">
+                                    <img src="${data.properties[i].Image_Property}" alt="Avatar">
                                 </td>
                             </tr>
-                            `
+                            `;
                 }
+                html += `</table>`;
 
-                $('#table-property').append(html);
+                $('#card-content-property').append(html);
+                paginationTable('property');
             },
             error: function () {
                 alert("Error occured!!")

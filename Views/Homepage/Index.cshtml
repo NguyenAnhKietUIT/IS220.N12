@@ -15,6 +15,24 @@
     <link rel="stylesheet" href="~/Content/custom/Homepage.css" />
     <title>Trivia</title>
     <style>
+        .app__selection-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .app__selection-item-img {
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+        }
+
+        .app__selection-item-desc {
+            position: absolute;
+            color: #fff;
+            bottom: 16px;
+            left: 28px;
+            font-size: 20px;
+        }
+
         .app__category-item:hover,
         .app__category-item:hover i {
             color: var(--white-color);
@@ -295,40 +313,7 @@
 
         <div class="app__content" style="max-width: 1200px;margin: 0 auto;">
             <div class="app__content-home">
-                <div class="mt-5" id="top-destinations">
-                    <h3 class="app__selection-title">Top Destinations</h3>
-
-                    <div class="row">
-                        <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/hoi_an.png" alt="Hoi An"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Hoi An</span>
-                            </a>
-                        </div>
-                        <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/ha_giang.png" alt="Ha Giang"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Ha Giang</span>
-                            </a>
-                        </div>
-                        <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/nha_trang.png" alt="Nha Trang"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Nha Trang</span>
-                            </a>
-                        </div>
-                        <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/ho_chi_minh.png" alt="Ho Chi Minh"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Ho Chi Minh</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <div class="mt-5" id="top-destinations"></div>
 
                 <div class="mt-5">
                     <h3 class="app__selection-title">Browse by property type</h3>
@@ -1305,15 +1290,29 @@
                     return false;
                 });
 
-                console.log($('#top-destinations'));
-
                 // Get data top destinations
                 $.ajax({
                     type: "GET",
                     url: "/Place/TopDestinations",
                     data: {},
                     success: function (data) {
+                        let html = `<h3 class="app__selection-title">Top Destinations</h3>
 
+                                        <div class="row">`;
+
+                        for (let i = 0; i < 4; i++) {
+                            html += `
+                                    <div class="app__selection-item col">
+                                        <a href="Search" class="app__selection-item-link">
+                                            <img src="${data.placeImage[i]}" alt="${data.placeName[i]}" class="app__selection-item-img">
+                                            <span class="app__selection-item-desc">${data.placeName[i]}</span>
+                                        </a>
+                                    </div>
+                                    `;
+                        };
+
+                        html += `</div>`
+                        $('#top-destinations').html(html);
                     },
                     error: function () {
                         alert("Error occured!!")

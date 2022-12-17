@@ -5,7 +5,6 @@ namespace IS220.N12.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Web.Mvc;
 
     [Table("ACCOUNT")]
     public partial class ACCOUNT
@@ -14,14 +13,13 @@ namespace IS220.N12.Models
         public ACCOUNT()
         {
             CUSTOMERs = new HashSet<CUSTOMER>();
-            HOTELs = new HashSet<HOTEL>();
+            PROPERTies = new HashSet<PROPERTY>();
         }
 
         public int AccountID { get; set; }
 
         [Required]
         [StringLength(255)]
-        [Remote("IsExists", "ACCOUNT", ErrorMessage ="Username is already exist")]
         public string Username { get; set; }
 
         [Required]
@@ -38,6 +36,6 @@ namespace IS220.N12.Models
         public virtual ICollection<CUSTOMER> CUSTOMERs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOTEL> HOTELs { get; set; }
+        public virtual ICollection<PROPERTY> PROPERTies { get; set; }
     }
 }

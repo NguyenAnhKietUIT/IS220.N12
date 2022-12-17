@@ -98,22 +98,22 @@ namespace IS220.N12.Controllers
                         case 1:
                             return RedirectToAction("../Admin/Index");
                         case 2:
-                            var result2 = from h in context.HOTELs
+                            var result2 = from h in context.PROPERTies
                                           where h.AccountID == account.AccountID
                                           select h;
 
-                            HOTEL property = new HOTEL();
+                            PROPERTY property = new PROPERTY();
                             foreach (var kq in result2)
                             {
-                                property.HotelID = kq.HotelID;
-                                property.HotelName = kq.HotelName;
+                                property.PropertyID = kq.PropertyID;
+                                property.PropertyName = kq.PropertyName;
                                 property.CheckInTime = kq.CheckInTime;
                                 property.CheckOutTime = kq.CheckOutTime;
-                                property.Address_Hotel = kq.Address_Hotel;
-                                property.Detail_Hotel = kq.Detail_Hotel;
-                                property.Phone_Hotel = kq.Phone_Hotel;
+                                property.Address_Property = kq.Address_Property;
+                                property.Detail_Property = kq.Detail_Property;
+                                property.Phone_Property = kq.Phone_Property;
                                 property.TypeName = kq.TypeName;
-                                property.Image_Hotel = kq.Image_Hotel;
+                                property.Image_Property = kq.Image_Property;
                                 property.AccountID = kq.AccountID;
                                 property.PlaceID = kq.PlaceID;
                                 property.TypeOfCategory = kq.TypeOfCategory;
