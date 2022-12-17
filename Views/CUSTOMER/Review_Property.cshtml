@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
 <!DOCTYPE html>
@@ -84,19 +85,19 @@
     <div id="app">
         <header class="app__header">
             <nav class="app__nav" style="max-width: 1200px;margin: 0 auto;">
-                <a href="./Homepage.html" class="app__nav-name-link">
+                <a href="~/Homepage/Index" class="app__nav-name-link">
                     <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
                 </a>
 
                 <ul class="app__nav-list hide-on-mobile-tablet">
                     <li class="app__nav-item">
-                        <a href="./Homepage.html" class="app__nav-item-link">Home</a>
+                        <a href="~/Homepage/Index" class="app__nav-item-link">Home</a>
                     </li>
                     <li class="app__nav-item">
-                        <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                        <a href="~/Homepage/Contact" class="app__nav-item-link">Contacts</a>
                     </li>
                     <li class="app__nav-item">
-                        <a href="#" class="app__nav-item-link">Name Customer</a>
+                        <a href="#" class="app__nav-item-link">@account.Username</a>
                     </li>
                 </ul>
             </nav>

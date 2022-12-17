@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "View All Booking";
     var customer = Session["Customer"] as IS220.N12.Models.CUSTOMER;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
 <!DOCTYPE html>
@@ -20,19 +21,19 @@
         <header class="app__header">
             <div class="container">
                 <nav class="app__nav">
-                    <a href="./Homepage.html" class="app__nav-name-link">
+                    <a href="~/Homepage/Index" class="app__nav-name-link">
                         <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
                     </a>
 
                     <ul class="app__nav-list hide-on-mobile-tablet">
                         <li class="app__nav-item">
-                            <a href="./Homepage.html" class="app__nav-item-link">Home</a>
+                            <a href="~/Homepage/Index" class="app__nav-item-link">Home</a>
                         </li>
                         <li class="app__nav-item">
-                            <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                            <a href="~/Homepage/Contact" class="app__nav-item-link">Contacts</a>
                         </li>
                         <li class="app__nav-item">
-                            <a href="#" class="app__nav-item-link">Name Customer</a>
+                            <a href="YourAccount" class="app__nav-item-link">@account.Username</a>
                         </li>
                     </ul>
                 </nav>
@@ -45,14 +46,14 @@
                     <div class="col-3">
                         <ul class="app__sidebar-list">
                             <li class="app__sidebar-item">Your Account</li>
-                            <li class="app__sidebar-item">
-                                <a href="ViewAllBooking" class="text-decoration-none text-dark app__sidebar-item--active">View all bookings</a>
+                            <li class="app__sidebar-item app__sidebar-item--active">
+                                <a href="ViewAllBooking" class="text-decoration-none text-dark">View all bookings</a>
                             </li>
                             <li class="app__sidebar-item">
                                 <label for="app__inbox-input" style="cursor: pointer;">Inbox</label>
                             </li>
                             <li class="app__sidebar-item">
-                                <a href="#" class="text-decoration-none text-dark">Your Reviews</a>
+                                <a href="Review" class="text-decoration-none text-dark">Your Reviews</a>
                             </li>
                             <li>
                                 <a href="./Edit_Password.html" class="text-decoration-none text-dark">Edit your password</a>
@@ -72,7 +73,7 @@
                             <h3 class="app__view-title">Upcoming</h3>
 
                             <div>
-                                <a href="#" class="app__view-item">
+                                <a href="Detail_Booking" class="app__view-item">
                                     <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
                                     <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
                                         <h4>Hotel name</h4>

@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
 <!DOCTYPE html>
@@ -67,19 +68,19 @@
 <body>
     <header class="app__header">
         <nav class="app__nav" style="max-width: 1200px;margin: 0 auto;">
-            <a href="./Homepage.html" class="app__nav-name-link">
+            <a href="~/Homepage/Index" class="app__nav-name-link">
                 <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
             </a>
 
             <ul class="app__nav-list hide-on-mobile-tablet">
                 <li class="app__nav-item">
-                    <a href="./Homepage.html" class="app__nav-item-link text-white">Home</a>
+                    <a href="~/Homepage/Index" class="app__nav-item-link text-white">Home</a>
                 </li>
                 <li class="app__nav-item">
-                    <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                    <a href="~/Homepage/Contact" class="app__nav-item-link">Contacts</a>
                 </li>
                 <li class="app__nav-item">
-                    <a href="#" class="app__nav-item-link">Name Customer</a>
+                    <a href="YourAccount" class="app__nav-item-link">@account.Username</a>
                 </li>
             </ul>
         </nav>
@@ -168,7 +169,7 @@
 
                             <div class="mt-4 d-flex">
                                 <div style="flex: 1;"></div>
-                                <a href="./Search_Property.html" class="text-decoration-none">
+                                <a href="~/Homepage/Search_Detail" class="text-decoration-none">
                                     Cancel
                                 </a>
 

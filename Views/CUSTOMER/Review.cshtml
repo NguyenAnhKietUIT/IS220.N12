@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
 <!DOCTYPE html>
@@ -18,19 +19,19 @@
     <header class="app__header">
         <div class="container">
             <nav class="app__nav">
-                <a href="./Homepage.html" class="app__nav-name-link">
+                <a href="~/Homepage/Index" class="app__nav-name-link">
                     <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
                 </a>
 
                 <ul class="app__nav-list hide-on-mobile-tablet">
                     <li class="app__nav-item">
-                        <a href="./Homepage.html" class="app__nav-item-link">Home</a>
+                        <a href="~/Homepage/Index" class="app__nav-item-link">Home</a>
                     </li>
                     <li class="app__nav-item">
-                        <a href="./Contact.html" class="app__nav-item-link">Contacts</a>
+                        <a href="~/Homepage/Contact" class="app__nav-item-link">Contacts</a>
                     </li>
                     <li class="app__nav-item">
-                        <a href="#" class="app__nav-item-link">Name Customer</a>
+                        <a href="YourAccount" class="app__nav-item-link">@account.Username</a>
                     </li>
                 </ul>
             </nav>
@@ -43,19 +44,19 @@
                 <div class="col-3">
                     <ul class="app__sidebar-list">
                         <li class="app__sidebar-item">
-                            <a href="./Customer_Information.html" class="text-decoration-none text-dark">Your Account</a>
+                            <a href="YourAccount" class="text-decoration-none text-dark">Your Account</a>
                         </li>
                         <li class="app__sidebar-item">
-                            <a href="./Customer_viewBooking.html" class="text-decoration-none text-dark">View all bookings</a>
+                            <a href="ViewAllBooking" class="text-decoration-none text-dark">View all bookings</a>
                         </li>
                         <li class="app__sidebar-item">
                             <label for="app__inbox-input" style="cursor: pointer;">Inbox</label>
                         </li>
                         <li class="app__sidebar-item  app__sidebar-item--active">
-                            <a href="./Customer's_Review.html" class="text-decoration-none text-dark">Your Reviews</a>
+                            <a href="Review" class="text-decoration-none text-dark">Your Reviews</a>
                         </li>
                         <li>
-                            <a href="./Edit_Password.html" class="text-decoration-none text-dark">Edit your password</a>
+                            <a href="~/ACCOUNT/Edit_Password" class="text-decoration-none text-dark">Edit your password</a>
                         </li>
                         <li class="app__sidebar-item">
                             <button class="btn-sign-out">Sign out</button>
@@ -63,7 +64,7 @@
                     </ul>
                 </div>
                 <div class="col-9 ps-5">
-                    <a href="./Detail_Review.html" class="text-decoration-none" style="color: #303030;">
+                    <a href="Detail_Review" class="text-decoration-none" style="color: #303030;">
                         <div class="d-flex justify-content-between border" style="border-radius: 12px;box-shadow: 0 0 2px 2px rgb(0 0 0 / 4%);">
                             <img src="../assets/img/others/hotel.jpg" alt="" style="width: 180px;height: 180px; border-radius: 12px;">
 
