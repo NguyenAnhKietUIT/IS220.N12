@@ -1,6 +1,8 @@
-﻿using System;
+﻿using IS220.N12.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +10,7 @@ namespace IS220.N12.Controllers
 {
     public class CUSTOMERController : Controller
     {
+        HotelBookingContext context = new HotelBookingContext();
         // GET: CUSTOMER
         public ActionResult Index()
         {
@@ -20,6 +23,122 @@ namespace IS220.N12.Controllers
         public ActionResult ViewAllBooking()
         {
             return View();
+        }
+
+        public JsonResult GetUpComingBooking()
+        {
+            var customer = Session["Customer"] as CUSTOMER;
+
+            var query = from r in context.ROOMs
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                        where re.CustomerID == customer.CustomerID
+                        && DateTime.Compare((DateTime)re.CheckIn, DateTime.Now) > 0
+                        && re.Status_Reservation == 1
+                        select new
+                        {
+                            imageRoom = r.Image_Room,
+                            propertyName = p.PropertyName,
+                            roomName = r.RoomName,
+                            checkInTime = p.CheckInTime,
+                            checkInDate = re.CheckIn,
+                            total = (long)re.Total,
+                            typeRoom = r.TypeOfRoom
+                        };
+
+            List<string> imageRoom = new List<string>();
+            List<string> propertyName = new List<string>();
+            List<string> roomName = new List<string>();
+            List<string> checkInTime = new List<string>();
+            List<string> checkInDate = new List<string>();
+            List<string> total = new List<string>();
+            List<string> typeRoom = new List<string>();
+
+            foreach (var kq in query)
+            {
+                imageRoom.Add(kq.imageRoom);
+                propertyName.Add(kq.propertyName);
+                roomName.Add(kq.roomName);
+                checkInTime.Add(kq.checkInTime);
+                checkInDate.Add(((DateTime)kq.checkInDate).ToString("MM/dd/yyyy"));
+                total.Add(kq.total.ToString());
+                typeRoom.Add(kq.typeRoom);
+            }
+            return Json(new
+            {
+                imageRoom,
+                propertyName,
+                roomName,
+                checkInTime,
+                checkInDate,
+                total,
+                typeRoom,
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPastBooking()
+        {
+            var customer = Session["Customer"] as CUSTOMER;
+
+            int[] statusPast = new int[3] {2, 4, 5};
+
+            var query = from r in context.ROOMs
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                        where re.CustomerID == customer.CustomerID
+                        && DateTime.Compare((DateTime)re.CheckIn, DateTime.Now) <= 0
+                        && statusPast.Contains(re.Status_Reservation)
+                        select new
+                        {
+                            imageRoom = r.Image_Room,
+                            propertyName = p.PropertyName,
+                            roomName = r.RoomName,
+                            status = re.Status_Reservation,
+                            total = (long)re.Total,
+                            typeRoom = r.TypeOfRoom
+                        };
+
+            List<string> imageRoom = new List<string>();
+            List<string> propertyName = new List<string>();
+            List<string> roomName = new List<string>();
+            List<string> status = new List<string>();
+            List<string> total = new List<string>();
+            List<string> typeRoom = new List<string>();
+
+            foreach (var kq in query)
+            {
+                imageRoom.Add(kq.imageRoom);
+                propertyName.Add(kq.propertyName);
+                roomName.Add(kq.roomName);
+                if (kq.status == 1)
+                {
+                    status.Add("Booked");
+                } else if (kq.status == 2)
+                {
+                    status.Add("Checked out");
+                }
+                else if (kq.status == 3)
+                {
+                    status.Add("Live in");
+                }
+                else if (kq.status == 4)
+                {
+                    status.Add("Cancelled");
+                } else
+                {
+                    status.Add("No show");
+                };
+                total.Add(kq.total.ToString());
+                typeRoom.Add(kq.typeRoom);
+            }
+            return Json(new {
+                imageRoom,
+                propertyName,
+                roomName,
+                status,
+                total,
+                typeRoom,
+            }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Detail_Booking()
@@ -52,11 +171,109 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public ActionResult GetListReview()
+        {
+            var account = Session["Account"] as ACCOUNT;
+
+            var query = from a in context.ACCOUNTs
+                        join c in context.CUSTOMERs on a.AccountID equals c.AccountID
+                        join e in context.EVALUATE_PROPERTY on c.CustomerID equals e.CustomerID
+                        join p in context.PROPERTies on e.PropertyID equals p.PropertyID
+                        where a.AccountID == account.AccountID
+                        select new
+                        {
+                            id = e.evaPropertyID,
+                            image = p.Image_Property,
+                            propertyName = p.PropertyName,
+                            timeComment = e.TimeComment,
+                            point = e.Point,
+                            comment = e.Comment
+                        };
+
+            List<string> evaluateID = new List<string>();
+            List<string> imageProperty = new List<string>();
+            List<string> propertyName = new List<string>();
+            List<string> timeComment = new List<string>();
+            List<string> point = new List<string>();
+            List<string> comment = new List<string>();
+
+            foreach (var i in query)
+            {
+                evaluateID.Add(i.id.ToString());
+                imageProperty.Add(i.image);
+                propertyName.Add(i.propertyName);
+                timeComment.Add(i.timeComment.ToString("MM/dd/yyyy"));
+                point.Add(i.point.ToString());
+                comment.Add(i.comment);
+            }
+
+            return Json(new
+            {
+                evaluateID,
+                imageProperty,
+                propertyName,
+                timeComment,
+                point,
+                comment
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Detail_Review()
         {
             return View();
         }
 
+        [HttpPost]
+        public JsonResult SeeDetailReview(string[] values)
+        {
+            Session["reviewID"] = values[0];
+
+            return Json(new
+            {
+                msg = values[0]
+            }) ;
+        }
+
+        [HttpPost]
+        public JsonResult GetDetailReview(string[] values)
+        {
+            int reviewID = Convert.ToInt32(values[0]);
+            var query = (from a in context.ACCOUNTs
+                        join c in context.CUSTOMERs on a.AccountID equals c.CustomerID
+                        join e in context.EVALUATE_PROPERTY on c.CustomerID equals e.CustomerID
+                        join p in context.PROPERTies on e.PropertyID equals p.PropertyID
+                        join r in context.ROOMs on p.PropertyID equals r.PropertyID
+                        join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                        where e.evaPropertyID == reviewID
+                        select new { 
+                            image = p.Image_Property,
+                            propertyName = p.PropertyName,
+                            checkIn = re.CheckIn,
+                            checkOut = re.CheckOut,
+                            point = e.Point,
+                            comment = e.Comment,
+                            timeComment = e.TimeComment
+                        }).FirstOrDefault();
+
+            string image = query.image;
+            string propertyName = query.propertyName;
+            string checkIn = ((DateTime) query.checkIn).ToString("MM/dd/yyyy");
+            string checkOut = ((DateTime) query.checkOut).ToString("MM/dd/yyyy");
+            string point = query.point.ToString();
+            string comment = query.comment;
+            string timeComment = query.timeComment.ToString("MM/dd/yyyy");
+
+            return Json(new
+            {
+                image,
+                propertyName,
+                checkIn,
+                checkOut,
+                point,
+                comment,
+                timeComment
+            });
+        }
         // GET: CUSTOMER/Details/5
         public ActionResult Details(int id)
         {

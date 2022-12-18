@@ -1,206 +1,92 @@
 ﻿@{
     ViewBag.Title = "View All Booking";
-    var customer = Session["Customer"] as IS220.N12.Models.CUSTOMER;
-    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2 class="app__view-message">Your bookings</h2>
+<div class="no-booking"></div>
+<div class="app__view-list upcoming"></div>
+<div class="app__view-list app__view-list-status"></div>
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/Content/custom/base.css" />
-    <link rel="stylesheet" href="~/Content/custom/Customer_Information.css" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div id="app">
-        <header class="app__header">
-            <div class="container">
-                <nav class="app__nav">
-                    <a href="~/Homepage/Index" class="app__nav-name-link">
-                        <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
-                    </a>
+<script>
+    $(document).ready(function () {
+        $('.app__sidebar-list .app__sidebar-item:nth-child(2)').addClass('app__sidebar-item--active');
 
-                    <ul class="app__nav-list hide-on-mobile-tablet">
-                        <li class="app__nav-item">
-                            <a href="~/Homepage/Index" class="app__nav-item-link">Home</a>
-                        </li>
-                        <li class="app__nav-item">
-                            <a href="~/Homepage/Contact" class="app__nav-item-link">Contacts</a>
-                        </li>
-                        <li class="app__nav-item">
-                            <a href="YourAccount" class="app__nav-item-link">@account.Username</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        $.ajax({
+            type: "GET",
+            url: "/CUSTOMER/GetUpComingBooking",
+            data: {},
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                if (data.imageRoom.length > 0) {
+                    let html = `<h3 class="app__view-title">Upcoming</h3>`;
+                    html += `<div>`;
 
-        <div class="app__content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-3">
-                        <ul class="app__sidebar-list">
-                            <li class="app__sidebar-item">Your Account</li>
-                            <li class="app__sidebar-item app__sidebar-item--active">
-                                <a href="ViewAllBooking" class="text-decoration-none text-dark">View all bookings</a>
-                            </li>
-                            <li class="app__sidebar-item">
-                                <label for="app__inbox-input" style="cursor: pointer;">Inbox</label>
-                            </li>
-                            <li class="app__sidebar-item">
-                                <a href="Review" class="text-decoration-none text-dark">Your Reviews</a>
-                            </li>
-                            <li>
-                                <a href="./Edit_Password.html" class="text-decoration-none text-dark">Edit your password</a>
-                            </li>
-                            <li class="app__sidebar-item">
-                                <button class="btn-sign-out">Sign out</button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-9">
-                        <!-- <span class="app__view-message">You have no bookings yet.</span>
-        <a href="../html/Homepage.html" class="app__view-link">Start exploring</a> -->
-
-                        <h2 class="app__view-message">Your bookings</h2>
-
-                        <div class="app__view-list">
-                            <h3 class="app__view-title">Upcoming</h3>
-
-                            <div>
-                                <a href="Detail_Booking" class="app__view-item">
-                                    <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
+                    for (let i = 0; i < data.imageRoom.length; i++) {
+                        html += `
+                                <div class="app__view-item" style="cursor: pointer;">
+                                    <img src="${data.imageRoom[i]}" alt="Type Room" class="app__view-img">
                                     <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
-                                        <h4>Hotel name</h4>
-                                        <span>Room type</span>
-                                        <span>Check-in: 12:00 12/10/2022</span>
+                                        <h4>${data.propertyName[i]} </h4>
+                                        <p>${data.roomName[i]}</p>
+                                        <span>${data.typeRoom[i]}</span>
+                                        <p>Check-in: ${data.checkInTime[i]} ${data.checkInDate[i]}</p>
                                     </div>
-                                    <h3 class="app__view-item-price">420000 VND</h3>
-                                </a>
-                            </div>
-                        </div>
+                                    <h3 class="app__view-item-price">${data.total[i]} VND</h3>
+                                </div>
+                                `;
+                    }
 
-                        <div class="app__view-list app__view-list-status">
-                            <h3 class="app__view-title">In the past</h3>
-
-                            <div>
-                                <a href="#" class="app__view-item">
-                                    <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
-                                    <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
-                                        <div style="flex: 1;">
-                                            <h4>Hotel name</h4>
-                                            <span>Room type</span>
-                                        </div>
-                                        <span class="app__view-item-status">Stayed</span>
-                                    </div>
-                                    <h3 class="app__view-item-price">420000 VND</h3>
-                                </a>
-
-                                <a href="#" class="app__view-item">
-                                    <img src="../assets/img/others/mother_home.png" alt="Type Room" class="app__view-img">
-                                    <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
-                                        <div style="flex: 1;">
-                                            <h4>Hotel name</h4>
-                                            <span>Room type</span>
-                                        </div>
-                                        <span class="app__view-item-status app__view-item-status--active">Canceled</span>
-                                    </div>
-                                    <h3 class="app__view-item-price">420000 VND</h3>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <input type="checkbox" hidden name="app__inbox-input" id="app__inbox-input">
-                <label for="app__inbox-input" class="app__inbox-overlay"></label>
-                <div class="app__inbox">
-                    <div class="row m-0 h-100 overflow-auto">
-                        <div class="col-4" style="border-right: 1px solid #ccc;">
-                            <ul class="list-unstyled">
-                                <li class="app__inbox-item pb-2">
-                                    <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 1</h6>
-                                    <span class="ps-2 pe-2 app__inbox-item-content">
-                                        Chào các bạn
-                                        Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
-                                        Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
-                                        - Buổi sáng: 9h00-11h30
-                                        - Buổi chiều: 14h00-16h30
-                                        Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
-                                        Quà tặng:
-                                        + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
-                                        + Balo cho khóa 2022
-                                        + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số lượng
-                                        có
-                                        hạn, phát đến khi hết quà)
-                                        Khi nhận quà vui lòng mang theo thẻ sinh viên.
-                                        Mọi thắc mắc sinh viên trao đổi tại forum:
-                                        https://forum.uit.edu.vn/node/559392
-                                    </span>
-                                </li>
-                                <li class="app__inbox-item pb-2">
-                                    <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 2</h6>
-                                    <span class="ps-2 pe-2 app__inbox-item-content">
-                                        Chào các bạn
-                                        Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-8 app__inbox-message"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="~/Assets/js/validator.js"></script>
-    <script src="~/Scripts/custom/Inbox.js"></script>
-    <script>
-        const information = document.querySelectorAll('.form-control.edit-active')
-        const buttonEdit = document.querySelector('.button-handle button')
-        const buttonAccept = document.querySelector('.button-handle input[type="submit"]')
-        const avatarImg = document.querySelector('.app__main-img')
-        const avatarInput = document.getElementById('app__main-input-img')
-        const options = document.querySelectorAll('.app__sidebar-item')
-
-        options.forEach(element => {
-            element.addEventListener('click', () => {
-                options.forEach(element => {
-                    element.classList.remove('app__sidebar-item--active')
-                })
-                element.classList.add('app__sidebar-item--active')
-            })
-        })
-
-        buttonEdit.addEventListener('click', (e) => {
-            buttonEdit.disabled = true;
-            buttonAccept.disabled = false;
-            avatarInput.disabled = false;
-            information.forEach(element => {
-                element.disabled = false;
-            })
-        })
-
-        avatarInput.addEventListener('change', (event) => {
-            avatarImg.src = URL.createObjectURL(event.target.files[0]);
-        })
-
-        Validator({
-            form: '#form-detail',
-            formGroupSelector: '.form-group',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#yourname'),
-                Validator.isRequired('#country'),
-                Validator.isRequired('#phonenumber'),
-            ]
+                    html += `</div>`
+                    $('.upcoming').append(html);
+                } else {
+                    let html = `
+                                <span class="app__view-message">You have no bookings yet.</span>
+                                <a href="/Homepage/Index" class="app__view-link">Start exploring</a>`;
+                    $('.no-booking').append(html);
+                }
+            },
+            error: function () {
+                alert("Error occured!!");
+            }
         });
-    </script>
-</body>
-</html>
+
+        $.ajax({
+            type: "GET",
+            url: "/CUSTOMER/GetPastBooking",
+            data: {},
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                if (data.imageRoom.length > 0) {
+                    let html = `<h3 class="app__view-title">In the past</h3>`;
+                    html += `<div>`;
+
+                    for (let i = 0; i < data.imageRoom.length; i++) {
+                        html += `
+                                <div class="app__view-item" style="cursor: pointer;">
+                                    <img src="${data.imageRoom[i]}" alt="Type Room" class="app__view-img">
+                                    <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
+                                        <div style="flex: 1;">
+                                            <h4>${data.propertyName[i]} </h4>
+                                            <p>${data.roomName[i]}</p>
+                                            <span>${data.typeRoom[i]}</span>
+                                        </div>
+                                        <span class="app__view-item-status">${data.status[i]}</span>
+                                    </div>
+                                    <h3 class="app__view-item-price">${data.total[i]} VND</h3>
+                                </div>
+                                `;
+                    }
+
+                    html += `</div>`
+                    $('.app__view-list-status').append(html);
+                }
+            },
+            error: function () {
+                alert("Error occured!!");
+            }
+        });
+    })
+</script>

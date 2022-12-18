@@ -12,17 +12,24 @@ namespace IS220.N12.Controllers
 {
     public class ACCOUNTController : Controller
     {
+        HotelBookingContext context = new HotelBookingContext();
+
         // GET: ACCOUNT
         public ActionResult Index()
         {
             return View();
         }
 
-        // Check username exists
-        public JsonResult IsExists(string UserName)
+        public JsonResult CheckUsernameExists(string[] values)
         {
-            HotelBookingContext context = new HotelBookingContext();
-            return Json(!context.ACCOUNTs.Any(x => x.Username == UserName), JsonRequestBehavior.AllowGet);
+            var result = values[0];
+            return Json(context.ACCOUNTs.Any(x => x.Username == result), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CheckGmailExists(string[] values)
+        {
+            var result = values[0];
+            return Json(context.ACCOUNTs.Any(x => x.GMAIL == result), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SignUpCustomer()
@@ -34,13 +41,13 @@ namespace IS220.N12.Controllers
         public ActionResult SignUpCustomer(string[] values)
         {
             ACCOUNTDao dao = new ACCOUNTDao();
-            dao.signUp(values);
+            bool isSuccess = dao.signUp(values);
 
             try
             {
                 return Json(new
                 {
-                    msg = "Successfull created account!!!"
+                    isSuccess
                 });
             }
             catch
@@ -59,13 +66,13 @@ namespace IS220.N12.Controllers
         {
 
             ACCOUNTDao dao = new ACCOUNTDao();
-            dao.signUp(values);
+            bool isSuccess = dao.signUp(values);
 
             try
             {
                 return Json(new
                 {
-                    msg = "Successfull created account!!!"
+                    isSuccess
                 });
             }
             catch
@@ -82,8 +89,6 @@ namespace IS220.N12.Controllers
         [HttpPost]
         public ActionResult SignIn(string username, string password)
         {
-            HotelBookingContext context = new HotelBookingContext();
-
             if (ModelState.IsValid)
             {
                 ACCOUNTDao dao = new ACCOUNTDao();
@@ -152,23 +157,14 @@ namespace IS220.N12.Controllers
             return View();
         }
 
-        public ActionResult SignOut()
+        public JsonResult SignOut()
         {
-            if (Session["Account"] != null)
-            {
-                Session.Remove("Account");
-            }
+            Session.Clear();
 
-            if (Session["Customer"] != null)
+            return Json(new
             {
-                Session.Remove("Customer");
-            }
-
-            if (Session["Property"] != null)
-            {
-                Session.Remove("Property");
-            }
-            return RedirectToAction("../Homepage/Index");
+                msg = "Successfull sign out!!!"
+            });
         }
 
         public ActionResult Edit_Password()

@@ -1,11 +1,11 @@
-﻿@{
+﻿@model IS220.N12.Models.ACCOUNT
+
+@{
     ViewBag.Title = "Sign Up";
     Layout = "~/Views/Shared/_LoginRegister.cshtml";
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-@*Inspiration*@
 <link rel="stylesheet" href="~/Content/custom/sign_up.css" />
 
 <style>
@@ -13,6 +13,14 @@
         background: url(../../assets/img/Background/Sign_Up_page_for_customers.png);
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .form-group.invalid .form-control {
+        border-color: #ba001e;
+    }
+
+    .form-group.invalid .form-message {
+        color: #ba001e;
     }
 </style>
 
@@ -98,8 +106,8 @@
 </div>
 
 <script src="~/Assets/js/validator.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/custom/Exists.js"></script>
+
 <script>
     Validator({
         form: '#form',
@@ -110,7 +118,9 @@
             Validator.minLength('#password', 6),
             Validator.isEmail('#email'),
             Validator.isRequired('#confirm-password'),
-            Validator.isConfirmed('#confirm-password'),
+            Validator.isConfirmed('#confirm-password', function () {
+                return document.querySelector('#form #password').value;
+            }, 'Re-entered password is incorrect'),
         ],
     });
 </script>
@@ -119,26 +129,27 @@
     $(document).ready(function () {
         $('.form-btn').click(function (e) {
             e.preventDefault();
-
             var ACCOUNT = [$('#username').val(), $('#email').val(), $('#password').val(), 3];
 
             $.ajax({
                 type: "POST",
-                url: "/ACCOUNT/signUpCustomer",
+                url: "/ACCOUNT/SignUpCustomer",
                 data: JSON.stringify(ACCOUNT),
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    console.log(data.msg);
-                    $('#username').val("");
-                    $('#email').val("");
-                    $('#password').val("");
-                    $('#confirm-password').val("");
+                    if (data.isSuccess) {
+                        alert('Successfull sign up!!!')
+                        $('#username').val("");
+                        $('#email').val("");
+                        $('#password').val("");
+                        $('#confirm-password').val("");
+                    }
                 },
                 error: function () {
                     alert("Error occured!!")
                 }
             });
-        })
+        });
     })
 </script>

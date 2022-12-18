@@ -90,13 +90,8 @@ select {
     border-radius: 4px;
 }
 
-.form-detail {
-    margin-top: 20px;
-}
-
 .form-group {
     display: flex;
-    margin-bottom: 16px;
     flex-direction: column;
 }
 
@@ -203,7 +198,6 @@ button:disabled:hover {
 .app__view-item {
     display: flex;
     border-radius: 8px;
-    text-decoration: none;
     will-change: transform;
     transition: transform ease-in 0.1s;
     box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);

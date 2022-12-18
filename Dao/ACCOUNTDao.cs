@@ -43,16 +43,24 @@ namespace IS220.N12.Dao
             return null;
         }
 
-        public void signUp(string[] values)
+        public bool signUp(string[] values)
         {
-            ACCOUNT account = new ACCOUNT();
-            account.Username = values[0];
-            account.GMAIL = values[1];
-            account.Passwords = values[2];
-            account.ROLES = Convert.ToInt32(values[3]);
+            try
+            {
+                ACCOUNT account = new ACCOUNT();
+                account.Username = values[0];
+                account.GMAIL = values[1];
+                account.Passwords = values[2];
+                account.ROLES = Convert.ToInt32(values[3]);
 
-            context.ACCOUNTs.Add(account);
-            context.SaveChanges();
+                context.ACCOUNTs.Add(account);
+                context.SaveChanges();
+                return true;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
         }
 
         public IEnumerable<ACCOUNT> ListAllPaging(int page, int pageSize)

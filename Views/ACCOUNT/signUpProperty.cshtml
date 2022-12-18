@@ -22,6 +22,14 @@
     .form {
         padding: 40px;
     }
+
+    .form-group.invalid .form-control {
+        border-color: #ba001e;
+    }
+
+    .form-group.invalid .form-message {
+        color: #ba001e;
+    }
 </style>
 
 <div class="register_main-content">
@@ -87,11 +95,13 @@
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    console.log(data.msg);
-                    $('#username').val("");
-                    $('#email').val("");
-                    $('#password').val("");
-                    $('#confirm-password').val("");
+                    if (data.isSuccess) {
+                        alert('Successfull sign up!!!')
+                        $('#username').val("");
+                        $('#email').val("");
+                        $('#password').val("");
+                        $('#confirm-password').val("");
+                    }
                 },
                 error: function () {
                     alert("Error occured!!")
