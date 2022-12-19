@@ -2,6 +2,7 @@
 @{
     Layout = null;
     var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
+    string[] detailBooking = (string[])Session["DetailBooking"];
 }
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/custom/base.css" />
     <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Detail Booking</title>
 
     <style>
@@ -103,36 +105,99 @@
         </nav>
     </header>
 
-    <div class="container" style="height: 250px;">
-        <h2 class="mt-5">Manage Your Booking</h2>
+    <div class="container" style="height: 250px;"></div>
 
-        <div class="mt-4 d-flex w-100">
-            <img src="../assets/img/others/Rectangle 25.png" alt="Room image" style="width: 250px;height: 250px;">
+    <script>
+        const propertyName = '@detailBooking[0]';
+        const roomName = '@detailBooking[1]';
+        var reservationID;
 
-            <div class="ms-5 d-flex flex-column justify-content-between" style="flex: 1;">
-                <h4>Hotel Name</h4>
-                <p>Reservation number: </p>
-                <p>Phone numbers:</p>
-                <p>Address:</p>
-                <p><b>Rating Score: </b>9.0</p>
-                <!-- If status === "Ready" -->
-                <p><b>29 November, 2021 - 30 November, 2021</b></p>
-                <p><b>Check-in time: 12:00 - Check-out time: 14:00</b></p>
-                <!-- Else -->
-                <!-- <p><b>Check-in: 29 November, 2021</b></p>
-                <p><b>Check-out: 30 November, 2021</b></p> -->
-                <p><b>Status: Ready</b></p>
-            </div>
-        </div>
+        $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/GetDetailBooking",
+                data: {
+                    values: [propertyName, roomName]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                reservationID = data.reservationID;
+                    let html = `<h2 class="mt-5">Manage Your Booking</h2>`;
 
-        <div class="mt-4" style="margin-left: 298px;">
-            <!-- If status === "Ready" -->
-            <!-- <button type="button" class="btn btn-danger">Cancel Your Booking</button> -->
-            <!-- Else if status === "Completed" -->
-            <a href="Review_Property" class="btn btn-review text-decoration-none">Write your review</a>
+                    html += `
+                            <div class="mt-4 d-flex w-100">
+                                <img src="${data.imageRoom}" alt="Room image" style="width: 250px;height: 250px;">
 
-            <!-- Else -> no button -->
-        </div>
-    </div>
+                                <div class="ms-5 d-flex flex-column justify-content-between" style="flex: 1;">
+                                    <h4>${data.propertyName}</h4>
+                                    <p><b>Reservation number:</b> ${data.reservationID}</p>
+                                    <p><b>Phone numbers:</b> ${data.phone}</p>
+                                    <p><b>Address:</b> ${data.address}</p>
+                                    <p><b>Rating Score: </b>${data.average}</p>`;
+
+                    if (data.status == 'Booked') {
+                        html += `
+                                    <p><b>${data.checkInDate} - ${data.checkOutDate}</b></p>
+                                    <p><b>Check-in time: ${data.checkInTime} - Check-out time: ${data.checkOutTime}</b></p>
+                                    <p class="status"><b>Status:</b> ${data.status}</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4" style="margin-left: 298px;">
+                                <button type="button" class="btn btn-danger">Cancel Your Booking</button>
+                            </div>`;
+                    } else {
+                        html == `
+                                    <p><b>Check-in: ${data.checkInDate}</b></p>
+                                    <p><b>Check-out: ${data.checkOutDate}</b></p>
+                                    <p><b>Status: ${data.status}</b></p>
+                                </div>
+                            </div>`;
+
+                        if (data.status == "Checked out") {
+                            html += `
+                            <div class="mt-4" style="margin-left: 298px;">
+                                <button type="button" class="btn btn-review">Write your review</button>
+                            </div>`;
+                        } else {
+                            html += `
+                            <div class="mt-4" style="margin-left: 298px;">
+                                <button type="button" class="btn btn-info">Go to View All Booking</button>
+                            </div>`;
+                        }
+                    }
+
+                    $('.container').append(html);
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+        });
+
+        $('.container').on('click', '.btn.btn-danger', function () {
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/UpdateStatusReservation",
+                data: {
+                    values: [reservationID]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.status) {
+                        $('.status').html('<b>Status:</b> Cancelled');
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+            $(this).replaceWith($('<button type="button" class="btn btn-info">Go to View All Booking</button>'));
+        })
+
+        $('.container').on('click', '.btn.btn-info', function () {
+            window.location.replace("https://localhost:44306/CUSTOMER/ViewAllBooking");
+        })
+    </script>
 </body>
 </html>

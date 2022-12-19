@@ -103,9 +103,9 @@ namespace IS220.N12.Controllers
                         case 1:
                             return RedirectToAction("../Admin/Index");
                         case 2:
-                            var result2 = from h in context.PROPERTies
-                                          where h.AccountID == account.AccountID
-                                          select h;
+                            var result2 = from p in context.PROPERTies
+                                          where p.AccountID == account.AccountID
+                                          select p;
 
                             PROPERTY property = new PROPERTY();
                             foreach (var kq in result2)

@@ -1,4 +1,5 @@
-﻿using IS220.N12.Models;
+﻿using IS220.N12.Dao;
+using IS220.N12.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,26 @@ namespace IS220.N12.Controllers
         public ActionResult YourAccount()
         {
             return View();
+        }
+
+        public JsonResult UpdateInformation(string[] values)
+        {
+            CUSTOMER customer = new CUSTOMER();
+            customer.CustomerName = values[0];
+            customer.Country = values[1];
+            customer.Sex = Convert.ToInt32(values[2]);
+            customer.Phone = values[3];
+            customer.Image_Customer = values[4];
+            customer.Status_Account = 1;
+            customer.AccountID = Convert.ToInt32(values[5]);
+
+            CUSTOMERDao dao = new CUSTOMERDao();
+            bool update = dao.UpdateInormation(customer);
+
+            return Json(new
+            {
+                update
+            });
         }
         public ActionResult ViewAllBooking()
         {
@@ -139,6 +160,107 @@ namespace IS220.N12.Controllers
                 total,
                 typeRoom,
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SeeDetailBooking(string[] values)
+        {
+            Session["DetailBooking"] = values;
+
+            return Json(new
+            {
+                msg = values
+            });
+        }
+
+        public JsonResult GetDetailBooking(string[] values)
+        {
+            var account = Session["Account"] as ACCOUNT;
+            string propertyName = values[0];
+            string roomName = values[1];
+
+            var query = (from re in context.RESERVATIONs
+                        join r in context.ROOMs on re.RoomID equals r.RoomID
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        join c in context.CUSTOMERs on re.CustomerID equals c.CustomerID
+                        join a in context.ACCOUNTs on c.AccountID equals a.AccountID
+                        where String.Compare(p.PropertyName, propertyName, false) == 0
+                        && String.Compare(r.RoomName, roomName, false) == 0
+                        && a.AccountID == account.AccountID
+                        select new
+                        {
+                            imageRoom = r.Image_Room,
+                            reservationID = re.ReservationID,
+                            phone = p.Phone_Property,
+                            address = p.Address_Property,
+                            checkInDate = re.CheckIn,
+                            checkOutDate = re.CheckOut,
+                            checkInTime = p.CheckInTime,
+                            checkOutTime = p.CheckOutTime,
+                            status = re.Status_Reservation
+                        }).FirstOrDefault();
+
+            var avg = (from p in context.PROPERTies
+                       join e in context.EVALUATE_PROPERTY on p.PropertyID equals e.PropertyID
+                       join r in context.ROOMs on p.PropertyID equals r.PropertyID
+                       join re in context.RESERVATIONs on r.RoomID equals re.RoomID
+                       where String.Compare(p.PropertyName, propertyName, false) == 0
+                       select e).Average(x => x.Point);
+
+            string imageRoom = query.imageRoom;
+            string reservationID = query.reservationID.ToString();
+            string phone = query.phone.ToString();
+            string address = query.address.ToString();
+            string checkInDate = ((DateTime)query.checkInDate).ToString("MM/dd/yyyy");
+            string checkOutDate = ((DateTime)query.checkOutDate).ToString("MM/dd/yyyy");
+            string checkInTime = query.checkInTime;
+            string checkOutTime = query.checkOutTime;
+            string average = avg.ToString();
+            string status;
+
+            if (query.status == 1)
+            {
+                status = "Booked";
+            }
+            else if (query.status == 2)
+            {
+                status = "Checked out";
+            }
+            else if (query.status == 3)
+            {
+                status = "Live in";
+            }
+            else if (query.status == 4)
+            {
+                status = "Cancelled";
+            }
+            else
+            {
+                status = "No show";
+            };
+
+            return Json(new {
+                imageRoom,
+                propertyName,
+                reservationID,
+                phone,
+                address,
+                average,
+                checkInDate,
+                checkOutDate,
+                checkInTime,
+                checkOutTime,
+                status
+            });
+        }
+
+        public JsonResult UpdateStatusReservation(string[] values)
+        {
+            CUSTOMERDao dao = new CUSTOMERDao();
+            bool status = dao.UpdateStatusReservation(Convert.ToInt32(values[0]));
+
+            return Json(new { 
+                status
+            });
         }
 
         public ActionResult Detail_Booking()

@@ -28,7 +28,7 @@
                                 <div class="app__view-item" style="cursor: pointer;">
                                     <img src="${data.imageRoom[i]}" alt="Type Room" class="app__view-img">
                                     <div class="d-flex flex-column my-2 mx-0 text-dark" style="flex: 1;">
-                                        <h4>${data.propertyName[i]} </h4>
+                                        <h4>${data.propertyName[i]}</h4>
                                         <p>${data.roomName[i]}</p>
                                         <span>${data.typeRoom[i]}</span>
                                         <p>Check-in: ${data.checkInTime[i]} ${data.checkInDate[i]}</p>
@@ -88,5 +88,28 @@
                 alert("Error occured!!");
             }
         });
+
+        $('.upcoming').on('click', '.app__view-item', function () {
+            let propertyName = $(this).find('h4')[0].innerHTML.trim();
+            let roomName = $(this).find('p')[0].innerHTML.trim();
+
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/SeeDetailBooking",
+                data: {
+                    values: [propertyName, roomName]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data) {
+                        window.location.replace("https://localhost:44306/CUSTOMER/Detail_Booking");
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        })
     })
 </script>

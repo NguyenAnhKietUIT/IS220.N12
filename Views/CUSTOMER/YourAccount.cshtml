@@ -5,11 +5,21 @@
     var customer = Session["Customer"] as IS220.N12.Models.CUSTOMER;
 }
 
+<style>
+    #app__main-input-img {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
 <h1 class="app__main-title">User Details</h1>
 <form action="" method="POST" class="form-detail mt-0" id="form-detail">
     <div class="form-avatar">
-        <label for="app__main-input-img" class="app__main-label-img">
-            @if (customer.Image_Customer != null)
+        <label for="app__main-input-img" class="app__main-label-img" style="width: 100%;">
+            @if (customer != null)
             {
                 <img src="@customer.Image_Customer" alt="avatar" class="app__main-img">
             }
@@ -20,16 +30,22 @@
         </label>
         <span class="form-avatar__message" style="top: 32%;">
             <i class="fa-solid fa-camera"></i>
-            Change your avatar
+            <button type="button" id="app__main-input-img" disabled class="edit-active">Change your avatar</button>
         </span>
-        <input type="file" name="app__main-input-img" id="app__main-input-img" hidden disabled>
     </div>
 
     <div class="form-info">
         <div class="form-group mb-0">
             <label for="yourname" class="form-label pb-0 mb-1">Your Name<span style="color: red;">*</span></label>
-            <input id="yourname" name="yourname" type="text" value="@customer.CustomerName" disabled
-                   class="form-control edit-active">
+            @if (customer != null)
+            {
+                <input id="yourname" name="yourname" type="text" value="@customer.CustomerName" disabled
+                       class="form-control edit-active">
+            }
+            else
+            {
+                <input id="yourname" name="yourname" type="text" disabled class="form-control edit-active">
+            }
             <span class="form-message"></span>
         </div>
 
@@ -44,7 +60,10 @@
             <label for="country" class="form-label pb-0 mb-1">Country<span style="color: red;">*</span></label>
             <select id="country" name="country" class="form-control edit-active" disabled style="font-size: 14px;">
                 <option value="">--- Select Country ---</option>
-                <option value="@customer.Country" selected>@customer.Country</option>
+                @if (customer != null)
+                {
+                    <option value="@customer.Country" selected>@customer.Country</option>
+                }
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -301,27 +320,50 @@
             <label for="sex" class="form-label pb-0 mb-1">Your Sex<span style="color: red;">*</span></label>
             <select id="sex" name="sex" class="form-control edit-active" disabled style="font-size: 14px;">
                 <option value="">--- Select your sex ---</option>
-                <option value="0">Nam</option>
-                <option value="1">Nữ</option>
+                @if (customer != null)
+                {
+                    if (customer.Sex == 0)
+                    {
+                        <option value="0" selected>Male</option>
+                        <option value="1">Female</option>
+                    }
+                    else
+                    {
+                        <option value="0">Male</option>
+                        <option value="1" selected>Female</option>
+                    }
+                }
+                else
+                {
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                }
             </select>
             <span class="form-message"></span>
         </div>
 
         <div class="form-group mb-0">
             <label for="phonenumber" class="form-label pb-0 mb-1">Phone Number<span style="color: red;">*</span></label>
-            <input id="phonenumber" name="phonenumber" value="@customer.Phone" disabled
-                   type="text" class="form-control edit-active">
+            @if (customer != null)
+            {
+                <input id="phonenumber" name="phonenumber" value="@customer.Phone" disabled
+                       type="text" class="form-control edit-active">
+            } else
+            {
+                <input id="phonenumber" name="phonenumber" disabled type="text" class="form-control edit-active">
+            }
             <span class="form-message"></span>
         </div>
 
         <div class="button-handle mt-3">
             <button type="button" class="form-edit">Edit details</button>
-            <input type="submit" class="form-edit" value="Accept" disabled>
+            <button type="button" class="form-edit" disabled>Accept</button>
         </div>
     </div>
 </form>
 
 <script src="~/Assets/js/validator.js"></script>
+<script src="~/Assets/lib/ckfinder/ckfinder.js"></script>
 <script>
     Validator({
         form: '#form-detail',
@@ -339,29 +381,51 @@
 <script>
     $(document).ready(function () {
         $('.app__sidebar-list .app__sidebar-item:first-child').addClass('app__sidebar-item--active');
-        $('.button-handle input[type="submit"]').click(function () {
-            alert()
+
+        $('.button-handle button:first-child').click(function () {
+            $(this).prop('disabled', true);
+            $('.button-handle button:last-child').prop('disabled', false);
+            $('app__main-input-img').prop('disabled', false);
+            $('.edit-active').each(function () {
+                $(this).prop('disabled', false);
+            });
+        });
+
+        $('#app__main-input-img').click(function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $('.app__main-img').attr('src', fileUrl);
+            }
+            finder.popup();
+        });
+
+        $('.button-handle button:last-child').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/UpdateInformation",
+                data: {
+                    values: [
+                        $('#yourname').val(),
+                        $('#country').val(),
+                        $('#sex').val(),
+                        $('#phonenumber').val(),
+                        $('.app__main-img').attr('src'),
+                        @account.AccountID
+                    ]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.update) {
+                        alert("Successfully changed!!!");
+                        $('.button-handle button:last-child').prop('disabled', true);
+                        $('.button-handle button:first-child').prop('disabled', false);
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
         })
-    })
-</script>
-
-<script>
-    const information = document.querySelectorAll('.form-control.edit-active')
-    const buttonEdit = document.querySelector('.button-handle button[type="button"]')
-    const buttonAccept = document.querySelector('.button-handle input[type="submit"]')
-    const avatarImg = document.querySelector('.app__main-img')
-    const avatarInput = document.getElementById('app__main-input-img')
-
-    buttonEdit.addEventListener('click', () => {
-        buttonEdit.disabled = true;
-        buttonAccept.disabled = false;
-        avatarInput.disabled = false;
-        information.forEach(element => {
-            element.disabled = false;
-        })
-    })
-
-    avatarInput.addEventListener('change', (event) => {
-        avatarImg.src = URL.createObjectURL(event.target.files[0]);
     })
 </script>
