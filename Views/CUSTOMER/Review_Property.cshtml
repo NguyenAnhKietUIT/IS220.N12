@@ -2,6 +2,7 @@
 @{
     Layout = null;
     var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
+    int reservationID = Convert.ToInt32(Session["ReservationID"]);
 }
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/custom/base.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Review Property</title>
     <style>
         * {
@@ -103,49 +105,92 @@
             </nav>
         </header>
 
-        <div style="max-width: 1200px;margin: 0 auto;height: 250px;">
-            <h2 class="mt-5">Writing your review</h2>
-
-            <div class="border mt-4 d-flex" style="width: 800px;">
-                <img src="../assets/img/others/Rectangle 25.png" alt="" class="img_hotel">
-
-                <div class="ms-4 my-2 d-flex flex-column justify-content-between" style="flex: 1;">
-                    <h5>Hotel Name</h5>
-                    <p>Address: </p>
-                    <p>6 August, 2021 - 7 August, 2021</p>
-                    <p>Status: <b>Completed</b></p>
-                </div>
-            </div>
-
-            <div class="mt-3 d-flex flex-column">
-                <label for="review">Your review</label>
-                <textarea name="review" id="review" cols="35" rows="6" placeholder="Leave your review here..."></textarea>
-            </div>
-
-            <div class="mt-3">
-                <label for="rating">Your rating</label>
-                <input type="number" name="rating" id="rating" min="0" max="10" step="0.01">
-                <span class="ms-1 text-danger rate-message">Rating must be between 0 and 10</span>
-            </div>
-
-            <button type="button" class="btn btn-review mt-4">Log review</button>
-        </div>
+        <div class="container"></div>
     </div>
 
     <script>
-        const rating = document.getElementById("rating");
-        const rateMessage = document.querySelector(".rate-message");
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/GetInfoProReview",
+                data: {
+                    values: [@reservationID]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    let html = `
+                                <h2 class="mt-4">Writing your review</h2>
 
-        rating.addEventListener("blur", () => {
-            if (rating.value != null && (rating.value < 0 || rating.value > 10)) {
-                rateMessage.style.display = 'inline-block';
-            }
-        })
+                                <div class="border mt-4 d-flex" style="width: 800px;">
+                                    <img src="${data.image}" alt="" class="img_hotel">
 
-        rating.addEventListener("focus", () => {
-            rateMessage.style.display = 'none';
-        })
+                                    <div class="ms-4 my-2 d-flex flex-column justify-content-between" style="flex: 1;">
+                                        <h5>${data.name}</h5>
+                                        <p><b>Address:</b> ${data.address}</p>
+                                        <p>${data.checkIn} - ${data.checkOut}1</p>
+                                        <p><b>Status:</b> ${data.status}</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 d-flex flex-column">
+                                    <label for="review">Your review</label>
+                                    <textarea name="review" id="review" cols="35" rows="100" style="height: 200px;" placeholder="Leave your review here..."></textarea>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label for="rating">Your rating</label>
+                                    <input type="number" name="rating" id="rating" min="0" max="10" step="1">
+                                    <span class="ms-1 text-danger rate-message">Rating must be between 0 and 10</span>
+                                </div>
+
+                                <button type="button" class="btn btn-review mt-4">Log review</button>`;
+
+                    $('.container').append(html);
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+
+            $('.container').on('blur', '#rating', function () {
+                if ($('#rating').val() != null && ($('#rating').val() < 0 || $('#rating').val() > 10)) {
+                    $('.rate-message').css('display', 'inline-block');
+                }
+            });
+
+            $('.container').on('focus', '#rating', function () {
+                $('.rate-message').css('display', 'none');
+            });
+
+            $('.container').on('click', '.btn.btn-review', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/CUSTOMER/InsertReview",
+                    data: {
+                        values: [
+                            @reservationID,
+                            $('#review').val(),
+                            $('#rating').val()
+                        ]
+                    },
+                    datatype: "json",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        if (data) {
+                            $('button').replaceWith($('<button type="button" class="btn btn-info mt-3">Go to Your Reviews</button>'));
+
+                            $('.btn.btn-info').click(function () {
+                                window.location.replace("https://localhost:44306/CUSTOMER/Review");
+                            });
+                        }
+                    },
+                    error: function () {
+                        alert("Error occured!!!");
+                    }
+                });
+            });
+        });
     </script>
-
 </body>
 </html>

@@ -186,10 +186,6 @@ button:disabled:hover {
         color: white;
     }
 
-.app__view-list + .app__view-list {
-    margin-top: 80px;
-}
-
 .app__view-title {
     font-size: 24px;
     margin-bottom: 20px;

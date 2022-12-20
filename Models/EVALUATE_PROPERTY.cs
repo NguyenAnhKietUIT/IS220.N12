@@ -21,10 +21,6 @@ namespace IS220.N12.Models
         [StringLength(255)]
         public string Comment { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string Image_Feedback { get; set; }
-
         [Column(TypeName = "smalldatetime")]
         public DateTime TimeComment { get; set; }
 

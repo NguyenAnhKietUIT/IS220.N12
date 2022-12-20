@@ -21,7 +21,6 @@ namespace IS220.N12.Controllers
         {
             return View();
         }
-
         public JsonResult UpdateInformation(string[] values)
         {
             CUSTOMER customer = new CUSTOMER();
@@ -45,7 +44,6 @@ namespace IS220.N12.Controllers
         {
             return View();
         }
-
         public JsonResult GetUpComingBooking()
         {
             var customer = Session["Customer"] as CUSTOMER;
@@ -96,7 +94,6 @@ namespace IS220.N12.Controllers
                 typeRoom,
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult GetPastBooking()
         {
             var customer = Session["Customer"] as CUSTOMER;
@@ -161,7 +158,6 @@ namespace IS220.N12.Controllers
                 typeRoom,
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult SeeDetailBooking(string[] values)
         {
             Session["DetailBooking"] = values;
@@ -171,7 +167,6 @@ namespace IS220.N12.Controllers
                 msg = values
             });
         }
-
         public JsonResult GetDetailBooking(string[] values)
         {
             var account = Session["Account"] as ACCOUNT;
@@ -252,47 +247,153 @@ namespace IS220.N12.Controllers
                 status
             });
         }
-
         public JsonResult UpdateStatusReservation(string[] values)
         {
+            int reservationID = Convert.ToInt32(values[0]);
+            Session["ReservationID"] = reservationID;
+
             CUSTOMERDao dao = new CUSTOMERDao();
-            bool status = dao.UpdateStatusReservation(Convert.ToInt32(values[0]));
+            bool status = dao.UpdateStatusReservation(reservationID);
 
             return Json(new { 
                 status
             });
         }
+        public JsonResult RedirectReviewPage(string[] values)
+        {
+            Session["ReservationID"] = values[0];
+            return Json(new { msg = values[0] });
+        }
+        public JsonResult GetInfoProReview(string[] values)
+        {
+            int reservationID = Convert.ToInt32(values[0]);
+            var query = (from re in context.RESERVATIONs
+                        join r in context.ROOMs on re.RoomID equals r.RoomID
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        where re.ReservationID == reservationID
+                        select new
+                        {
+                            image = p.Image_Property,
+                            name = p.PropertyName,
+                            address = p.Address_Property,
+                            checkIn = re.CheckIn,
+                            checkOut = re.CheckOut,
+                            status = re.Status_Reservation
+                        }).FirstOrDefault();
 
+            string image = query.image;
+            string name = query.name;
+            string address = query.address;
+            string checkIn = ((DateTime)query.checkIn).ToString("MM/dd/yyyy");
+            string checkOut = ((DateTime)query.checkOut).ToString("MM/dd/yyyy");
+            string status;
+
+            if (query.status == 1)
+            {
+                status = "Booked";
+            }
+            else if (query.status == 2)
+            {
+                status = "Checked out";
+            }
+            else if (query.status == 3)
+            {
+                status = "Live in";
+            }
+            else if (query.status == 4)
+            {
+                status = "Cancelled";
+            }
+            else
+            {
+                status = "No show";
+            };
+
+            return Json(new {
+                image,
+                name,
+                address,
+                checkIn,
+                checkOut,
+                status
+            });
+        }
+        public JsonResult InsertReview(string[] values)
+        {
+            var reservationID = Convert.ToInt32(values[0]);
+            var evaluateComment = values[1];
+            var evaluatePoint = Convert.ToInt32(values[2]);
+
+            var query = (from re in context.RESERVATIONs
+                        join r in context.ROOMs on re.RoomID equals r.RoomID
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        where re.ReservationID == reservationID
+                        select new
+                        {
+                            re.CustomerID,
+                            p.PropertyID
+                        }).FirstOrDefault();
+
+            EVALUATE_PROPERTY eva = new EVALUATE_PROPERTY();
+            eva.CustomerID = query.CustomerID;
+            eva.PropertyID = query.PropertyID;
+            eva.Point = evaluatePoint;
+            eva.Comment = evaluateComment;
+            eva.TimeComment = DateTime.Now;
+
+            context.EVALUATE_PROPERTY.Add(eva);
+            context.SaveChanges();
+            return Json(new { eva });
+        }
         public ActionResult Detail_Booking()
         {
             return View();
         }
-
         public ActionResult Review_Property()
         {
             return View();
         }
+        public JsonResult GetInbox()
+        {
+            var account = Session["Account"] as ACCOUNT;
 
+            var query = from c in context.CONTACTs
+                        where c.userNameReceive == account.Username
+                        select new
+                        {
+                            usernameSend = c.userNameSend,
+                            message = c.message
+                        };
+
+            List<string> usernameSends = new List<string>();
+            List<string> messages = new List<string>();
+
+            foreach (var item in query)
+            {
+                usernameSends.Add(item.usernameSend);
+                messages.Add(item.message);
+            }
+            return Json(new {
+                usernameSends,
+                messages
+            });
+        }
         public ActionResult Success()
         {
             return View();
         }
-
         public ActionResult Error()
         {
             return View();
         }
-
         public ActionResult Reservation()
         {
             return View();
         }
-
         public ActionResult Review()
         {
             return View();
         }
-
         public ActionResult GetListReview()
         {
             var account = Session["Account"] as ACCOUNT;
@@ -339,12 +440,10 @@ namespace IS220.N12.Controllers
                 comment
             }, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult Detail_Review()
         {
             return View();
         }
-
         [HttpPost]
         public JsonResult SeeDetailReview(string[] values)
         {
@@ -355,7 +454,6 @@ namespace IS220.N12.Controllers
                 msg = values[0]
             }) ;
         }
-
         [HttpPost]
         public JsonResult GetDetailReview(string[] values)
         {

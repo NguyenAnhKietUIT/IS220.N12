@@ -4,9 +4,18 @@
 }
 
 <h2 class="app__view-message">Your bookings</h2>
-<div class="no-booking"></div>
+<div class="no-booking">
+    <span class="app__view-message">You have no bookings yet.</span>
+    <a href="/Homepage/Index" class="app__view-link">Start exploring</a>
+</div>
 <div class="app__view-list upcoming"></div>
 <div class="app__view-list app__view-list-status"></div>
+
+<style>
+    .app__view-list + .app__view-list {
+        margin-top: 4px;
+    }
+</style>
 
 <script>
     $(document).ready(function () {
@@ -20,6 +29,7 @@
             contentType: 'application/x-www-form-urlencoded',
             success: function (data) {
                 if (data.imageRoom.length > 0) {
+                    $('.no-booking').hide();
                     let html = `<h3 class="app__view-title">Upcoming</h3>`;
                     html += `<div>`;
 
@@ -40,11 +50,6 @@
 
                     html += `</div>`
                     $('.upcoming').append(html);
-                } else {
-                    let html = `
-                                <span class="app__view-message">You have no bookings yet.</span>
-                                <a href="/Homepage/Index" class="app__view-link">Start exploring</a>`;
-                    $('.no-booking').append(html);
                 }
             },
             error: function () {
@@ -60,6 +65,7 @@
             contentType: 'application/x-www-form-urlencoded',
             success: function (data) {
                 if (data.imageRoom.length > 0) {
+                    $('.no-booking').hide();
                     let html = `<h3 class="app__view-title">In the past</h3>`;
                     html += `<div>`;
 
@@ -90,6 +96,29 @@
         });
 
         $('.upcoming').on('click', '.app__view-item', function () {
+            let propertyName = $(this).find('h4')[0].innerHTML.trim();
+            let roomName = $(this).find('p')[0].innerHTML.trim();
+
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/SeeDetailBooking",
+                data: {
+                    values: [propertyName, roomName]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data) {
+                        window.location.replace("https://localhost:44306/CUSTOMER/Detail_Booking");
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        })
+
+        $('.app__view-list-status').on('click', '.app__view-item', function () {
             let propertyName = $(this).find('h4')[0].innerHTML.trim();
             let roomName = $(this).find('p')[0].innerHTML.trim();
 

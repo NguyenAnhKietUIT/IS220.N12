@@ -138,7 +138,7 @@
                     if (data.status == 'Booked') {
                         html += `
                                     <p><b>${data.checkInDate} - ${data.checkOutDate}</b></p>
-                                    <p><b>Check-in time: ${data.checkInTime} - Check-out time: ${data.checkOutTime}</b></p>
+                                    <p><b>Check-in time:</b> ${data.checkInTime} - <b>Check-out time:</b> ${data.checkOutTime}</p>
                                     <p class="status"><b>Status:</b> ${data.status}</p>
                                 </div>
                             </div>
@@ -147,10 +147,10 @@
                                 <button type="button" class="btn btn-danger">Cancel Your Booking</button>
                             </div>`;
                     } else {
-                        html == `
-                                    <p><b>Check-in: ${data.checkInDate}</b></p>
-                                    <p><b>Check-out: ${data.checkOutDate}</b></p>
-                                    <p><b>Status: ${data.status}</b></p>
+                        html += `
+                                    <p><b>Check-in:</b> ${data.checkInDate}</p>
+                                    <p><b>Check-out:</b> ${data.checkOutDate}</p>
+                                    <p><b>Status:</b> ${data.status}</p>
                                 </div>
                             </div>`;
 
@@ -193,11 +193,31 @@
                 }
             });
             $(this).replaceWith($('<button type="button" class="btn btn-info">Go to View All Booking</button>'));
-        })
+        });
+
+        $('.container').on('click', '.btn.btn-review', function () {
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/RedirectReviewPage",
+                data: {
+                    values: [reservationID]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.msg) {
+                        window.location.replace("https://localhost:44306/CUSTOMER/Review_Property");
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        });
 
         $('.container').on('click', '.btn.btn-info', function () {
             window.location.replace("https://localhost:44306/CUSTOMER/ViewAllBooking");
-        })
+        });
     </script>
 </body>
 </html>

@@ -34,11 +34,7 @@ namespace IS220.N12.Models
 
         public int Status_Reservation { get; set; }
 
-        public int? DiscountID { get; set; }
-
         public virtual CUSTOMER CUSTOMER { get; set; }
-
-        public virtual DISCOUNT DISCOUNT { get; set; }
 
         public virtual ROOM ROOM { get; set; }
     }

@@ -67,5 +67,17 @@ namespace IS220.N12.Dao
         {
             return context.ACCOUNTs.OrderByDescending(x => x.AccountID).ToPagedList(page, pageSize);
         }
+
+        public bool UpdatePassword(ACCOUNT a, string newPassword)
+        {
+            try
+            {
+                ACCOUNT account = context.ACCOUNTs.Find(a.AccountID);
+                account.Passwords = newPassword;
+                context.SaveChanges();
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

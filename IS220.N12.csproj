@@ -260,7 +260,6 @@
     <Compile Include="Models\ACCOUNT.cs" />
     <Compile Include="Models\CONTACT.cs" />
     <Compile Include="Models\CUSTOMER.cs" />
-    <Compile Include="Models\DISCOUNT.cs" />
     <Compile Include="Models\EVALUATE_CUSTOMER.cs" />
     <Compile Include="Models\EVALUATE_PROPERTY.cs" />
     <Compile Include="Models\HotelBookingContext.cs" />

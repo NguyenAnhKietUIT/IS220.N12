@@ -15,7 +15,6 @@ namespace IS220.N12.Models
         public virtual DbSet<ACCOUNT> ACCOUNTs { get; set; }
         public virtual DbSet<CONTACT> CONTACTs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
-        public virtual DbSet<DISCOUNT> DISCOUNTs { get; set; }
         public virtual DbSet<EVALUATE_CUSTOMER> EVALUATE_CUSTOMER { get; set; }
         public virtual DbSet<EVALUATE_PROPERTY> EVALUATE_PROPERTY { get; set; }
         public virtual DbSet<PLACE> PLACEs { get; set; }
@@ -66,14 +65,6 @@ namespace IS220.N12.Models
                 .HasMany(e => e.RESERVATIONs)
                 .WithRequired(e => e.CUSTOMER)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<DISCOUNT>()
-                .Property(e => e.Requirement)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<DISCOUNT>()
-                .Property(e => e.Reduction)
-                .HasPrecision(19, 4);
 
             modelBuilder.Entity<PLACE>()
                 .Property(e => e.ImageOfPlace)

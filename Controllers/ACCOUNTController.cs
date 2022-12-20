@@ -25,18 +25,20 @@ namespace IS220.N12.Controllers
             var result = values[0];
             return Json(context.ACCOUNTs.Any(x => x.Username == result), JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult CheckGmailExists(string[] values)
         {
             var result = values[0];
             return Json(context.ACCOUNTs.Any(x => x.GMAIL == result), JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult CheckPasswordExists(string[] values)
+        {
+            var result = values[0];
+            return Json(context.ACCOUNTs.Any(x => x.Passwords == result), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult SignUpCustomer()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult SignUpCustomer(string[] values)
         {
@@ -55,12 +57,10 @@ namespace IS220.N12.Controllers
                 return View();
             }
         }
-
         public ActionResult SignUpProperty()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult SignUpProperty(string[] values)
         {
@@ -80,12 +80,10 @@ namespace IS220.N12.Controllers
                 return View();
             }
         }
-
         public ActionResult SignIn()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult SignIn(string username, string password)
         {
@@ -156,7 +154,6 @@ namespace IS220.N12.Controllers
             }
             return View();
         }
-
         public JsonResult SignOut()
         {
             Session.Clear();
@@ -166,12 +163,19 @@ namespace IS220.N12.Controllers
                 msg = "Successfull sign out!!!"
             });
         }
-
         public ActionResult Edit_Password()
         {
             return View();
         }
+        public JsonResult ChangePassword(string[] values)
+        {
+            var account = Session["Account"] as ACCOUNT;
+            string newPassword = values[0];
+            ACCOUNTDao dao = new ACCOUNTDao();
 
+            bool isSuccess = dao.UpdatePassword(account, newPassword);
+            return Json(new { isSuccess });
+        }
         // GET: ACCOUNT/Details/5
         public ActionResult Details(int id)
         {
