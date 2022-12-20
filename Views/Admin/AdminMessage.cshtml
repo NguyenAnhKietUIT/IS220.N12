@@ -160,6 +160,7 @@
                             <td>
                                 <i class="message-trash fa-solid fa-trash"></i>
                             </td>
+                            <td class="d-none">@item.ContactID</td>
                         </tr>
                     }
                 </table>
@@ -172,4 +173,40 @@
 
 <script>
     $('.nav__content-list li:last-child .nav__content-list-item').addClass('active');
+
+    function removeMessage(id) {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/DeleteMessage",
+            data: {
+                values: [id]
+            },
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                alert("Error occured!!!");
+            }
+        });
+    }
+
+    $('.message-trash').each(function () {
+        $(this).click(function () {
+            let id = $(this).parent().parent().find('td').eq(5).html();
+            removeMessage(id);
+            $(this).parent().parent().remove();
+        });
+    })
+
+    $('.nav-message-delete').click(function () {
+        $('.message-select').each(function () {
+            if ($(this).checked) {
+                let id = $(this).parent().parent().find('td').eq(5).html();
+                removeMessage(id);
+                $(this).parent().parent().remove();
+            }
+        });
+    });
 </script>

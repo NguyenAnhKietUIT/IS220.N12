@@ -100,12 +100,21 @@ namespace IS220.N12.Controllers
         }
 
         // GET Message
-        public ActionResult AdminMessage(int page = 1, int pageSize = 10)
+        public ActionResult AdminMessage(int page = 1, int pageSize = 8)
         {
             var contactDao = new CONTACTDao();
             var model = contactDao.ListAllPaging(page, pageSize);
 
             return View(model);
+        }
+
+        public JsonResult DeleteMessage(string[] values)
+        {
+            int contactID = Convert.ToInt32(values[0]);
+            CONTACT contact = context.CONTACTs.Find(contactID);
+            context.CONTACTs.Remove(contact);
+            context.SaveChanges();
+            return Json(new { values }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AdminAnalytics()

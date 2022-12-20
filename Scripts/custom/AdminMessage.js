@@ -1,10 +1,8 @@
 ﻿const checkboxSelectAll = document.getElementById('nav-select-all')
 const checkboxMessage = document.querySelectorAll('.message-select')
-const messageTrash = document.querySelectorAll('.message-trash')
 const starNone = document.querySelectorAll('.message-icon')
 const starActive = document.querySelectorAll('.message-icon-active')
 const boxMessage = document.querySelectorAll('.table')
-const buttonDelete = document.querySelector('.nav-message-delete')
 const boxListMessage = document.querySelector('.box-list-message')
 const listMessage = document.querySelectorAll('.table tr')
 
@@ -21,14 +19,6 @@ function selectAll() {
                 element.parentElement.parentElement.style.backgroundColor = 'transparent'
             })
         }
-    })
-}
-
-function deleteMessage() {
-    messageTrash.forEach(element => {
-        element.addEventListener('click', () => {
-            element.parentElement.parentElement.remove();
-        })
     })
 }
 
@@ -55,16 +45,6 @@ function selectMessage() {
                 element.parentElement.parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
             } else {
                 element.parentElement.parentElement.style.backgroundColor = 'transparent'
-            }
-        })
-    })
-}
-
-function deleteMessageChecked() {
-    buttonDelete.addEventListener('click', () => {
-        checkboxMessage.forEach(element => {
-            if (element.checked) {
-                element.parentElement.parentElement.remove()
             }
         })
     })
@@ -189,17 +169,13 @@ function watchMessage() {
 
 function backAdminMessage() {
     const backHome = document.querySelector('.message-home__back')
-const messageHome = document.querySelector('.message-home')
 
     backHome.addEventListener('click', () => {
-    //render message
     location.reload()
 })
 }
 
 selectAll()
-deleteMessage()
 starMessage()
 selectMessage()
-deleteMessageChecked()
 watchMessage()
