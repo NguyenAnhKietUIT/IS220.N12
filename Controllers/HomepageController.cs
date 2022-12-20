@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS220.N12.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace IS220.N12.Controllers
 {
     public class HomepageController : Controller
     {
+        HotelBookingContext context = new HotelBookingContext();
         // GET: Homepage
         public ActionResult Index()
         {
@@ -47,6 +49,34 @@ namespace IS220.N12.Controllers
         public ActionResult Search_Detail()
         {
             return View();
+        }
+
+        public JsonResult CreateMessage(string[] values)
+        {
+            string usernameSend = "";
+            var account = Session["Account"] as ACCOUNT;
+
+            if (account != null)
+            {
+                usernameSend = account.Username;
+            }
+
+            var query = (from a in context.ACCOUNTs
+                        where a.ROLES == 1
+                        select a.Username).FirstOrDefault();
+
+            CONTACT contact = new CONTACT();
+            contact.userNameSend = usernameSend;
+            contact.userNameReceive = query.ToString();
+            contact.topicType = values[0];
+            contact.topicName = values[1];
+            contact.fullName = values[2];
+            contact.email = values[3];
+            contact.message = values[4];
+
+            context.CONTACTs.Add(contact);
+            context.SaveChanges();
+            return Json(new { msg = contact });
         }
 
         // GET: Homepage/Details/5
