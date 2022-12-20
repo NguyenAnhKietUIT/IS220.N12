@@ -199,21 +199,21 @@
                     <h2>Plan your next trip from now!</h2>
                 </div>
 
-                <form action=""
+                <div
                       class="d-flex justify-content-around align-items-center"
                       style="height: 60px;
                     margin-top: 64px;
                     border-radius: 12px;
                     background-color: rgba(255, 255, 255, 0.4);">
                     <div class="py-1 d-flex align-items-center">
-                        <i class="pe-2 fa-solid fa-magnifying-glass"></i>
+                        <i class="pe-2 fa-solid fa-magnifying-glass" style="color:var(--search-color);"></i>
                         <input type="text" name="search-destination"
                                placeholder="Search destinations, hotels"
                                style="width: 320px;">
                     </div>
                     <div class="py-1 position-relative" style="width: 140px;">
                         <div class="d-flex align-items-center">
-                            <i class="pe-2 fa-solid fa-plane-departure"></i>
+                            <i class="pe-2 fa-solid fa-plane-departure" style="color:var(--search-color);"></i>
                             <div class="app__status-in">Check in</div>
                             <input type="date" name="check-in-date" id="app__check-in"
                                    min="2017-10-14" max="2050-12-31">
@@ -225,7 +225,7 @@
                     </div>
                     <div class="py-1 position-relative" style="width: 140px;">
                         <div class="d-flex align-items-center">
-                            <i class="pe-2 fa-solid fa-money-check"></i>
+                            <i class="pe-2 fa-solid fa-money-check" style="color:var(--search-color);"></i>
                             <div class="app__status-out">Check out</div>
                             <input type="date" name="check-out-date" id="app__check-out"
                                    min="2017-10-14" max="2050-12-31">
@@ -237,7 +237,7 @@
                     </div>
                     <div class="d-flex py-1 position-relative">
                         <div class="d-flex align-items-center">
-                            <i class="pe-2 fa-solid fa-people-group"></i>
+                            <i class="pe-2 fa-solid fa-people-group " style="color:var(--search-color);"></i>
                             <div class="app__search-quantity">
                                 <span>1</span>
                                 bed,
@@ -273,11 +273,9 @@
                         </div>
                     </div>
                     <div class="d-flex py-1">
-                        <a href="#" class="text-decoration-none">
-                            <input type="submit" class="app__search-btn" value="Search">
-                        </a>
+                        <button type="button" class="app__search-btn">Search</button>
                     </div>
-                </form>
+                </div>
 
                 <div class="mt-5">
                     <h3 class="app__categories-title">Top Categories</h3>
@@ -321,32 +319,24 @@
 
                     <div class="row">
                         <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/hotels.png" alt="Hotels"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Hotels</span>
-                            </a>
+                            <img src="../assets/img/home_page/hotels.png" alt="Hotels"
+                                 class="app__selection-item-img">
+                            <span class="app__selection-item-desc">Hotels</span>
                         </div>
                         <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/apartments.png" alt="Apartments"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Apartments</span>
-                            </a>
+                            <img src="../assets/img/home_page/apartments.png" alt="Apartments"
+                                 class="app__selection-item-img">
+                            <span class="app__selection-item-desc">Apartments</span>
                         </div>
                         <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/resorts.png" alt="Resorts"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Resorts</span>
-                            </a>
+                            <img src="../assets/img/home_page/resorts.png" alt="Resorts"
+                                 class="app__selection-item-img">
+                            <span class="app__selection-item-desc">Resorts</span>
                         </div>
                         <div class="app__selection-item col">
-                            <a href="#" class="app__selection-item-link">
-                                <img src="../assets/img/home_page/homestay.png" alt="Homestay"
-                                     class="app__selection-item-img">
-                                <span class="app__selection-item-desc">Homestay</span>
-                            </a>
+                            <img src="../assets/img/home_page/homestay.png" alt="Homestay"
+                                 class="app__selection-item-img">
+                            <span class="app__selection-item-desc">Homestay</span>
                         </div>
                     </div>
                 </div>
@@ -354,715 +344,37 @@
                 <div id="beach" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Beach Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-beaches"></div>
                 </div>
 
                 <div id="mountain" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Mountain Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/mountain/mountain_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/mountain/mountain_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/mountain/mountain_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/mountain/mountain_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-mountains"></div>
                 </div>
 
                 <div id="iconic-city" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Iconic City Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/iconic_city/city_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/iconic_city/city_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/iconic_city/city_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/iconic_city/city_1.jpg" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-iconic-city"></div>
                 </div>
 
                 <div id="countryside" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Countryside Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-countryside"></div>
                 </div>
 
                 <div id="camping" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Camping Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-camping"></div>
                 </div>
 
                 <div id="tropical" class="mt-5">
                     <h3 class="text-center mb-4" style="font-size: 32px;">Popular Tropical Destinations</h3>
 
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="home-location-item pb-3">
-                                <img src="../assets/img/category/beach/mauritius.png" alt=""
-                                     class="home-location-item__img">
-
-                                <h4 class="ms-3 mb-0 text-dark">Mauritius</h4>
-
-                                <div class="d-flex mt-3 mx-3 justify-content-between text-center"
-                                     style="color: var(--text-color);">
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>
-                                        <figcaption>2 Hotels</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>
-                                        <figcaption>1 Apartments</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>
-                                        <figcaption>2 Homestays</figcaption>
-                                    </span>
-                                    <span>
-                                        <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>
-                                        <figcaption>4 Resorts</figcaption>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <div class="row top-tropical"></div>
                 </div>
 
                 <div class="app__background-theme">
@@ -1304,10 +616,8 @@
                         for (let i = 0; i < 4; i++) {
                             html += `
                                     <div class="app__selection-item col">
-                                        <a href="Search" class="app__selection-item-link">
-                                            <img src="${data.placeImage[i]}" alt="${data.placeName[i]}" class="app__selection-item-img">
-                                            <span class="app__selection-item-desc">${data.placeName[i]}</span>
-                                        </a>
+                                        <img src="${data.placeImage[i]}" alt="${data.placeName[i]}" class="app__selection-item-img">
+                                        <span class="app__selection-item-desc">${data.placeName[i]}</span>
                                     </div>
                                     `;
                         };
@@ -1318,6 +628,91 @@
                     error: function () {
                         alert("Error occured!!")
                     }
+                });
+
+                function top4(nameCategory, container) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Place/TopTitle",
+                        data: {
+                            values: [nameCategory]
+                        },
+                        datatype: "json",
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (data) {
+                            for (let i = 0; i < data.idDestinations.length; i++) {
+                                let html = ``;
+                                let image = data.imageDestinations[i];
+                                let name = data.nameDestinations[i];
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/Place/Analytic",
+                                    data: {
+                                        values: [data.idDestinations[i]]
+                                    },
+                                    datatype: "json",
+                                    contentType: 'application/x-www-form-urlencoded',
+                                    success: function (data) {
+                                        html += `<div class="col-3">
+                                                    <div class="home-location-item pb-3" style="cursor: pointer;">
+                                                        <img src="${image}" alt="" class="home-location-item__img">
+                                                        <h4 class="ms-3 mb-0 text-dark">${name}</h4>
+                                                        <div class="d-flex mt-3 mx-3 justify-content-between text-center" style="color: var(--text-color);">`;
+
+                                        for (let i = 0; i < data.names.length; i++) {
+                                            html += `
+                                                <span>`;
+
+                                            if (data.names[i] == "Apartment") {
+                                                html += `
+                                                    <i class="pb-2 fa-solid fa-building" style="font-size: 18px;"></i>`;
+                                            } else if (data.names[i] == "Homestay") {
+                                                html += `
+                                                    <i class="pb-2 fa-solid fa-house" style="font-size: 18px;"></i>`;
+                                            } else if (data.names[i] == "Hotel") {
+                                                html += `
+                                                    <i class="pb-2 fa-solid fa-hotel" style="font-size: 18px;"></i>`;
+                                            } else {
+                                                html += `
+                                                    <i class="pb-2 fa-solid fa-landmark" style="font-size: 18px;"></i>`;
+                                            }
+
+                                            html += `
+                                                    <figcaption>${data.amounts[i]} ${data.names[i]}s</figcaption>
+                                                </span>`;
+                                        };
+
+                                        html += `
+                                                        </div>
+                                                    </div>
+                                                </div>`;
+                                        $(`.${container}`).append(html);
+                                    },
+                                    error: function () {
+                                        alert("Error occured!!!");
+                                    }
+                                });
+                            }
+                        },
+                        error: function () {
+                            alert("Error occured!!")
+                        }
+                    });
+                };
+
+                top4("Beaches", "top-beaches");
+                top4("Mountains", "top-mountains");
+                top4("Iconic cities", "top-iconic-city");
+                top4("Countryside", "top-countryside");
+                top4("Camping", "top-camping");
+                top4("Tropical", "top-tropical");
+
+                $('.app__search-btn').click(function () {
+                    console.log($('input[name="search-destination"]').val());
+                    console.log($('#app__check-in').val());
+                    console.log($('#app__check-out').val());
+                    console.log($('#bed-num').val());
+                    console.log($('#per-num').val());
                 });
             });
         </script>

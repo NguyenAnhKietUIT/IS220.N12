@@ -159,9 +159,7 @@
         }
 
 .home-location-item {
-    display: block;
     position: relative;
-    text-decoration: none;
     background-color: var(--white-color);
     border-radius: 8px;
     box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
@@ -244,9 +242,6 @@ h3, p {
     transition: transform 0.2s ease-in;
 }
 
-.app__selection-item-link {
-    text-decoration: none;
-}
 /* Content background theme */
 .app__background-theme {
     margin-top: 80px;

@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
 <!DOCTYPE html>
@@ -29,7 +30,14 @@
                     <a href="Contact" class="app__nav-item-link">Contacts</a>
                 </li>
                 <li class="app__nav-item">
-                    <a href="~/CUSTOMER/SignUpCustomer" class="app__nav-item-link">Sign Up</a>
+                    @if (account != null)
+                    {
+                        <a href="~/CUSTOMER/YourAccount" class="app__nav-item-link">@account.Username</a>
+                    }
+                    else
+                    {
+                        <a href="~/ACCOUNT/SignUpCustomer" class="app__nav-item-link">Sign Up</a>
+                    }
                 </li>
             </ul>
         </nav>

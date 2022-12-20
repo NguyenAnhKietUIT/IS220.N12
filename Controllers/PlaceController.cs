@@ -45,6 +45,60 @@ namespace IS220.N12.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult TopTitle(string[] values)
+        {
+            string categoryName = values[0];
+
+            var destinations = (from p in context.PROPERTies
+                              join pl in context.PLACEs on p.PlaceID equals pl.PlaceID
+                              where p.TypeOfCategory == categoryName
+                              group pl by new { pl.PlaceID, pl.PlaceName, pl.ImageOfPlace } into gr
+                              select new
+                              {
+                                  key = gr.Key,
+                                  amount = gr.Count()
+                              }).OrderByDescending(x => x.amount).Take(4);
+
+            List<int> idDestinations = new List<int>();
+            List<string> nameDestinations = new List<string>();
+            List<string> imageDestinations = new List<string>();
+
+            foreach (var beach in destinations)
+            {
+                idDestinations.Add(beach.key.PlaceID);
+                nameDestinations.Add(beach.key.PlaceName);
+                imageDestinations.Add(beach.key.ImageOfPlace);
+            }
+            return Json(new {
+                idDestinations,
+                imageDestinations,
+                nameDestinations,
+            });
+        }
+
+        public JsonResult Analytic(string[] values)
+        {
+            int placeID = Convert.ToInt32(values[0]);
+
+            var query = (from p in context.PROPERTies
+                         where p.PlaceID == placeID
+                         group p by p.TypeName into gr
+                         select new
+                         {
+                             key = gr.Key,
+                             amount = gr.Count()
+                         }).OrderBy(x => x.key);
+
+            List<string> names = new List<string>();
+            List<int> amounts = new List<int>();
+            foreach (var item in query)
+            {
+                names.Add(item.key);
+                amounts.Add(item.amount);
+            }
+            return Json(new { names, amounts });
+        }
+
         // GET: Place/Details/5
         public ActionResult Details(int id)
         {
