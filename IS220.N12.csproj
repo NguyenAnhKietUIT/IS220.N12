@@ -1627,7 +1627,7 @@
     <Content Include="Scripts\custom\AdminMessage.js" />
     <Content Include="Scripts\custom\Homepage.js" />
     <Content Include="Scripts\custom\Pagination.js" />
-    <Content Include="Scripts\custom\Search_Detail.js" />
+    <Content Include="Scripts\custom\Search_Property.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />

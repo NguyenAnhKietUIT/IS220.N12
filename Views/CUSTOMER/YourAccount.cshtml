@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
     var customer = Session["Customer"] as IS220.N12.Models.CUSTOMER;
+    string[] searchProperty = (string[])Session["SearchProperty"];
 }
 
 <style>
@@ -21,11 +22,18 @@
         <label for="app__main-input-img" class="app__main-label-img" style="width: 100%;">
             @if (customer != null)
             {
-                <img src="@customer.Image_Customer" alt="avatar" class="app__main-img">
+                if (searchProperty != null)
+                {
+                    <img src="@customer.Image_Customer" alt="@searchProperty[0]" class="app__main-img">
+                }
+                else
+                {
+                    <img src="@customer.Image_Customer" class="app__main-img">
+                }
             }
             else
             {
-                <img src="https://icon-library.com/images/edit-profile-icon/edit-profile-icon-18.jpg" alt="avatar" class="app__main-img">
+                <img src="https://icon-library.com/images/edit-profile-icon/edit-profile-icon-18.jpg" class="app__main-img">
             }
         </label>
         <span class="form-avatar__message" style="top: 32%;">
@@ -380,6 +388,10 @@
 
 <script>
     $(document).ready(function () {
+        if ($('.form-avatar').find('img').attr('alt')) {
+            window.location.replace("https://localhost:44306/Homepage/Search_Detail");
+        }
+
         $('.app__sidebar-list .app__sidebar-item:first-child').addClass('app__sidebar-item--active');
 
         $('.button-handle button:first-child').click(function () {

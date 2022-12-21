@@ -1,4 +1,5 @@
 ﻿using IS220.N12.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -302,13 +303,20 @@ namespace IS220.N12.Controllers
             }
 
             var query = (from e in context.EVALUATE_PROPERTY
+                         join c in context.CUSTOMERs on e.CustomerID equals c.CustomerID
                          where e.PropertyID == propertyID
                          orderby e.TimeComment descending
-                         select new { 
-                            content = e.Comment,
-                            time = e.TimeComment
+                         select new {
+                             point = e.Point,
+                             name = c.CustomerName,
+                             country = c.Country,
+                             content = e.Comment,
+                             time = e.TimeComment
                          }).FirstOrDefault();
 
+            int point = query.point;
+            string name = query.name;
+            string country = query.country;
             string content = query.content;
             string time = query.time.ToString("MM/dd/yyyy");
 
@@ -319,9 +327,38 @@ namespace IS220.N12.Controllers
                 checkOutTime,
                 location,
                 serviceNames,
+                point,
+                name,
+                country,
                 content,
                 time
             });
+        }
+
+        public JsonResult GetDataRoom(string[] values)
+        {
+            int propertyID = Convert.ToInt32(values[0]);
+            DateTime checkIn = DateTime.ParseExact(values[1], "yyyy-MM-dd", null);
+            DateTime checkOut = DateTime.ParseExact(values[2], "yyyy-MM-dd", null);
+            int bedNum = Convert.ToInt32(values[3]);
+
+            var result = ldc.INFOROOM(propertyID, bedNum, checkIn, checkOut);
+            List<ROOM> roomList = new List<ROOM>();
+            foreach(var kq in result)
+            {
+                ROOM room = new ROOM();
+                room.RoomID = kq.RoomID;
+                room.RoomName = kq.RoomName;
+                room.TypeOfRoom = kq.TypeOfRoom;
+                room.BedNum = kq.BedNum;
+                room.Price = kq.Price;
+                room.Image_Room = kq.Image_Room;
+                room.PropertyID = kq.PropertyID;
+
+                roomList.Add(room);
+            };
+
+            return Json(new { roomList });
         }
 
         // GET: Homepage/Details/5

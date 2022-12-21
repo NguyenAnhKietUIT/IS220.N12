@@ -16,18 +16,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Search_Detail</title>
     <style>
+        input[type="range"] {
+            position: absolute;
+            height: 0;
+            width: 0;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
         .app__navigation.sticky {
             max-width: 1320px;
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
         }
 
-        .app__navigation.sticky a:first-child {
-            margin-left: 20px;
+            .app__navigation.sticky a:first-child {
+                margin-left: 20px;
+            }
+
+            .app__navigation.sticky a:last-child {
+                margin-right: 20px;
+            }
+
+        .app__review-info-point {
+            font-size: 24px;
         }
 
-        .app__navigation.sticky a:last-child {
-            margin-right: 20px;
+        .app__room-item-img {
+            height: 200px;
+        }
+
+        .room .col-3:nth-child(n + 5) {
+            margin-top: 16px;
         }
     </style>
 </head>
@@ -78,7 +99,7 @@
 
         <div id="app__overview">
             <h3>Overview</h3>
-            <p class="text-justify">Luxury hotel with 1 outdoor pools, connected to a shopping centre, near Giac Lam Pagoda</p>
+            <p style="text-align: justify;">Luxury hotel with 1 outdoor pools, connected to a shopping centre, near Giac Lam Pagoda</p>
         </div>
 
         <div class="d-flex justify-content-around align-items-center"
@@ -152,124 +173,7 @@
 
         <div id="app__room">
             <h3>Room</h3>
-            <div class="row">
-                <div class="col">
-                    <div class="app__room-item">
-                        <img src="../assets/img/others/hotel.jpg" alt="Image Hotel" class="app__room-item-img">
-                        <div class="app__room-item-main">
-                            <p class="app__room-item-type">Type room</p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-user-group"></i>
-                                <span>Sleeps 2</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-bed"></i>
-                                <span>1 King Bed</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Reserve now, pay later</span>
-                            </p>
-                        </div>
-                        <div class="app__room-item-reserve">
-                            <span>for 1 night <br> includes taxes & fees</span>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="app__room-item-price">4500000 VND</p>
-                                <div class="app__room-item-action">
-                                    <a href="#" class="btn-reserve">Reserve</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="app__room-item">
-                        <img src="../assets/img/others/hotel.jpg" alt="Image Hotel" class="app__room-item-img">
-                        <div class="app__room-item-main">
-                            <p class="app__room-item-type">Type room</p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-user-group"></i>
-                                <span>Sleeps 2</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-bed"></i>
-                                <span>1 King Bed</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Reserve now, pay later</span>
-                            </p>
-                        </div>
-                        <div class="app__room-item-reserve">
-                            <span>for 1 night <br> includes taxes & fees</span>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="app__room-item-price">4500000 VND</p>
-                                <div class="app__room-item-action">
-                                    <a href="#" class="btn-reserve">Reserve</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="app__room-item">
-                        <img src="../assets/img/others/hotel.jpg" alt="Image Hotel" class="app__room-item-img">
-                        <div class="app__room-item-main">
-                            <p class="app__room-item-type">Type room</p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-user-group"></i>
-                                <span>Sleeps 2</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-bed"></i>
-                                <span>1 King Bed</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Reserve now, pay later</span>
-                            </p>
-                        </div>
-                        <div class="app__room-item-reserve">
-                            <span>for 1 night <br> includes taxes & fees</span>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="app__room-item-price">4500000 VND</p>
-                                <div class="app__room-item-action">
-                                    <a href="#" class="btn-reserve">Reserve</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="app__room-item">
-                        <img src="../assets/img/others/hotel.jpg" alt="Image Hotel" class="app__room-item-img">
-                        <div class="app__room-item-main">
-                            <p class="app__room-item-type">Type room</p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-user-group"></i>
-                                <span>Sleeps 2</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-bed"></i>
-                                <span>1 King Bed</span>
-                            </p>
-                            <p class="app__room-item-request">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Reserve now, pay later</span>
-                            </p>
-                        </div>
-                        <div class="app__room-item-reserve">
-                            <span>for 1 night <br> includes taxes & fees</span>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="app__room-item-price">4500000 VND</p>
-                                <div class="app__room-item-action">
-                                    <a href="#" class="btn-reserve">Reserve</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="row room"></div>
         </div>
 
         <div id="app__information">
@@ -292,7 +196,7 @@
 
             <div class="app__information-item">
                 <h4>Location</h4>
-                <p class="text-justify"></p>
+                <p class="text-justify location"></p>
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.537518774658!2d106.68078051458896!3d10.770081792325838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f223b48af69%3A0x49c2aebea46b1ab1!2zNDUzLzE2IE5ndXnhu4VuIMSQw6xuaCBDaGnhu4N1LCBQaMaw4budbmcgNSwgUXXhuq1uIDMsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1670094886989!5m2!1sen!2s"
                             width="1272"
@@ -311,22 +215,17 @@
             <div>
                 <div class="app__review-info">
                     <div class="app__review-info-title">
-                        <span class="app__review-info-point">9.6</span>
-                        <span>Exceptional</span>
+                        <span class="app__review-info-point"></span>
                     </div>
                     <p class="app__review-info-item">
                         <i class="fa-solid fa-earth-americas"></i>
-                        <span><b>Nguyen</b> from Vietnam</span>
-                    </p>
-                    <p class="app__review-info-item">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <span>Stayed 2 nights in September 2020</span>
+                        <span></span>
                     </p>
                 </div>
 
                 <div class="app__review-comment">
-                    <p>Good location, clean and cozy. Easy to check-in. Can hear noises outside. But it's ok</p>
-                    <span>Reviewed September 30, 2022</span>
+                    <p style="text-align: justify;"></p>
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -441,7 +340,7 @@
         </div>
     </footer>
 
-    <script src="~/Scripts/custom/Search_Detail.js"></script>
+    <script src="~/Scripts/custom/Search_Property.js"></script>
     <script>
         $(document).ready(function () {
             //Get image property
@@ -489,25 +388,143 @@
                 datatype: "json",
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (data) {
-                    console.log(data)
                     $('.app__title').find('span').html(`Average point: ${data.averagePoint}`);
                     $('#app__overview').find('p').html(data.overview);
                     $('.time').html(`<p>Check-in from: ${data.checkInTime}<br> Check-out until: ${data.checkOutTime}</p>`);
-                    let html = "";
+                    let html1 = "";
+                    let html2 = "";
+                    let html3 = "";
+                    let html4 = "";
                     for (let i = 0; i < data.serviceNames.length; i++) {
-                        html += `
+                        if (i < 5) {
+                            html1 += `
                                 <p>
                                     <i class="fa-solid fa-check"></i>
                                     ${data.serviceNames[i]}
                                 </p>`;
+                        } else if (i >= 5 && i < 10) {
+                            html2 += `
+                                <p>
+                                    <i class="fa-solid fa-check"></i>
+                                    ${data.serviceNames[i]}
+                                </p>`;
+                        } else if (i >= 10 && i < 15) {
+                            html3 += `
+                                <p>
+                                    <i class="fa-solid fa-check"></i>
+                                    ${data.serviceNames[i]}
+                                </p>`;
+                        } else {
+                            html4 += `
+                                <p>
+                                    <i class="fa-solid fa-check"></i>
+                                    ${data.serviceNames[i]}
+                                </p>`;
+                        }
                     }
-                    $('#app__information .app__information-item:nth-child(2)').find('div div.first-list').html(html);
-                    $('#app__information .app__information-item:nth-child(3)').find('p').html(data.location);
+                    $('.first-list').html(html1);
+                    $('.second-list').html(html2);
+                    $('.third-list').html(html3);
+                    $('.final-list').html(html4);
+                    $('.location').html(data.location);
+                    $('.app__review-info-point').html(`Evaluate point: ${data.point}`);
+                    $('.app__review-info-item').find('span').html(`<b>${data.name}</b> from ${data.country}`);
+                    $('.app__review-comment').find('p').html(data.content);
+                    $('.app__review-comment').find('span').html(`Reviewed ${data.time}`);
                 },
                 error: function () {
                     alert("Error occured!!!");
                 }
             });
+
+            var array = [
+                @searchProperty[0],
+                $('#app__check-in').val(),
+                $('#app__check-out').val(),
+                $('#bed-num').val(),
+            ];
+
+            //Get Room
+            function getRooms(array) {
+                $.ajax({
+                type: "POST",
+                url: "/Homepage/GetDataRoom",
+                data: {
+                    values: array
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    let html = "";
+                    for (let i = 0; i < data.roomList.length; i++) {
+                        html += `
+                                <div class="col-3">
+                                    <div class="app__room-item">
+                                        <img src="${data.roomList[i].Image_Room}" alt="${data.roomList[i].RoomID}" class="app__room-item-img">
+                                        <div class="app__room-item-main">
+                                            <h4>${data.roomList[i].RoomName}</h4>
+                                            <p class="app__room-item-type">${data.roomList[i].TypeOfRoom}</p>
+                                            <p class="app__room-item-request">
+                                                <i class="fa-solid fa-bed"></i>
+                                                <span>${data.roomList[i].BedNum} bed</span>
+                                            </p>
+                                            <p class="app__room-item-request">
+                                                <i class="fa-solid fa-check"></i>
+                                                <span>Reserve now, pay later</span>
+                                            </p>
+                                        </div>
+                                        <div class="app__room-item-reserve">
+                                            <div class="d-flex justify-content-between" style="font-size: 12px;">
+                                                <span>for 1 night <br> includes taxes & fees</span>
+                                                <span class="text-danger d-none" style="flex: 1;text-align: right;">Please login to make a reservation</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="app__room-item-price">${parseInt(data.roomList[i].Price)} VND</p>
+                                                <div class="app__room-item-action">
+                                                    <button type="button" class="btn-reserve"
+                                                            style="padding: 8px 16px;
+                                                                    border: none;
+                                                                    outline: none;">
+                                                        Reserve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                    };
+                    $('.room').html(html);
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                    }
+            });
+            };
+
+            getRooms(array);
+
+            $('.app__search-btn').click(function () {
+                array = [
+                    @searchProperty[0],
+                    $('#app__check-in').val(),
+                    $('#app__check-out').val(),
+                    $('#bed-num').val(),
+                ];
+
+                getRooms(array);
+            });
+
+            $('.room').on('click', 'button', function () {
+                let statusLogin = $('.app__nav-list .app__nav-item:last-child .app__nav-item-link').html();
+
+                if (statusLogin === "Sign Up") {
+                    $(this).parent().parent().parent().find('span:last-child').removeClass('d-none');
+
+                    setTimeout(() => {
+                        window.location.replace("https://localhost:44306/ACCOUNT/SignIn");
+                    }, "1500");
+                }
+            })
         });
     </script>
 </body>
