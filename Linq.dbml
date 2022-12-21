@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HOTEL_BOOKING" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-VC5IF5QK\ANHKIET;Initial Catalog=HOTEL_BOOKING;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HOTEL_BOOKINGConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SERVICE_SUPPLIED" Member="SERVICE_SUPPLIEDs">
+    <Type Name="SERVICE_SUPPLIED">
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.FindProperty" Method="FindProperty">
+    <Parameter Name="PlaceName" Parameter="placeName" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="BedNum" Parameter="bedNum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CheckIn" Parameter="checkIn" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="CheckOut" Parameter="checkOut" Type="System.DateTime" DbType="SmallDateTime" />
+    <ElementType Name="FindPropertyResult">
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Property" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Property" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ShowPropertyInPlace" Method="ShowPropertyInPlace">
+    <Parameter Name="PlaceName" Parameter="placeName" Type="System.String" DbType="NVarChar(250)" />
+    <ElementType Name="ShowPropertyInPlaceResult">
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Property" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Property" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FindPropertyASC" Method="FindPropertyASC">
+    <Parameter Name="PlaceName" Parameter="placeName" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="BedNum" Parameter="bedNum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CheckIn" Parameter="checkIn" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="CheckOut" Parameter="checkOut" Type="System.DateTime" DbType="SmallDateTime" />
+    <ElementType Name="FindPropertyASCResult">
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Property" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Property" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FindPropertyDESC" Method="FindPropertyDESC">
+    <Parameter Name="PlaceName" Parameter="placeName" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="BedNum" Parameter="bedNum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CheckIn" Parameter="checkIn" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="CheckOut" Parameter="checkOut" Type="System.DateTime" DbType="SmallDateTime" />
+    <ElementType Name="FindPropertyDESCResult">
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Property" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Property" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.INFOROOM" Method="INFOROOM">
+    <Parameter Name="PropertyID" Parameter="propertyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BedNum" Parameter="bedNum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CheckIn" Parameter="checkIn" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="CheckOut" Parameter="checkOut" Type="System.DateTime" DbType="SmallDateTime" />
+    <ElementType Name="INFOROOMResult">
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="BedNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Room" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InfoService" Method="InfoService">
+    <Parameter Name="PropertyID" Parameter="propertyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="InfoServiceResult">
+      <Column Name="ServiceName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

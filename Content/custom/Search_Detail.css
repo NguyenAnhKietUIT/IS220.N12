@@ -186,7 +186,6 @@ form input[type="range"] {
 }
 
     .app__navigation.sticky {
-        max-width: 1200px;
         position: fixed;
         top: 0;
         left: 0;

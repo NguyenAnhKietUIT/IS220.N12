@@ -259,7 +259,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <input type="range" name="per-num" id="per-num" min="1" step="1" value="1">
+                                <input type="range" name="per-num" id="per-num" min="1" step="1" value="2">
                                 <div class="">
                                     <label for="per-num">Adults</label>
                                 </div>
@@ -708,12 +708,74 @@
                 top4("Tropical", "top-tropical");
 
                 $('.app__search-btn').click(function () {
-                    console.log($('input[name="search-destination"]').val());
-                    console.log($('#app__check-in').val());
-                    console.log($('#app__check-out').val());
-                    console.log($('#bed-num').val());
-                    console.log($('#per-num').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/Homepage/SearchProperty",
+                        data: {
+                            values: [
+                                $('input[name="search-destination"]').val(),
+                                $('#app__check-in').val(),
+                                $('#app__check-out').val(),
+                                $('#bed-num').val(),
+                                $('#per-num').val()
+                            ]
+                        },
+                        datatype: "json",
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function () {
+                            window.location.replace("https://localhost:44306/Homepage/Search");
+                        },
+                        error: function () {
+                            alert("Error occured!!!");
+                        }
+                    });
                 });
+
+                $('#top-destinations').on('click', '.app__selection-item', function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Homepage/SendPlaceName",
+                        data: {
+                            values: [$(this).find('span').html()]
+                        },
+                        datatype: "json",
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function () {
+                            window.location.replace("https://localhost:44306/Homepage/Search");
+                        },
+                        error: function () {
+                            alert("Error occured!!!");
+                        }
+                    });
+                });
+
+                function topCategory(element) {
+                    $(`.${element}`).on('click', '.home-location-item', function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Homepage/SendPlaceName",
+                            data: {
+                                values: [$(this).find('h4').html()]
+                            },
+                            datatype: "json",
+                            contentType: 'application/x-www-form-urlencoded',
+                            success: function (data) {
+                                /*alert(data.values);*/
+                                window.location.replace("https://localhost:44306/Homepage/Search");
+                            },
+                            error: function () {
+                                alert("Error occured!!!");
+                            }
+                        });
+                    });
+                }
+
+                topCategory('top-beaches');
+                topCategory('top-mountains');
+                topCategory('top-iconic-city');
+                topCategory('top-countryside');
+                topCategory('top-camping');
+                topCategory('top-tropical');
             });
         </script>
     </div>

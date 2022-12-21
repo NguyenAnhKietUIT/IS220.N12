@@ -138,7 +138,7 @@ form input[type="range"] {
 }
 
     .app__search-btn:hover {
-        background-color: #555;
+        background-color: #969696;
     }
 
 .btn-sort {
@@ -449,12 +449,6 @@ input[type=range] {
 
 .result-item-info-type {
     font-weight: 600;
-}
-
-.result-item-info-link {
-    font-size: 14px;
-    color: blue;
-    text-decoration: none;
 }
 
 .app__footer {

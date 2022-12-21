@@ -92,6 +92,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
       <Private>True</Private>
@@ -240,7 +241,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CUSTOMERController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
-    <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Dao\ACCOUNTDao.cs" />
@@ -256,6 +256,11 @@
     <Compile Include="Dao\SERVICEDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Linq.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Linq.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\ACCOUNT.cs" />
     <Compile Include="Models\CONTACT.cs" />
@@ -1610,6 +1615,14 @@
     <Content Include="Assets\lib\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\lib\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\lib\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Linq.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Linq.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Linq.dbml.layout">
+      <DependentUpon>Linq.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\custom\AdminMessage.js" />
     <Content Include="Scripts\custom\Homepage.js" />
@@ -1702,6 +1715,7 @@
     <Content Include="Scripts\jquery-3.6.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>

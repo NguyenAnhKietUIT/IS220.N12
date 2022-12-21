@@ -10,9 +10,7 @@ const btnAddPeople = document.querySelector('.btn-add-people')
 const btnMinusPeople = document.querySelector('.btn-minus-people')
 
 // Elements search dates
-const divCheckIn = document.querySelector('.app__status-in')
 const inputCheckIn = document.getElementById('app__check-in')
-const divCheckOut = document.querySelector('.app__status-out')
 const inputCheckOut = document.getElementById('app__check-out')
 const toastMessageCheckIn = document.querySelector('.toast-message-in')
 const toastMessageCheckOut = document.querySelector('.toast-message-out')
@@ -100,23 +98,6 @@ btnMinusPeople.addEventListener('click', () => {
     }
 })
 
-// handle element search date check in
-divCheckIn.addEventListener('click', () => {
-    divCheckIn.remove()
-
-    inputCheckIn.style.display = 'block';
-
-    // Set min value for check in date
-    inputCheckIn.value = getCurrentDate();
-    inputCheckIn.min = getCurrentDate();
-
-    if (inputCheckOut.style.display === 'block') {
-        let checkOut = inputCheckOut.value;
-
-        inputCheckIn.max = checkOut;
-    }
-})
-
 // Event onchange of check in
 inputCheckIn.addEventListener('change', () => {
     toastMessageCheckOut.style.display = 'none';
@@ -132,24 +113,6 @@ inputCheckIn.addEventListener('change', () => {
         } else {
             inputCheckOut.min = checkIn;
         }
-    }
-})
-
-// handle element search date check out
-divCheckOut.addEventListener('click', () => {
-    divCheckOut.remove()
-
-    inputCheckOut.style.display = 'block';
-
-    // Set min value for check out date
-    inputCheckOut.value = getCurrentDate();
-    inputCheckOut.min = getCurrentDate();
-
-    if (inputCheckIn.style.display === 'block') {
-        let checkIn = inputCheckIn.value;
-
-        inputCheckOut.value = checkIn;
-        inputCheckOut.min = checkIn;
     }
 })
 
