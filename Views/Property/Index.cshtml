@@ -63,6 +63,7 @@
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <div class="app__content-main">
     <div class="container">
@@ -72,28 +73,10 @@
                 <i class="fa-regular fa-calendar-days"></i>
             </div>
 
-            <div class="d-flex mb-3">
-                <div class="app__overview-content-item text-center">
-                    <p>Total</p>
-                    <span>0</span>
-                </div>
-                <div class="app__overview-content-item text-center">
-                    <p>Arrivals</p>
-                    <span>0</span>
-                </div>
-                <div class="app__overview-content-item text-center">
-                    <p>Departures</p>
-                    <span>0</span>
-                </div>
-                <div class="app__overview-content-item text-center">
-                    <p>Reviews</p>
-                    <span>0</span>
-                </div>
-                <div></div>
-            </div>
+            <div class="d-flex mb-3 overall"></div>
 
             <div>
-                <a href="./Property_Reservation.html"
+                <a href="Manage_Reservation"
                    class="app__overview-link float-end text-decoration-none">View all reservation</a>
             </div>
         </div>
@@ -105,7 +88,7 @@
                 <div class="app__form-filter d-flex flex-column">
                     <label for="select-date">Statistics filters</label>
                     <select name="select-date" id="select-date">
-                        <option value="date">Date</option>
+                        <option value="day">Day</option>
                         <option value="month">Month</option>
                         <option value="year">Year</option>
                     </select>
@@ -129,28 +112,30 @@
 </div>
 
 <script>
-    function drawChart() {
-        const xDates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-        const xMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
-        const yValues = [0, 10, 40, 50, 100, 60, 70, 80, 20, 30, 90, 12, 20, 55, 78, 24, 30, 30, 30, 60, 65, 58, 90, 92]
+    function drawChart(arr1, arr2) {
+        const xValues = arr1;
+        const yValues = arr2;
+        const barColors = [
+            "#CCCCCC", "#CCFF99", "#CCCC99", "#CC99FF", "#CC66FF", "#CC33FF",
+            "#666666", "#99FF99", "#99CC99", "#9999FF", "#9966FF", "#9933FF",
+            "#000000", "#66FF99", "#66CC99", "#6699FF", "#6666FF", "#6633FF",
+            "#AA0000", "#33FF99", "#33CC99", "#3399FF", "#3366FF", "#3333FF",
+            "#440000", "#00FF99", "#33CC66", "#0099FF", "#0066FF", "#0033FF",
+            "#FFFF99", "#FFCC99", "#FF99FF", "#FF66FF", "#FF33FF", "#003300",
+            "FF0000"
+        ];
 
         new Chart("analytics", {
-            type: "line",
+            type: "bar",
             data: {
-                labels: xDates,
+                labels: xValues,
                 datasets: [{
-                    fill: false,
-                    lineTension: 0,
-                    backgroundColor: "rgba(0, 0, 0, 1)",
-                    borderColor: "rgba(0, 0, 0, 0.2)",
+                    backgroundColor: barColors,
                     data: yValues
                 }]
             },
             options: {
-                legend: {
-                    display: false
-                },
+                legend: { display: false },
                 title: {
                     display: true,
                     text: "Reservation(s)"
@@ -158,9 +143,9 @@
                 scales: {
                     yAxes: [
                         {
-                            ticks: {
-                                min: 0,
-                                max: 100
+                            ticks:
+                            {
+                                min: 0
                             }
                         }
                     ],
@@ -169,5 +154,102 @@
         });
     }
 
-    drawChart();
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Property/HomeProperty",
+            data: {},
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                let overall = ` <div class="app__overview-content-item text-center">
+                                    <p>Total</p>
+                                    <span>${data.total}</span>
+                                </div>
+                                <div class="app__overview-content-item text-center">
+                                    <p>Arrivals</p>
+                                    <span>${data.arrival}</span>
+                                </div>
+                                <div class="app__overview-content-item text-center">
+                                    <p>Departures</p>
+                                    <span>${data.departure}</span>
+                                </div>
+                                <div class="app__overview-content-item text-center">
+                                    <p>Reviews</p>
+                                    <span>${data.review}</span>
+                                </div>
+                                <div></div>`;
+
+                $('.overall').append(overall);
+            },
+            error: function () {
+                alert("Error occured!!!");
+            }
+        });
+
+        $('#input-date-arrival').change(function () {
+            $('#input-date-departure').attr('min', $('#input-date-arrival').val());
+        });
+
+        $('#input-date-departure').change(function () {
+            $('#input-date-arrival').attr('max', $('#input-date-departure').val());
+        });
+
+        $('button').click(function () {
+            function analytic(analyticName, array) {
+                $.ajax({
+                    type: "POST",
+                    url: `/Property/${analyticName}`,
+                    data: {
+                        values: array
+                    },
+                    datatype: "json",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        drawChart(data.key, data.value);
+                    },
+                    error: function () {
+                        alert("Error occured!!!");
+                    }
+                });
+            };
+
+            let from = $('#input-date-arrival').val();
+            let until = $('#input-date-departure').val();
+
+            if (from != "" && until == "") {
+                if ($('#select-date').val() == "day") {
+                    analytic('DayStart', [from]);
+                }
+                else if ($('#select-date').val() == "month") {
+                    analytic('MonthStart', [from]);
+                }
+                else {
+                    analytic('YearStart', [from]);
+                };
+            }
+            else if (from == "" && until != "") {
+                if ($('#select-date').val() == "day") {
+                    analytic('DayEnd', [until]);
+                }
+                else if ($('#select-date').val() == "month") {
+                    analytic('MonthEnd', [until]);
+                }
+                else {
+                    analytic('YearEnd', [until]);
+                };
+            }
+            else if (from != "" && until != "") {
+                if ($('#select-date').val() == "day") {
+                    analytic('DayFull', [from, until]);
+                }
+                else if ($('#select-date').val() == "month") {
+                    analytic('MonthFull', [from, until]);
+                }
+                else {
+                    analytic('YearFull', [from, until]);
+                };
+            }
+        });
+    });
 </script>

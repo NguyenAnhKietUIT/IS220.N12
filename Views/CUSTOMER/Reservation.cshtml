@@ -2,6 +2,7 @@
 @{
     Layout = null;
     var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
+    string[] reservationInfo = (string[])Session["ReservationInfo"];
 }
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/custom/base.css" />
     <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Reservation</title>
 
     <style>
@@ -52,7 +54,7 @@
                 margin-bottom: 0;
             }
 
-        .app__content a {
+        .app__content a, button {
             border: none;
             color: white;
             padding: 8px 16px;
@@ -95,42 +97,24 @@
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
                                 <p>Check-in</p>
-                                <h6>Thu 22 Dec 2022</h6>
+                                <h6 class="check-in-date">@reservationInfo[1]</h6>
                             </div>
 
                             <div>
                                 <p>Check-out</p>
-                                <h6>Fri 23 Dec 2022</h6>
+                                <h6 class="check-out-date">@reservationInfo[2]</h6>
                             </div>
                         </div>
                         <div class="mt-3">
                             <h6>Total length of stay:</h6>
-                            <p>1 night</p>
+                            <p class="interval-date"></p>
                         </div>
-                        <div class="mt-3">
-                            <h6>You selected</h6>
-                            <p>Deluxe Apartment</p>
-                        </div>
+                        <div class="mt-3 box-1"></div>
                     </div>
                 </div>
                 <div class="border mt-3" style="border-radius: 16px;">
-                    <div class="mx-4 my-3 d-flex flex-column justify-content-between">
-                        <h5>Your price summary</h5>
-                        <div class="mt-2 d-flex justify-content-between">
-                            <span>Room name</span>
-                            <span>400000 VND</span>
-                        </div>
-                        <div class="mt-1 d-flex justify-content-between pb-3 border-bottom">
-                            <span>8% VAT</span>
-                            <span>32000 VND</span>
-                        </div>
-                        <div class="mt-1 d-flex justify-content-between">
-                            <h6>Total</h6>
-                            <span>432000 VND</span>
-                        </div>
-                    </div>
+                    <div class="mx-4 my-3 d-flex flex-column justify-content-between box-2"></div>
                 </div>
-
                 <div class="border mt-3" style="border-radius: 16px;">
                     <div class="mx-4 my-3 d-flex flex-column justify-content-between">
                         <h5>Payment method</h5>
@@ -139,16 +123,7 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="d-flex border" style="border-radius: 16px;">
-                    <img src="../assets/img/others/hotel.jpg" alt="Avatar" class="property-img">
-                    <div class="d-flex flex-column m-3 flex-1 justify-content-between">
-                        <h5>Property Name</h5>
-                        <p>Address</p>
-                        <p>9.0</p>
-                        <p>Check-in time: 12:00</p>
-                        <p>Check-out time: 14:00</p>
-                    </div>
-                </div>
+                <div class="d-flex border property-info" style="border-radius: 16px;"></div>
 
                 <div class="border mt-5" style="border-radius: 16px;height: 313px;">
                     <div class="m-4 d-flex flex-column justify-content-between">
@@ -167,15 +142,13 @@
                                 <span class="form-message"></span>
                             </div>
 
-                            <div class="mt-4 d-flex">
+                            <div class="mt-1 d-flex">
                                 <div style="flex: 1;"></div>
                                 <a href="~/Homepage/Search_Detail" class="text-decoration-none">
                                     Cancel
                                 </a>
 
-                                <a href="#" class="text-decoration-none ms-3">
-                                    Complete Your Booking
-                                </a>
+                                <button type="button" class="ms-3">Complete Your Booking</button>
                             </div>
                         </form>
                     </div>
@@ -194,6 +167,98 @@
                 Validator.isRequired('#name'),
                 Validator.isRequired('#phone-number'),
             ]
+        });
+    </script>
+    <script>
+        function daysDifference(firstDate, secondDate) {
+            var startDay = new Date(firstDate);
+            var endDay = new Date(secondDate);
+
+            var millisecondBetween = startDay.getTime() - endDay.getTime();
+            var days = millisecondBetween / (1000 * 3600 * 24);
+
+            return Math.round(Math.abs(days));
+        }
+
+        $(document).ready(function () {
+            $('.interval-date').html(`${daysDifference($('.check-in-date').html(), $('.check-out-date').html())} days`);
+
+            $.ajax({
+                type: "POST",
+                url: "/CUSTOMER/GetInfoReservation",
+                data: {
+                    values: [@reservationInfo[0], @reservationInfo[3]]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    let html1 = `<h6>You selected</h6>
+                                 <p>${data.typeRoom} ${data.typeProperty}</p>`;
+                    $('.box-1').append(html1);
+
+                    let html2 = `
+                                <h5>Your price summary</h5>
+                                <div class="mt-2 d-flex justify-content-between">
+                                    <span>${data.roomName}</span>
+                                    <span>${data.price} VND</span>
+                                </div>
+                                <div class="mt-1 d-flex justify-content-between pb-3 border-bottom">
+                                    <span>5% VAT</span>
+                                    <span>${parseInt(data.price * 0.05)} VND</span>
+                                </div>
+                                <div class="mt-1 d-flex justify-content-between">
+                                    <h6>Total</h6>
+                                    <span><span class="total">${parseInt(data.price * 0.95)}</span> VND</span>
+                                </div>`;
+                    $('.box-2').append(html2);
+
+                    let html3 = `
+                                <img src="${data.image}" alt="Avatar" class="property-img">
+                                <div class="d-flex flex-column m-3 flex-1 justify-content-between">
+                                    <h5>${data.propertyName}</h5>
+                                    <p>Address: ${data.address}</p>
+                                    <p>Avergae point: ${data.averagePoint}</p>
+                                    <p>Check-in time: ${data.checkInTime}</p>
+                                    <p>Check-out time: ${data.checkOutTime}</p>
+                                </div>`;
+                    $('.property-info').html(html3);
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+
+            $('button').click(function () {
+                console.log(
+                    );
+
+                $.ajax({
+                    type: "POST",
+                    url: "/CUSTOMER/CreateReservation",
+                    data: {
+                        values: [
+                            @reservationInfo[3],
+                            $('#name').val(),
+                            $('#phone-number').val(),
+                            $('.check-in-date').html(),
+                            $('.check-out-date').html(),
+                            $('.total').html(),
+                        ]
+                    },
+                    datatype: "json",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            window.location.replace("https://localhost:44306/CUSTOMER/Success");
+                        } else {
+                            window.location.replace("https://localhost:44306/CUSTOMER/Error");
+                        }
+                    },
+                    error: function () {
+                        alert("Error occured!!!");
+                    }
+                });
+            });
         });
     </script>
 </body>

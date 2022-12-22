@@ -1,4 +1,5 @@
-﻿
+﻿@model PagedList.IPagedList<IS220.N12.Models.ROOM>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Manage Room";
     Layout = "~/Views/Shared/_PropertyLayout.cshtml";
@@ -49,50 +50,60 @@
     input[name="image"] {
         width: 250px;
     }
+
+    .pagination li a {
+        color: #303030;
+        padding: 4px 12px;
+        text-decoration: none;
+    }
+    
+    .pagination li:hover,
+    .pagination .active {
+        border-radius: 4px;
+        background-color: #ccc;
+    }
 </style>
 
 <div class="app__content-main mt-4" style="max-width: 1200px;margin: 0 auto;">
-    <div class="">
-        <form action="">
-            <input type="text" id="room-id" hidden>
-            <div class="d-flex justify-content-between">
-                <div class="d-flex flex-column">
-                    <label for="room-name"><b>Room Name</b><span style="color: red;">*</span></label>
-                    <input type="text" name="room-name" id="room-name" required>
-                </div>
-                <div class="d-flex flex-column">
-                    <label for="type-room"><b>Type Of Room</b><span style="color: red;">*</span></label>
-                    <select name="type-room" id="type-room" required>
-                        <option value="">Choose type of room</option>
-                        <option value="Standard">Standard</option>
-                        <option value="Deluxe">Deluxe</option>
-                        <option value="Supervisor">Supervisor</option>
-                    </select>
-                </div>
-                <div class="d-flex flex-column">
-                    <label for="bed-num"><b>Number Of Bed</b><span style="color: red;">*</span></label>
-                    <div class="d-flex align-items-center">
-                        <input type="number" name="bed-num" id="bed-num" min="1" max="5">
-                        <span class="ms-1 text-danger bed-num-message">Number of bed must be between 1 and 5</span>
-                    </div>
-                </div>
-                <div class="d-flex flex-column">
-                    <label for="price"><b>Price</b><span style="color: red;">*</span></label>
-                    <div class="d-flex align-items-center">
-                        <input type="number" name="price" id="price" min="600000" required>
-                        <span class="ms-1 text-danger price-message">Price must be at least 600000 VND</span>
-                    </div>
+    <div>
+        <input type="text" id="room-id" hidden>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column">
+                <label for="room-name"><b>Room Name</b><span style="color: red;">*</span></label>
+                <input type="text" name="room-name" id="room-name" required>
+            </div>
+            <div class="d-flex flex-column">
+                <label for="type-room"><b>Type Of Room</b><span style="color: red;">*</span></label>
+                <select name="type-room" id="type-room" required>
+                    <option value="">Choose type of room</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Supervisor">Supervisor</option>
+                </select>
+            </div>
+            <div class="d-flex flex-column">
+                <label for="bed-num"><b>Number Of Bed</b><span style="color: red;">*</span></label>
+                <div class="d-flex align-items-center">
+                    <input type="number" name="bed-num" id="bed-num" min="1" max="5">
+                    <span class="ms-1 text-danger bed-num-message">Number of bed must be between 1 and 5</span>
                 </div>
             </div>
-            <div class="d-flex flex-column mt-3">
-                <label for="image"><b>Image</b><span style="color: red;">*</span></label>
-                <input type="file" name="image" id="image" onchange="readURL(this);" required>
+            <div class="d-flex flex-column">
+                <label for="price"><b>Price</b><span style="color: red;">*</span></label>
+                <div class="d-flex align-items-center">
+                    <input type="number" name="price" id="price" min="600000" required>
+                    <span class="ms-1 text-danger price-message">Price must be at least 600000 VND</span>
+                </div>
             </div>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <label><b>Image</b><span style="color: red;">*</span></label>
+            <button class="btn btn-secondary mt-1" style="width: 120px;">Choose file</button>
+        </div>
 
-            <img src="" alt="Image Room" id="img-room" hidden class="mt-2">
+        <img src="" alt="Image Room" id="img-room" hidden class="mt-2">
 
-            <input type="submit" value="Save" class="btn btn-primary mt-4 py-0">
-        </form>
+        <button type="button" class="btn btn-primary mt-4 px-4">Save</button>
     </div>
 
     <table class="table mt-4">
@@ -105,22 +116,29 @@
             <th style="width: 16%;">Image</th>
             <th style="width: 20%;">Function</th>
         </tr>
-        <tr>
-            <td class="d-none">1</td>
-            <td>Indigo</td>
-            <td>Standard</td>
-            <td>2</td>
-            <td>6500000 VND</td>
-            <td>
-                <img src="../assets/img/others/hotel.jpg" alt="">
-            </td>
-            <td>
-                <button type="button" class="btn btn-info">Update</button>
-                <button type="button" class="btn btn-danger ms-3">Delete</button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="d-none room-id">@item.RoomID</td>
+                <td>@item.RoomName</td>
+                <td>@item.TypeOfRoom</td>
+                <td>@item.BedNum</td>
+                <td><span>@item.Price</span> VND</td>
+                <td>
+                    <img src="@item.Image_Room" alt="Image Room">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info">Update</button>
+                    <button type="button" class="btn btn-danger ms-3">Delete</button>
+                </td>
+            </tr>
+        }
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("Manage_Room", new { page }))
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="~/Assets/lib/ckfinder/ckfinder.js"></script>
 
 <script>
     const roomId = document.getElementById('room-id');
@@ -140,7 +158,6 @@
             typeRoom.value = array[2].textContent;
             bedNum.value = array[3].textContent;
             price.value = parseInt(array[4].textContent);
-            document.getElementById('image').removeAttribute("required")
             imageRoom.src = array[5].getElementsByTagName("img")[0].currentSrc;
             imageRoom.removeAttribute("hidden");
             imageRoom.style.display = "block";
@@ -148,18 +165,66 @@
             imageRoom.style.height = "200px";
         })
     });
+</script>
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+<script>
+    $(document).ready(function () {
+        $('.btn.btn-secondary').click(function () {
+            $('#img-room').removeAttr("hidden");
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $('#img-room').attr('src', fileUrl);
+            }
+            finder.popup();
+        });
 
-            reader.onload = function (e) {
-                $('#img-room').removeAttr("hidden")
-                $('#img-room').attr("style", "display: block");
-                $('#img-room').attr('src', e.target.result).width(300).height(200);
-            };
+        $('.btn.btn-primary').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Property/UpdateRoom",
+                data: {
+                    values: [
+                        $('.room-id').html(),
+                        $('#room-name').val(),
+                        $('#type-room').find(":selected").val(),
+                        $('#bed-num').val(),
+                        $('#price').val(),
+                        $('#img-room').attr('src')
+                    ]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        });
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+        $('.btn.btn-danger').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Property/DeleteRoom",
+                data: {
+                    values: [
+                        $('.room-id').html()
+                    ]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        });
+    });
 </script>

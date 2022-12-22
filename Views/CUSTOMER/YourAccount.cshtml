@@ -20,7 +20,7 @@
 <form action="" method="POST" class="form-detail mt-0" id="form-detail">
     <div class="form-avatar">
         <label for="app__main-input-img" class="app__main-label-img" style="width: 100%;">
-            @if (customer != null)
+            @if (customer.Image_Customer != null)
             {
                 if (searchProperty != null)
                 {
@@ -45,7 +45,7 @@
     <div class="form-info">
         <div class="form-group mb-0">
             <label for="yourname" class="form-label pb-0 mb-1">Your Name<span style="color: red;">*</span></label>
-            @if (customer != null)
+            @if (customer.CustomerName != null)
             {
                 <input id="yourname" name="yourname" type="text" value="@customer.CustomerName" disabled
                        class="form-control edit-active">
@@ -328,7 +328,7 @@
             <label for="sex" class="form-label pb-0 mb-1">Your Sex<span style="color: red;">*</span></label>
             <select id="sex" name="sex" class="form-control edit-active" disabled style="font-size: 14px;">
                 <option value="">--- Select your sex ---</option>
-                @if (customer != null)
+                @if (customer.Sex == 0 || customer.Sex == 1)
                 {
                     if (customer.Sex == 0)
                     {
@@ -352,7 +352,7 @@
 
         <div class="form-group mb-0">
             <label for="phonenumber" class="form-label pb-0 mb-1">Phone Number<span style="color: red;">*</span></label>
-            @if (customer != null)
+            @if (customer.Phone != null)
             {
                 <input id="phonenumber" name="phonenumber" value="@customer.Phone" disabled
                        type="text" class="form-control edit-active">

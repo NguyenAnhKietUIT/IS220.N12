@@ -46,6 +46,11 @@
         td:not(td:first-child) {
             text-align: center;
         }
+
+    .table-bordered > :not(caption) > *,
+    .table-bordered > :not(caption) > * > * {
+        border-width: 1px;
+    }
 </style>
 
 <div class="container">
@@ -84,60 +89,129 @@
                 <th>Total price</th>
                 <th>Edit</th>
             </tr>
-            <tr>
-                <td>
-                    <p>274</p>
-                    <span style="font-size: 12px;">2 guests</span>
-                </td>
-                <td>22/03/2002</td>
-                <td>27/04/2003</td>
-                <td>Luxury</td>
-                <td>14/10/2017</td>
-                <td>
-                    <select name="select-status" id="select-status" disabled>
-                        <option value="1">Booked</option>
-                        <option value="2">Checked out</option>
-                        <option value="3">Live in</option>
-                        <option value="4">Cancelled</option>
-                        <option value="5">No show</option>
-                    </select>
-                </td>
-                <td>679000000 VND</td>
-                <td>
-                    <button class="btn btn-info">
-                        Edit status
-                    </button>
-
-                    <button class="ms-3 btn btn-success" disabled>
-                        Success
-                    </button>
-                </td>
-            </tr>
         </table>
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    const buttonEditStatus = document.querySelectorAll('.btn.btn-info');
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Property/GetReservation",
+            data: {},
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                let html = "";
 
-    function enableEdit() {
-        buttonEditStatus .forEach(element => {
-        element.addEventListener('click', () => {
-            let btnSuccess = element.parentElement.querySelector('.btn.btn-success');
-            btnSuccess.disabled = false;
-            element.disabled = true;
+                for (let i = 0; i < data.reservationIDs.length; i++) {
+                    html += `
+                            <tr>
+                                <td>
+                                    <p>${data.reservationIDs[i]}</p>
+                                    <span style="font-size: 12px;">${data.bedNums[i]} beds</span>
+                                </td>
+                                <td>${data.checkIns[i]}</td>
+                                <td>${data.checkOuts[i]}</td>
+                                <td>${data.typeRooms[i]}</td>
+                                <td>${data.checkIns[i]}</td>
+                                <td>
+                                    <select name="select-status" id="select-status" disabled>`;
 
-            let status = element.parentElement.parentElement.getElementsByTagName("td")[5].querySelector('select[name="select-status"]')
-            status.disabled = false
+                    switch (data.status[i]) {
+                        case 1: {
+                            html +=`<option value="1" selected>Booked</option>
+                                    <option value="2">Checked out</option>
+                                    <option value="3">Live in</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5">No show</option>`;
+                            break;
+                        }
+                        case 2: {
+                            html +=`<option value="1">Booked</option>
+                                    <option value="2" selected>Checked out</option>
+                                    <option value="3">Live in</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5">No show</option>`;
+                            break;
+                        }
+                        case 3: {
+                            html +=`<option value="1">Booked</option>
+                                    <option value="2">Checked out</option>
+                                    <option value="3" selected>Live in</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5">No show</option>`;
+                            break;
+                        }
+                        case 4: {
+                            html +=`<option value="1">Booked</option>
+                                    <option value="2">Checked out</option>
+                                    <option value="3">Live in</option>
+                                    <option value="4" selected>Cancelled</option>
+                                    <option value="5">No show</option>`;
+                            break;
+                        }
+                        case 5: {
+                            html +=`<option value="1">Booked</option>
+                                    <option value="2">Checked out</option>
+                                    <option value="3">Live in</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5" selected>No show</option>`;
+                            break;
+                        }
+                    }
 
-            btnSuccess.addEventListener('click', () => {
-                btnSuccess.disabled = true;
-                element.disabled = false;
-                status.disabled = true;
+                    html+= `</select>
+                        </td>
+                        <td>${data.totals[i]} VND</td>
+                        <td>
+                            <button class="btn btn-info">
+                                Edit status
+                            </button>
+                    
+                            <button class="ms-3 btn btn-success" disabled>
+                                Success
+                            </button>
+                        </td>
+                    </tr>`;
+                }
+
+                $('table').append(html);
+            },
+            error: function () {
+                alert("Error occured!!!");
+            }
+        });
+
+        $('table').on('click', '.btn.btn-info', function () {
+            $(this).prop('disabled', true);
+            $(this).parent().find('button.btn.btn-success').prop('disabled', false);
+            $(this).parent().parent().find('td').eq(5).find('select').prop('disabled', false);
+        });
+
+        $('table').on('click', '.btn.btn-success', function () {
+            $.ajax({
+                type: "POST",
+                url: "/Property/UpdateStatus",
+                data: {
+                    values: [
+                        $(this).parent().parent().find('td').eq(0).find('p').html(),
+                        $(this).parent().parent().find('td').eq(5).find('select').find(':selected').val()
+                    ]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        alert('Successfully changed!!!');
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
             });
-        })
+        });
     })
-    }
-
-    enableEdit()
 </script>

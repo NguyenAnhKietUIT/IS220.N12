@@ -84,4 +84,91 @@
       <Column Name="ServiceName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.UPCOMMING" Method="UPCOMMING">
+    <Parameter Name="CusID" Parameter="cusID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="UPCOMMINGResult">
+      <Column Name="Image_Room" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CheckInTime" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CheckIn" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICDAY_END" Method="STATISTICDAY_END">
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICDAY_ENDResult">
+      <Column Name="Day" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICYEAR_START" Method="STATISTICYEAR_START">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICYEAR_STARTResult">
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICDAY_FULL" Method="STATISTICDAY_FULL">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICDAY_FULLResult">
+      <Column Name="Day" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICDAY_START" Method="STATISTICDAY_START">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICDAY_STARTResult">
+      <Column Name="Day" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICMONTH_END" Method="STATISTICMONTH_END">
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICMONTH_ENDResult">
+      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICMONTH_FULL" Method="STATISTICMONTH_FULL">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICMONTH_FULLResult">
+      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICMONTH_START" Method="STATISTICMONTH_START">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICMONTH_STARTResult">
+      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICYEAR_END" Method="STATISTICYEAR_END">
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICYEAR_ENDResult">
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.STATISTICYEAR_FULL" Method="STATISTICYEAR_FULL">
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="STATISTICYEAR_FULLResult">
+      <Column Name="year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

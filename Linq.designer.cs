@@ -114,6 +114,76 @@ namespace IS220.N12
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), propertyID);
 			return ((ISingleResult<InfoServiceResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UPCOMMING")]
+		public ISingleResult<UPCOMMINGResult> UPCOMMING([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CusID", DbType="Int")] System.Nullable<int> cusID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cusID);
+			return ((ISingleResult<UPCOMMINGResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICDAY_END")]
+		public ISingleResult<STATISTICDAY_ENDResult> STATISTICDAY_END([global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), end, proID);
+			return ((ISingleResult<STATISTICDAY_ENDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICYEAR_START")]
+		public ISingleResult<STATISTICYEAR_STARTResult> STATISTICYEAR_START([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, proID);
+			return ((ISingleResult<STATISTICYEAR_STARTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICDAY_FULL")]
+		public ISingleResult<STATISTICDAY_FULLResult> STATISTICDAY_FULL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, end, proID);
+			return ((ISingleResult<STATISTICDAY_FULLResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICDAY_START")]
+		public ISingleResult<STATISTICDAY_STARTResult> STATISTICDAY_START([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, proID);
+			return ((ISingleResult<STATISTICDAY_STARTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICMONTH_END")]
+		public ISingleResult<STATISTICMONTH_ENDResult> STATISTICMONTH_END([global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), end, proID);
+			return ((ISingleResult<STATISTICMONTH_ENDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICMONTH_FULL")]
+		public ISingleResult<STATISTICMONTH_FULLResult> STATISTICMONTH_FULL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, end, proID);
+			return ((ISingleResult<STATISTICMONTH_FULLResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICMONTH_START")]
+		public ISingleResult<STATISTICMONTH_STARTResult> STATISTICMONTH_START([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, proID);
+			return ((ISingleResult<STATISTICMONTH_STARTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICYEAR_END")]
+		public ISingleResult<STATISTICYEAR_ENDResult> STATISTICYEAR_END([global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), end, proID);
+			return ((ISingleResult<STATISTICYEAR_ENDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.STATISTICYEAR_FULL")]
+		public ISingleResult<STATISTICYEAR_FULLResult> STATISTICYEAR_FULL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, end, proID);
+			return ((ISingleResult<STATISTICYEAR_FULLResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SERVICE_SUPPLIED")]
@@ -893,6 +963,536 @@ namespace IS220.N12
 				if ((this._ServiceName != value))
 				{
 					this._ServiceName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class UPCOMMINGResult
+	{
+		
+		private string _Image_Room;
+		
+		private string _PropertyName;
+		
+		private string _RoomName;
+		
+		private string _CheckInTime;
+		
+		private System.Nullable<System.DateTime> _CheckIn;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private string _TypeOfRoom;
+		
+		public UPCOMMINGResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_Room", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Image_Room
+		{
+			get
+			{
+				return this._Image_Room;
+			}
+			set
+			{
+				if ((this._Image_Room != value))
+				{
+					this._Image_Room = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PropertyName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string PropertyName
+		{
+			get
+			{
+				return this._PropertyName;
+			}
+			set
+			{
+				if ((this._PropertyName != value))
+				{
+					this._PropertyName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string RoomName
+		{
+			get
+			{
+				return this._RoomName;
+			}
+			set
+			{
+				if ((this._RoomName != value))
+				{
+					this._RoomName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckInTime", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CheckInTime
+		{
+			get
+			{
+				return this._CheckInTime;
+			}
+			set
+			{
+				if ((this._CheckInTime != value))
+				{
+					this._CheckInTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckIn", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CheckIn
+		{
+			get
+			{
+				return this._CheckIn;
+			}
+			set
+			{
+				if ((this._CheckIn != value))
+				{
+					this._CheckIn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfRoom", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TypeOfRoom
+		{
+			get
+			{
+				return this._TypeOfRoom;
+			}
+			set
+			{
+				if ((this._TypeOfRoom != value))
+				{
+					this._TypeOfRoom = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICDAY_ENDResult
+	{
+		
+		private System.Nullable<int> _Day;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICDAY_ENDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="Int")]
+		public System.Nullable<int> Day
+		{
+			get
+			{
+				return this._Day;
+			}
+			set
+			{
+				if ((this._Day != value))
+				{
+					this._Day = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICYEAR_STARTResult
+	{
+		
+		private System.Nullable<int> _Year;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICYEAR_STARTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this._Year = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICDAY_FULLResult
+	{
+		
+		private System.Nullable<int> _Day;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICDAY_FULLResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="Int")]
+		public System.Nullable<int> Day
+		{
+			get
+			{
+				return this._Day;
+			}
+			set
+			{
+				if ((this._Day != value))
+				{
+					this._Day = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICDAY_STARTResult
+	{
+		
+		private System.Nullable<int> _Day;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICDAY_STARTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="Int")]
+		public System.Nullable<int> Day
+		{
+			get
+			{
+				return this._Day;
+			}
+			set
+			{
+				if ((this._Day != value))
+				{
+					this._Day = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICMONTH_ENDResult
+	{
+		
+		private System.Nullable<int> _Month;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICMONTH_ENDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int")]
+		public System.Nullable<int> Month
+		{
+			get
+			{
+				return this._Month;
+			}
+			set
+			{
+				if ((this._Month != value))
+				{
+					this._Month = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICMONTH_FULLResult
+	{
+		
+		private System.Nullable<int> _Month;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICMONTH_FULLResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int")]
+		public System.Nullable<int> Month
+		{
+			get
+			{
+				return this._Month;
+			}
+			set
+			{
+				if ((this._Month != value))
+				{
+					this._Month = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICMONTH_STARTResult
+	{
+		
+		private System.Nullable<int> _Month;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICMONTH_STARTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int")]
+		public System.Nullable<int> Month
+		{
+			get
+			{
+				return this._Month;
+			}
+			set
+			{
+				if ((this._Month != value))
+				{
+					this._Month = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICYEAR_ENDResult
+	{
+		
+		private System.Nullable<int> _Year;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICYEAR_ENDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this._Year = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class STATISTICYEAR_FULLResult
+	{
+		
+		private System.Nullable<int> _year;
+		
+		private System.Nullable<int> _total;
+		
+		public STATISTICYEAR_FULLResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_year", DbType="Int")]
+		public System.Nullable<int> year
+		{
+			get
+			{
+				return this._year;
+			}
+			set
+			{
+				if ((this._year != value))
+				{
+					this._year = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
 				}
 			}
 		}

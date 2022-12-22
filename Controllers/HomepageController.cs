@@ -361,6 +361,12 @@ namespace IS220.N12.Controllers
             return Json(new { roomList });
         }
 
+        public JsonResult SendReservationInfo(string[] values)
+        {
+            Session["ReservationInfo"] = values;
+            return Json(new { values });
+        }
+
         // GET: Homepage/Details/5
         public ActionResult Details(int id)
         {

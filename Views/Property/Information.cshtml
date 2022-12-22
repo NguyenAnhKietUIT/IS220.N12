@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Information";
     Layout = "~/Views/Shared/_PropertyLayout.cshtml";
-    var property = Session["Property"] as IS220.N12.Models.HOTEL;
+    var property = Session["Property"] as IS220.N12.Models.PROPERTY;
     var account = Session["Account"] as IS220.N12.Models.ACCOUNT;
 }
 
@@ -63,24 +63,45 @@
 <div class="mt-3 mb-5 container">
     <h3>Update information</h3>
 
-    <form action="" method="POST" class="form" id="form">
+    <div>
         <div class="form-group">
             <label for="name" class="form-label">Property name<span style="color: red;">*</span></label>
-            <input id="name" name="name" type="text" class="form-control edit-active" value="@property.HotelName" disabled>
+            @if (property.PropertyName != null)
+            {
+                <input id="name" name="name" type="text" class="form-control edit-active" value="@property.PropertyName" disabled>
+            }
+            else
+            {
+                <input id="name" name="name" type="text" class="form-control edit-active" disabled>
+            }
             <span class="form-message"></span>
         </div>
 
         <div class="form-group">
             <label for="overview" class="form-label">Overview<span style="color: red;">*</span></label>
-            <textarea name="overview" id="overview" cols="30" rows="4" class="form-control edit-active" disabled>
-@property.Detail_Hotel
-            </textarea>
+            @if (property.Detail_Property != null)
+            {
+                <textarea name="overview" id="overview" cols="30" rows="4" class="form-control edit-active" disabled>
+@property.Detail_Property
+                </textarea>
+            }
+            else
+            {
+                <textarea name="overview" id="overview" cols="30" rows="4" class="form-control edit-active" disabled></textarea>
+            }
             <span class="form-message"></span>
         </div>
 
         <div class="form-group">
             <label for="phonenumber" class="form-label">Phone numbers<span style="color: red;">*</span></label>
-            <input id="phonenumber" name="phonenumber" type="text" class="form-control edit-active" value="@property.Phone_Hotel" disabled>
+            @if (property.Phone_Property != null)
+            {
+                <input id="phonenumber" name="phonenumber" type="text" class="form-control edit-active" value="@property.Phone_Property" disabled>
+            }
+            else
+            {
+                <input id="phonenumber" name="phonenumber" type="text" class="form-control edit-active" disabled>
+            }
             <span class="form-message"></span>
         </div>
 
@@ -92,8 +113,15 @@
 
         <div class="form-group">
             <label for="location" class="form-label">Location<span style="color: red;">*</span></label>
-            <textarea name="location" id="location" cols="30" rows="2" class="form-control edit-active" disabled>@property.Address_Hotel
-            </textarea>
+            @if (property.Address_Property != null)
+            {
+                <textarea name="location" id="location" cols="30" rows="2" class="form-control edit-active" disabled>@property.Address_Property
+                </textarea>
+            }
+            else
+            {
+                <textarea name="location" id="location" cols="30" rows="2" class="form-control edit-active" disabled></textarea>
+            }
             <span class="form-message"></span>
         </div>
 
@@ -103,7 +131,14 @@
                 <i class="fa-regular fa-clock"></i>
                 <span style="color: red;">*</span>
             </label>
-            <input id="check-in" name="check-in" type="time" class="form-control edit-active" value="@property.CheckInTime" disabled>
+            @if (property.CheckInTime != null)
+            {
+                <input id="check-in" name="check-in" type="time" class="form-control edit-active" value="@property.CheckInTime" disabled>
+            }
+            else
+            {
+                <input id="check-in" name="check-in" type="time" class="form-control edit-active" disabled>
+            }
             <span class="form-message"></span>
         </div>
 
@@ -113,69 +148,98 @@
                 <i class="fa-regular fa-clock"></i>
                 <span style="color: red;">*</span>
             </label>
-            <input id="check-out" name="check-out" type="time" class="form-control edit-active" value="@property.CheckOutTime" disabled>
+            @if (property.CheckOutTime != null)
+            {
+                <input id="check-out" name="check-out" type="time" class="form-control edit-active" value="@property.CheckOutTime" disabled>
+            }
+            else
+            {
+                <input id="check-out" name="check-out" type="time" class="form-control edit-active" disabled>
+            }
             <span class="form-message"></span>
         </div>
 
         <div class="form-group">
             <label class="form-label">Types of property<span style="color: red;">*</span></label>
             <div class="d-flex flex-column">
-                @if (property.TypeName == "Hotel")
+                @if (property.TypeName != null)
                 {
-                    <div>
-                        <input type="radio" name="property" id="hotel" class="edit-active" disabled checked>
-                        <label for="hotel">Hotel</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="resort" class="edit-active" disabled>
-                        <label for="resort">Resort</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="apartment" class="edit-active" disabled>
-                        <label for="apartment">Apartment</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="homestay" class="edit-active" disabled>
-                        <label for="homestay">Homestay</label>
-                    </div>
-                }
-                else if (property.TypeName == "Apartment")
-                {
-                    <div>
-                        <input type="radio" name="property" id="hotel" class="edit-active" disabled>
-                        <label for="hotel">Hotel</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="resort" class="edit-active" disabled>
-                        <label for="resort">Resort</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="apartment" class="edit-active" disabled checked>
-                        <label for="apartment">Apartment</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="homestay" class="edit-active" disabled>
-                        <label for="homestay">Homestay</label>
-                    </div>
-                }
-                else if (property.TypeName == "Resort")
-                {
-                    <div>
-                        <input type="radio" name="property" id="hotel" class="edit-active" disabled>
-                        <label for="hotel">Hotel</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="resort" class="edit-active" disabled checked>
-                        <label for="resort">Resort</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="apartment" class="edit-active" disabled>
-                        <label for="apartment">Apartment</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="property" id="homestay" class="edit-active" disabled>
-                        <label for="homestay">Homestay</label>
-                    </div>
+                    if (property.TypeName == "Hotel")
+                    {
+                        <div>
+                            <input type="radio" name="property" id="hotel" class="edit-active" disabled checked>
+                            <label for="hotel">Hotel</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="resort" class="edit-active" disabled>
+                            <label for="resort">Resort</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="apartment" class="edit-active" disabled>
+                            <label for="apartment">Apartment</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="homestay" class="edit-active" disabled>
+                            <label for="homestay">Homestay</label>
+                        </div>
+                    }
+                    else if (property.TypeName == "Apartment")
+                    {
+                        <div>
+                            <input type="radio" name="property" id="hotel" class="edit-active" disabled>
+                            <label for="hotel">Hotel</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="resort" class="edit-active" disabled>
+                            <label for="resort">Resort</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="apartment" class="edit-active" disabled checked>
+                            <label for="apartment">Apartment</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="homestay" class="edit-active" disabled>
+                            <label for="homestay">Homestay</label>
+                        </div>
+                    }
+                    else if (property.TypeName == "Resort")
+                    {
+                        <div>
+                            <input type="radio" name="property" id="hotel" class="edit-active" disabled>
+                            <label for="hotel">Hotel</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="resort" class="edit-active" disabled checked>
+                            <label for="resort">Resort</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="apartment" class="edit-active" disabled>
+                            <label for="apartment">Apartment</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="homestay" class="edit-active" disabled>
+                            <label for="homestay">Homestay</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <input type="radio" name="property" id="hotel" class="edit-active" disabled>
+                            <label for="hotel">Hotel</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="resort" class="edit-active" disabled>
+                            <label for="resort">Resort</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="apartment" class="edit-active" disabled>
+                            <label for="apartment">Apartment</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="property" id="homestay" class="edit-active" disabled checked>
+                            <label for="homestay">Homestay</label>
+                        </div>
+                    }
                 }
                 else
                 {
@@ -192,7 +256,7 @@
                         <label for="apartment">Apartment</label>
                     </div>
                     <div>
-                        <input type="radio" name="property" id="homestay" class="edit-active" disabled checked>
+                        <input type="radio" name="property" id="homestay" class="edit-active" disabled>
                         <label for="homestay">Homestay</label>
                     </div>
                 }
@@ -203,140 +267,170 @@
         <div class="form-group">
             <label class="form-label">Types of category<span style="color: red;">*</span></label>
             <div class="d-flex flex-column">
-                @if (property.TypeOfCategory == "Beaches")
+                @if (property.TypeOfCategory != null)
                 {
-                    <div>
-                        <input type="radio" name="category" id="beach" class="edit-active" disabled checked>
-                        <label for="beach">Beaches</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="mountain" class="edit-active" disabled>
-                        <label for="mountain">Mountains</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
-                        <label for="iconic-city">Iconic cities</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="countryside" class="edit-active" disabled>
-                        <label for="countryside">Countryside</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="camping" class="edit-active" disabled>
-                        <label for="camping">Camping</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
-                        <label for="tropical">Tropical</label>
-                    </div>
-                }
-                else if (property.TypeOfCategory == "Mountains")
-                {
-                    <div>
-                        <input type="radio" name="category" id="beach" class="edit-active" disabled>
-                        <label for="beach">Beaches</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="mountain" class="edit-active" disabled checked>
-                        <label for="mountain">Mountains</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
-                        <label for="iconic-city">Iconic cities</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="countryside" class="edit-active" disabled>
-                        <label for="countryside">Countryside</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="camping" class="edit-active" disabled>
-                        <label for="camping">Camping</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
-                        <label for="tropical">Tropical</label>
-                    </div>
-                }
-                else if (property.TypeOfCategory == "Iconic cities")
-                {
-                    <div>
-                        <input type="radio" name="category" id="beach" class="edit-active" disabled>
-                        <label for="beach">Beaches</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="mountain" class="edit-active" disabled>
-                        <label for="mountain">Mountains</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="iconic-city" class="edit-active" disabled checked>
-                        <label for="iconic-city">Iconic cities</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="countryside" class="edit-active" disabled>
-                        <label for="countryside">Countryside</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="camping" class="edit-active" disabled>
-                        <label for="camping">Camping</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
-                        <label for="tropical">Tropical</label>
-                    </div>
-                }
-                else if (property.TypeOfCategory == "Countryside")
-                {
-                    <div>
-                        <input type="radio" name="category" id="beach" class="edit-active" disabled>
-                        <label for="beach">Beaches</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="mountain" class="edit-active" disabled>
-                        <label for="mountain">Mountains</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
-                        <label for="iconic-city">Iconic cities</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="countryside" class="edit-active" disabled checked>
-                        <label for="countryside">Countryside</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="camping" class="edit-active" disabled>
-                        <label for="camping">Camping</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
-                        <label for="tropical">Tropical</label>
-                    </div>
-                }
-                else if (property.TypeOfCategory == "Camping")
-                {
-                    <div>
-                        <input type="radio" name="category" id="beach" class="edit-active" disabled>
-                        <label for="beach">Beaches</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="mountain" class="edit-active" disabled>
-                        <label for="mountain">Mountains</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
-                        <label for="iconic-city">Iconic cities</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="countryside" class="edit-active" disabled>
-                        <label for="countryside">Countryside</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="camping" class="edit-active" disabled checked>
-                        <label for="camping">Camping</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
-                        <label for="tropical">Tropical</label>
-                    </div>
+                    if (property.TypeOfCategory == "Beaches")
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled checked>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
+                    else if (property.TypeOfCategory == "Mountains")
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled checked>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
+                    else if (property.TypeOfCategory == "Iconic cities")
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled checked>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
+                    else if (property.TypeOfCategory == "Countryside")
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled checked>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
+                    else if (property.TypeOfCategory == "Camping")
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled checked>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <input type="radio" name="category" id="beach" class="edit-active" disabled>
+                            <label for="beach">Beaches</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="mountain" class="edit-active" disabled>
+                            <label for="mountain">Mountains</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="iconic-city" class="edit-active" disabled>
+                            <label for="iconic-city">Iconic cities</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="countryside" class="edit-active" disabled>
+                            <label for="countryside">Countryside</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="camping" class="edit-active" disabled>
+                            <label for="camping">Camping</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="category" id="tropical" class="edit-active" disabled checked>
+                            <label for="tropical">Tropical</label>
+                        </div>
+                    }
                 }
                 else
                 {
@@ -361,7 +455,7 @@
                         <label for="camping">Camping</label>
                     </div>
                     <div>
-                        <input type="radio" name="category" id="tropical" class="edit-active" disabled checked>
+                        <input type="radio" name="category" id="tropical" class="edit-active" disabled>
                         <label for="tropical">Tropical</label>
                     </div>
                 }
@@ -407,49 +501,31 @@
         </div>
 
         <div class="form-group">
-            <label for="image" class="form-label">Upload Image<span style="color: red;">*</span></label>
-            <input type="file" name="image" id="image" onchange="readURL(this);" class="edit-active" disabled>
+            <button class="btn btn-secondary edit-active" style="width: 132px;" disabled>Upload Image</button>
             <span class="form-message"></span>
         </div>
 
-        <img src="@property.Image_Hotel" alt="Image Property" id="img-property" class="mt-2" style="width: 400px; height: 300px;">
+        @if (property.Image_Property != null)
+        {
+            <img src="@property.Image_Property" alt="image" id="img-property" class="mt-2" style="width: 400px; height: 300px;">
+        }
+        else
+        {
+            <img src="" alt="Image Property" id="img-property" class="mt-2 d-none" style="width: 400px; height: 300px;">
+        }
 
-        <div class="d-flex">
+        <div class="d-flex button-handle">
             <button type="button" class="form-btn">Update</button>
-            <input type="submit" class="form-btn  ms-5" value="Save" disabled>
+            <button type="button" class="form-btn ms-5" disabled>Save</button>
         </div>
-    </form>
+    </div>
 </div>
 
 <script src="~/Assets/js/validator.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="~/Assets/lib/ckfinder/ckfinder.js"></script>
 
 <script>
-    const information = document.querySelectorAll('.edit-active');
-    const buttonUpdate = document.querySelector('button[type="button"]');
-    const buttonSave = document.querySelector('input[type="submit"]');
-
-    buttonUpdate.addEventListener('click', () => {
-        buttonUpdate.disabled = true;
-        buttonSave.disabled = false;
-
-        information.forEach(element => {
-            element.disabled = false;
-        })
-    });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-property').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
     Validator({
         form: '#form',
         formGroupSelector: '.form-group',
@@ -459,8 +535,6 @@
             Validator.isRequired('#overview'),
             Validator.isRequired('#phonenumber'),
             Validator.isPhoneNumber('#phonenumber'),
-            Validator.isRequired('#gmail'),
-            Validator.isEmail('#gmail'),
             Validator.isRequired('#location'),
             Validator.isRequired('#check-in'),
             Validator.isRequired('#check-out'),
@@ -468,5 +542,60 @@
             Validator.isRequired('input[name="category"]'),
             Validator.isRequired('#image'),
         ],
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.button-handle button:first-child').click(function () {
+            $(this).prop('disabled', true);
+            $('.button-handle button:last-child').prop('disabled', false);
+            $('.edit-active').each(function () {
+                $(this).prop('disabled', false);
+            });
+        });
+
+        $('.btn.btn-secondary').click(function () {
+            if ($('#img-property').attr('alt') == "Image Property") {
+                $('#img-property').removeClass('d-none');
+            }
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $('#img-property').attr('src', fileUrl);
+            }
+            finder.popup();
+        });
+
+        $('.button-handle button:last-child').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Property/UpdateInformation",
+                data: {
+                    values: [
+                        $('#name').val(),
+                        $('#check-in').val(),
+                        $('#check-out').val(),
+                        $('#location').val(),
+                        $('#overview').val(),
+                        $('#phonenumber').val(),
+                        $('input[name="property"]:checked').parent().find('label').html(),
+                        $('#img-property').attr('src'),
+                        $('input[name="category"]:checked').parent().find('label').html(),
+                    ]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        alert("Successfully changed!!!");
+                        $('.button-handle button:last-child').prop('disabled', true);
+                        $('.button-handle button:first-child').prop('disabled', false);
+                    }
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        })
     });
 </script>

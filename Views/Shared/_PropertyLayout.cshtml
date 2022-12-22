@@ -298,34 +298,7 @@
         <div class="app__inbox">
             <div class="row m-0 h-100 overflow-auto">
                 <div class="col-4" style="border-right: 1px solid #ccc;">
-                    <ul class="list-unstyled">
-                        <li class="app__inbox-item pb-2">
-                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 1</h6>
-                            <span class="ps-2 pe-2 app__inbox-item-content">
-                                Chào các bạn
-                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
-                                Thời gian trong 4 ngày 5/12/2022 - 8/12/2022
-                                - Buổi sáng: 9h00-11h30
-                                - Buổi chiều: 14h00-16h30
-                                Sau thời gian trên bạn nào chưa nhận xem như từ chối quà tặng.
-                                Quà tặng:
-                                + Mũ báo hiểm cho khóa 2019-2021 (Theo danh sách tại forum)
-                                + Balo cho khóa 2022
-                                + Thuốc xịt mũi Viraleze dành cho Thầy Cô, Sinh viên có nhu cầu (Lưu ý số lượng có
-                                hạn, phát đến khi hết quà)
-                                Khi nhận quà vui lòng mang theo thẻ sinh viên.
-                                Mọi thắc mắc sinh viên trao đổi tại forum:
-                                https://forum.uit.edu.vn/node/559392
-                            </span>
-                        </li>
-                        <li class="app__inbox-item pb-2">
-                            <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">Ten hoac ma 2</h6>
-                            <span class="ps-2 pe-2 app__inbox-item-content">
-                                Chào các bạn
-                                Ngày mai UIT Store sẽ mở phát quà trở lại (đợt cuối cùng)
-                            </span>
-                        </li>
-                    </ul>
+                    <ul class="list-unstyled"></ul>
                 </div>
                 <div class="col-8 app__inbox-message"></div>
             </div>
@@ -333,5 +306,49 @@
     </div>
 
     <script src="~/Scripts/custom/Inbox.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.app__content-edit-box ul li:nth-child(4)').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Property/GetInbox",
+                    data: {},
+                    datatype: "json",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        let html = "";
+                        for (let i = 0; i < data.usernameSends.length; i++) {
+                            html += `<li class="app__inbox-item pb-2">
+                                                <h6 class="ps-2 pe-2 pt-1 app__inbox-item-title">${data.usernameSends[i]}</h6>
+                                                <span class="ps-2 pe-2 app__inbox-item-content">${data.contents[i]}</span>
+                                            </li>`;
+                        };
+
+                        $('.list-unstyled').append(html);
+                    },
+                    error: function () {
+                        alert("Error occured!!!");
+                    }
+                });
+            });
+
+            $('.app__content-edit-box ul li:nth-child(5)').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/ACCOUNT/SignOut",
+                    data: {},
+                    success: function (data) {
+                        if (data.msg) {
+                            window.location.replace("https://localhost:44306/Homepage/Index");
+                        }
+                    },
+                    error: function () {
+                        alert("Error occured!!")
+                    }
+                });
+            });
+        })
+    </script>
 </body>
 </html>

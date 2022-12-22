@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/Content/custom/Search_Detail.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <title>Search_Detail</title>
+    <title>Search Detail</title>
     <style>
         input[type="range"] {
             position: absolute;
@@ -74,7 +74,7 @@
                         }
                         else
                         {
-                            <a href="~/ACCOUNT/SignUpCustomer" class="app__nav-item-link">Sign Up</a>
+                            <a href="~/ACCOUNT/SignIn" class="app__nav-item-link">Sign In</a>
                         }
                     </li>
                 </ul>
@@ -517,12 +517,34 @@
             $('.room').on('click', 'button', function () {
                 let statusLogin = $('.app__nav-list .app__nav-item:last-child .app__nav-item-link').html();
 
-                if (statusLogin === "Sign Up") {
+                if (statusLogin === "Sign In") {
                     $(this).parent().parent().parent().find('span:last-child').removeClass('d-none');
 
                     setTimeout(() => {
                         window.location.replace("https://localhost:44306/ACCOUNT/SignIn");
                     }, "1500");
+                } else {
+                    $.ajax({
+                    type: "POST",
+                    url: "/Homepage/SendReservationInfo",
+                    data: {
+                        values: [
+                            @searchProperty[0],
+                            $('#app__check-in').val(),
+                            $('#app__check-out').val(),
+                            $(this).parent().parent().parent().parent().find('img').attr('alt'),
+                        ]
+                    },
+                    datatype: "json",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        /*console.log(data.values)*/
+                        window.location.replace("https://localhost:44306/CUSTOMER/Reservation");
+                    },
+                    error: function () {
+                        alert("Error occured!!!");
+                    }
+                });
                 }
             })
         });

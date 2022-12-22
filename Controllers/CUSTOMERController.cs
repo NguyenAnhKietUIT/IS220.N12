@@ -12,6 +12,7 @@ namespace IS220.N12.Controllers
     public class CUSTOMERController : Controller
     {
         HotelBookingContext context = new HotelBookingContext();
+        LinqDataContext ldc = new LinqDataContext();
         // GET: CUSTOMER
         public ActionResult Index()
         {
@@ -48,22 +49,7 @@ namespace IS220.N12.Controllers
         {
             var customer = Session["Customer"] as CUSTOMER;
 
-            var query = from r in context.ROOMs
-                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
-                        join re in context.RESERVATIONs on r.RoomID equals re.RoomID
-                        where re.CustomerID == customer.CustomerID
-                        && DateTime.Compare((DateTime)re.CheckIn, DateTime.Now) > 0
-                        && re.Status_Reservation == 1
-                        select new
-                        {
-                            imageRoom = r.Image_Room,
-                            propertyName = p.PropertyName,
-                            roomName = r.RoomName,
-                            checkInTime = p.CheckInTime,
-                            checkInDate = re.CheckIn,
-                            total = (long)re.Total,
-                            typeRoom = r.TypeOfRoom
-                        };
+            var result = ldc.UPCOMMING(customer.CustomerID);
 
             List<string> imageRoom = new List<string>();
             List<string> propertyName = new List<string>();
@@ -73,15 +59,15 @@ namespace IS220.N12.Controllers
             List<string> total = new List<string>();
             List<string> typeRoom = new List<string>();
 
-            foreach (var kq in query)
+            foreach (var item in result)
             {
-                imageRoom.Add(kq.imageRoom);
-                propertyName.Add(kq.propertyName);
-                roomName.Add(kq.roomName);
-                checkInTime.Add(kq.checkInTime);
-                checkInDate.Add(((DateTime)kq.checkInDate).ToString("MM/dd/yyyy"));
-                total.Add(kq.total.ToString());
-                typeRoom.Add(kq.typeRoom);
+                imageRoom.Add(item.Image_Room);
+                propertyName.Add(item.PropertyName);
+                roomName.Add(item.RoomName);
+                checkInTime.Add(item.CheckInTime);
+                checkInDate.Add(((DateTime)item.CheckIn).ToString("MM/dd/yyyy"));
+                total.Add(item.Total.ToString());
+                typeRoom.Add(item.TypeOfRoom);
             }
             return Json(new
             {
@@ -104,7 +90,7 @@ namespace IS220.N12.Controllers
                         join p in context.PROPERTies on r.PropertyID equals p.PropertyID
                         join re in context.RESERVATIONs on r.RoomID equals re.RoomID
                         where re.CustomerID == customer.CustomerID
-                        && DateTime.Compare((DateTime)re.CheckIn, DateTime.Now) <= 0
+                        && DateTime.Compare((DateTime)re.CheckOut, DateTime.Now) <= 0
                         && statusPast.Contains(re.Status_Reservation)
                         select new
                         {
@@ -494,6 +480,88 @@ namespace IS220.N12.Controllers
                 timeComment
             });
         }
+
+        public JsonResult GetInfoReservation(string[] values)
+        {
+            int propertyID = Convert.ToInt32(values[0]);
+            int roomID = Convert.ToInt32(values[1]);
+
+            var query = (from r in context.ROOMs
+                        join p in context.PROPERTies on r.PropertyID equals p.PropertyID
+                        where r.RoomID == roomID && r.PropertyID == propertyID
+                        select new
+                        {
+                            typeRoom = r.TypeOfRoom,
+                            roomName = r.RoomName,
+                            price = r.Price,
+                            image = r.Image_Room,
+                            typeProperty = p.TypeName,
+                            propertyName = p.PropertyName,
+                            address = p.Address_Property,
+                            checkInTime = p.CheckInTime,
+                            checkOutTime = p.CheckOutTime,
+                        }).FirstOrDefault();
+
+            string typeRoom = query.typeRoom;
+            string roomName = query.roomName;
+            int price = Convert.ToInt32(query.price);
+            string image = query.image;
+            string typeProperty = query.typeProperty;
+            string propertyName = query.propertyName;
+            string address = query.address;
+            string checkInTime = query.checkInTime;
+            string checkOutTime = query.checkOutTime;
+
+            var query2 = (from e in context.EVALUATE_PROPERTY
+                          where e.PropertyID == propertyID
+                          select e.Point).Average();
+
+            double averagePoint = query2;
+            return Json(new {
+                typeRoom,
+                roomName,
+                price,
+                image, 
+                typeProperty,
+                propertyName, 
+                address,
+                checkInTime,
+                checkOutTime,
+                averagePoint,
+            });
+        }
+
+        public JsonResult CreateReservation(string[] values)
+        {
+            var customer = Session["Customer"] as CUSTOMER;
+            bool isSuccess = false;
+            if(customer.Status_Account == 1)
+            {
+                try
+                {
+                    RESERVATION reservation = new RESERVATION();
+                    reservation.CustomerID = customer.CustomerID;
+                    reservation.RoomID = Convert.ToInt32(values[0]);
+                    reservation.NameCheckInPerson = values[1];
+                    reservation.PhoneCheckInPerson = values[2];
+                    reservation.CheckIn = DateTime.ParseExact(values[3], "yyyy-MM-dd", null);
+                    reservation.CheckOut = DateTime.ParseExact(values[4], "yyyy-MM-dd", null);
+                    reservation.Total = Convert.ToDecimal(values[5]);
+                    reservation.Status_Reservation = 1;
+
+                    context.RESERVATIONs.Add(reservation);
+                    context.SaveChanges();
+
+                    isSuccess = true;
+                } catch
+                {
+                    isSuccess = false;
+                }
+            }
+
+            return Json(new { isSuccess });
+        }
+
         // GET: CUSTOMER/Details/5
         public ActionResult Details(int id)
         {
