@@ -101,7 +101,9 @@
             <button class="btn btn-secondary mt-1" style="width: 120px;">Choose file</button>
         </div>
 
-        <img src="" alt="Image Room" id="img-room" hidden class="mt-2">
+        <div>
+            <img src="" alt="" id="img-room" hidden class="mt-2">
+        </div>
 
         <button type="button" class="btn btn-primary mt-4 px-4">Save</button>
     </div>
@@ -119,13 +121,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="d-none room-id">@item.RoomID</td>
+                <td class="d-none">@item.RoomID</td>
                 <td>@item.RoomName</td>
                 <td>@item.TypeOfRoom</td>
                 <td>@item.BedNum</td>
-                <td><span>@item.Price</span> VND</td>
+                <td><span>@Convert.ToInt32(item.Price)</span> VND</td>
                 <td>
-                    <img src="@item.Image_Room" alt="Image Room">
+                    <img src="@item.Image_Room" alt="">
                 </td>
                 <td>
                     <button type="button" class="btn btn-info">Update</button>
@@ -158,6 +160,7 @@
             typeRoom.value = array[2].textContent;
             bedNum.value = array[3].textContent;
             price.value = parseInt(array[4].textContent);
+            imageRoom.alt = array[0].textContent;
             imageRoom.src = array[5].getElementsByTagName("img")[0].currentSrc;
             imageRoom.removeAttribute("hidden");
             imageRoom.style.display = "block";
@@ -174,23 +177,19 @@
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $('#img-room').attr('src', fileUrl);
+                $('#img-room').attr('display', 'inherit');
+                $('#img-room').attr('width', '300px');
+                $('#img-room').attr('height', '200px');
             }
             finder.popup();
         });
 
-        $('.btn.btn-primary').click(function () {
+        function handleRoom(array) {
             $.ajax({
                 type: "POST",
                 url: "/Property/UpdateRoom",
                 data: {
-                    values: [
-                        $('.room-id').html(),
-                        $('#room-name').val(),
-                        $('#type-room').find(":selected").val(),
-                        $('#bed-num').val(),
-                        $('#price').val(),
-                        $('#img-room').attr('src')
-                    ]
+                    values: array
                 },
                 datatype: "json",
                 contentType: 'application/x-www-form-urlencoded',
@@ -203,6 +202,29 @@
                     alert("Error occured!!!");
                 }
             });
+        }
+
+        $('.btn.btn-primary').click(function () {
+            if ($('#img-room').attr('alt') == "") { // add room
+                let array = [
+                    $('#room-name').val(),
+                    $('#type-room').find(":selected").val(),
+                    $('#bed-num').val(),
+                    $('#price').val(),
+                    $('#img-room').attr('src')
+                ];
+                handleRoom(array);
+            } else { // update room
+                let array = [
+                    $('#img-room').attr('alt'),
+                    $('#room-name').val(),
+                    $('#type-room').find(":selected").val(),
+                    $('#bed-num').val(),
+                    $('#price').val(),
+                    $('#img-room').attr('src')
+                ];
+                handleRoom(array);
+            }
         });
 
         $('.btn.btn-danger').click(function () {
@@ -211,7 +233,7 @@
                 url: "/Property/DeleteRoom",
                 data: {
                     values: [
-                        $('.room-id').html()
+                        $(this).parent().parent().find('td').eq(0).html()
                     ]
                 },
                 datatype: "json",

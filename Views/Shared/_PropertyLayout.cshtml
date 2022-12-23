@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="~/Content/custom/base.css" />
     <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Assets/font-awesome/css/all.min.css" />
+    <link rel="icon" href="~/Assets/img/favicon.png" type="image/x-icon" />
     <title>@ViewBag.Title</title>
     <style>
         * {
@@ -298,14 +299,13 @@
         <div class="app__inbox">
             <div class="row m-0 h-100 overflow-auto">
                 <div class="col-4" style="border-right: 1px solid #ccc;">
-                    <ul class="list-unstyled"></ul>
+                    <ul class="list-unstyled list-inbox"></ul>
                 </div>
                 <div class="col-8 app__inbox-message"></div>
             </div>
         </div>
     </div>
 
-    <script src="~/Scripts/custom/Inbox.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -325,7 +325,7 @@
                                             </li>`;
                         };
 
-                        $('.list-unstyled').append(html);
+                        $('.list-inbox').append(html);
                     },
                     error: function () {
                         alert("Error occured!!!");
@@ -348,6 +348,31 @@
                     }
                 });
             });
+
+            $('.app__inbox').on('click', '.app__inbox-item', function () {
+                $(this).css('background-color', 'white');
+
+                let html = `
+                            <div class="app__inbox-message-header">
+                                <p class="px-3 py-2 app__inbox-message-title">${$('.app__inbox-item-title').html()}</p>
+                                <button class="me-3 px-3 app__inbox-message-reply">Reply</button>
+                            </div>
+
+                            <div class="px-3 py-2 d-flex flex-column justify-content-between" style="height: calc(100vh - 56px);">
+                                <p class="app__inbox-message-main">${$('.app__inbox-item-content').html()}</p>
+
+                                <div class="justify-content-between app__inbox-message-send">
+                                    <textarea name="app__inbox-message-textarea" id="app__inbox-message-textarea" cols="30" rows="8" placeholder="Enter message"></textarea>
+                                    <input type="submit" value="Send" class="app__inbox-message-input px-3">
+                                </div>
+                            </div>`;
+
+                $('.app__inbox-message').html(html);
+            });
+
+            $('.app__inbox').on('click', '.app__inbox-message-reply', function () {
+                $('.app__inbox-message-send').css('display', 'flex');
+            })
         })
     </script>
 </body>

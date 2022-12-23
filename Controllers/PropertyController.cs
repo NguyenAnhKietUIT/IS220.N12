@@ -237,13 +237,25 @@ namespace IS220.N12.Controllers
         {
             var property = Session["Property"] as PROPERTY;
             ROOM r = new ROOM();
-            r.RoomID = Convert.ToInt32(values[0]);
-            r.RoomName = values[1];
-            r.TypeOfRoom = values[2];
-            r.BedNum = Convert.ToInt32(values[3]);
-            r.Price = Convert.ToDecimal(values[4]);
-            r.Image_Room = values[5];
-            r.PropertyID = property.PropertyID;
+            if (values.Length == 5)
+            {
+                r.RoomID = -1;
+                r.RoomName = values[0];
+                r.TypeOfRoom = values[1];
+                r.BedNum = Convert.ToInt32(values[2]);
+                r.Price = Convert.ToDecimal(values[3]);
+                r.Image_Room = values[4];
+                r.PropertyID = property.PropertyID;
+            } else
+            {
+                r.RoomID = Convert.ToInt32(values[0]);
+                r.RoomName = values[1];
+                r.TypeOfRoom = values[2];
+                r.BedNum = Convert.ToInt32(values[3]);
+                r.Price = Convert.ToDecimal(values[4]);
+                r.Image_Room = values[5];
+                r.PropertyID = property.PropertyID;
+            }
 
             ROOMDao dao = new ROOMDao();
             bool isSuccess = dao.UpdateRoom(r);

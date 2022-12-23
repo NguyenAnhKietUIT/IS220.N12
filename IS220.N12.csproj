@@ -1130,7 +1130,6 @@
     <Content Include="Content\custom\Search.css" />
     <Content Include="Content\custom\Search_Detail.css" />
     <Content Include="Scripts\custom\Exists.js" />
-    <Content Include="Scripts\custom\Inbox.js" />
     <Content Include="Content\custom\sign_in.css" />
     <Content Include="Content\custom\sign_up.css" />
     <Content Include="Content\PagedList.css" />

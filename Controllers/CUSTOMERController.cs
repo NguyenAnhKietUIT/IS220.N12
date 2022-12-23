@@ -56,7 +56,7 @@ namespace IS220.N12.Controllers
             List<string> roomName = new List<string>();
             List<string> checkInTime = new List<string>();
             List<string> checkInDate = new List<string>();
-            List<string> total = new List<string>();
+            List<int> total = new List<int>();
             List<string> typeRoom = new List<string>();
 
             foreach (var item in result)
@@ -66,7 +66,7 @@ namespace IS220.N12.Controllers
                 roomName.Add(item.RoomName);
                 checkInTime.Add(item.CheckInTime);
                 checkInDate.Add(((DateTime)item.CheckIn).ToString("MM/dd/yyyy"));
-                total.Add(item.Total.ToString());
+                total.Add(Convert.ToInt32(item.Total));
                 typeRoom.Add(item.TypeOfRoom);
             }
             return Json(new
