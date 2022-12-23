@@ -186,7 +186,7 @@
         $('table').on('click', '.btn.btn-info', function () {
             $(this).prop('disabled', true);
             $(this).parent().find('button.btn.btn-success').prop('disabled', false);
-            $(this).parent().parent().find('td').eq(5).find('select').prop('disabled', false);
+            $(this).parent().parent().find('td').eq(4).find('select').prop('disabled', false);
         });
 
         $('table').on('click', '.btn.btn-success', function () {
@@ -196,7 +196,7 @@
                 data: {
                     values: [
                         $(this).parent().parent().find('td').eq(0).find('p').html(),
-                        $(this).parent().parent().find('td').eq(5).find('select').find(':selected').val()
+                        $(this).parent().parent().find('td').eq(4).find('select').find(':selected').val()
                     ]
                 },
                 datatype: "json",

@@ -430,8 +430,8 @@
                 success: function (data) {
                     if (data.update) {
                         alert("Successfully changed!!!");
-                        $('.button-handle button:last-child').prop('disabled', true);
                         $('.button-handle button:first-child').prop('disabled', false);
+                        $('.button-handle button:last-child').prop('disabled', true);
                     }
                 },
                 error: function () {

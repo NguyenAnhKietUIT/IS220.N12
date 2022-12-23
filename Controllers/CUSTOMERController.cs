@@ -552,6 +552,7 @@ namespace IS220.N12.Controllers
                     context.RESERVATIONs.Add(reservation);
                     context.SaveChanges();
 
+                    Session["SearchProperty"] = null;
                     isSuccess = true;
                 } catch
                 {
