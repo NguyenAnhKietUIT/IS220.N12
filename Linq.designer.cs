@@ -184,6 +184,34 @@ namespace IS220.N12
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), start, end, proID);
 			return ((ISingleResult<STATISTICYEAR_FULLResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PROPERTY_RESERVATION_BASIC")]
+		public ISingleResult<PROPERTY_RESERVATION_BASICResult> PROPERTY_RESERVATION_BASIC([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Choice", DbType="Int")] System.Nullable<int> choice, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), proID, choice, start, end);
+			return ((ISingleResult<PROPERTY_RESERVATION_BASICResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PROPERTY_RESERVATION_TYPEROOM")]
+		public ISingleResult<PROPERTY_RESERVATION_TYPEROOMResult> PROPERTY_RESERVATION_TYPEROOM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Choice", DbType="Int")] System.Nullable<int> choice, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Start", DbType="SmallDateTime")] System.Nullable<System.DateTime> start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="End", DbType="SmallDateTime")] System.Nullable<System.DateTime> end, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TypeRoom", DbType="VarChar(255)")] string typeRoom)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), proID, choice, start, end, typeRoom);
+			return ((ISingleResult<PROPERTY_RESERVATION_TYPEROOMResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LIST_RATES_FILTER")]
+		public ISingleResult<LIST_RATES_FILTERResult> LIST_RATES_FILTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TypeRoom", DbType="VarChar(255)")] string typeRoom, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StatusRoom", DbType="Int")] System.Nullable<int> statusRoom)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), proID, typeRoom, statusRoom);
+			return ((ISingleResult<LIST_RATES_FILTERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LIST_RATES")]
+		public ISingleResult<LIST_RATESResult> LIST_RATES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProID", DbType="Int")] System.Nullable<int> proID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), proID);
+			return ((ISingleResult<LIST_RATESResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SERVICE_SUPPLIED")]
@@ -1493,6 +1521,434 @@ namespace IS220.N12
 				if ((this._total != value))
 				{
 					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PROPERTY_RESERVATION_BASICResult
+	{
+		
+		private int _ReservationID;
+		
+		private int _BedNum;
+		
+		private System.Nullable<System.DateTime> _CheckIn;
+		
+		private System.Nullable<System.DateTime> _CheckOut;
+		
+		private string _TypeOfRoom;
+		
+		private int _Status_Reservation;
+		
+		private System.Nullable<decimal> _Total;
+		
+		public PROPERTY_RESERVATION_BASICResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationID", DbType="Int NOT NULL")]
+		public int ReservationID
+		{
+			get
+			{
+				return this._ReservationID;
+			}
+			set
+			{
+				if ((this._ReservationID != value))
+				{
+					this._ReservationID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BedNum", DbType="Int NOT NULL")]
+		public int BedNum
+		{
+			get
+			{
+				return this._BedNum;
+			}
+			set
+			{
+				if ((this._BedNum != value))
+				{
+					this._BedNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckIn", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CheckIn
+		{
+			get
+			{
+				return this._CheckIn;
+			}
+			set
+			{
+				if ((this._CheckIn != value))
+				{
+					this._CheckIn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckOut", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CheckOut
+		{
+			get
+			{
+				return this._CheckOut;
+			}
+			set
+			{
+				if ((this._CheckOut != value))
+				{
+					this._CheckOut = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfRoom", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TypeOfRoom
+		{
+			get
+			{
+				return this._TypeOfRoom;
+			}
+			set
+			{
+				if ((this._TypeOfRoom != value))
+				{
+					this._TypeOfRoom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_Reservation", DbType="Int NOT NULL")]
+		public int Status_Reservation
+		{
+			get
+			{
+				return this._Status_Reservation;
+			}
+			set
+			{
+				if ((this._Status_Reservation != value))
+				{
+					this._Status_Reservation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PROPERTY_RESERVATION_TYPEROOMResult
+	{
+		
+		private int _ReservationID;
+		
+		private int _BedNum;
+		
+		private System.Nullable<System.DateTime> _CheckIn;
+		
+		private System.Nullable<System.DateTime> _CheckOut;
+		
+		private string _TypeOfRoom;
+		
+		private int _Status_Reservation;
+		
+		private System.Nullable<decimal> _Total;
+		
+		public PROPERTY_RESERVATION_TYPEROOMResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationID", DbType="Int NOT NULL")]
+		public int ReservationID
+		{
+			get
+			{
+				return this._ReservationID;
+			}
+			set
+			{
+				if ((this._ReservationID != value))
+				{
+					this._ReservationID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BedNum", DbType="Int NOT NULL")]
+		public int BedNum
+		{
+			get
+			{
+				return this._BedNum;
+			}
+			set
+			{
+				if ((this._BedNum != value))
+				{
+					this._BedNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckIn", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CheckIn
+		{
+			get
+			{
+				return this._CheckIn;
+			}
+			set
+			{
+				if ((this._CheckIn != value))
+				{
+					this._CheckIn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckOut", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CheckOut
+		{
+			get
+			{
+				return this._CheckOut;
+			}
+			set
+			{
+				if ((this._CheckOut != value))
+				{
+					this._CheckOut = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfRoom", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TypeOfRoom
+		{
+			get
+			{
+				return this._TypeOfRoom;
+			}
+			set
+			{
+				if ((this._TypeOfRoom != value))
+				{
+					this._TypeOfRoom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_Reservation", DbType="Int NOT NULL")]
+		public int Status_Reservation
+		{
+			get
+			{
+				return this._Status_Reservation;
+			}
+			set
+			{
+				if ((this._Status_Reservation != value))
+				{
+					this._Status_Reservation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class LIST_RATES_FILTERResult
+	{
+		
+		private System.Nullable<int> _Quantity;
+		
+		private string _TypeOfRoom;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private int _Status_Reservation;
+		
+		public LIST_RATES_FILTERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfRoom", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TypeOfRoom
+		{
+			get
+			{
+				return this._TypeOfRoom;
+			}
+			set
+			{
+				if ((this._TypeOfRoom != value))
+				{
+					this._TypeOfRoom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_Reservation", DbType="Int NOT NULL")]
+		public int Status_Reservation
+		{
+			get
+			{
+				return this._Status_Reservation;
+			}
+			set
+			{
+				if ((this._Status_Reservation != value))
+				{
+					this._Status_Reservation = value;
+				}
+			}
+		}
+	}
+	
+	public partial class LIST_RATESResult
+	{
+		
+		private System.Nullable<int> _Quantity;
+		
+		private string _TypeOfRoom;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private int _Status_Reservation;
+		
+		public LIST_RATESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfRoom", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TypeOfRoom
+		{
+			get
+			{
+				return this._TypeOfRoom;
+			}
+			set
+			{
+				if ((this._TypeOfRoom != value))
+				{
+					this._TypeOfRoom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_Reservation", DbType="Int NOT NULL")]
+		public int Status_Reservation
+		{
+			get
+			{
+				return this._Status_Reservation;
+			}
+			set
+			{
+				if ((this._Status_Reservation != value))
+				{
+					this._Status_Reservation = value;
 				}
 			}
 		}

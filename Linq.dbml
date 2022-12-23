@@ -171,4 +171,55 @@
       <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.PROPERTY_RESERVATION_BASIC" Method="PROPERTY_RESERVATION_BASIC">
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Choice" Parameter="choice" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <ElementType Name="PROPERTY_RESERVATION_BASICResult">
+      <Column Name="ReservationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BedNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CheckIn" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CheckOut" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Status_Reservation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PROPERTY_RESERVATION_TYPEROOM" Method="PROPERTY_RESERVATION_TYPEROOM">
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Choice" Parameter="choice" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Start" Parameter="start" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="End" Parameter="end" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="TypeRoom" Parameter="typeRoom" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="PROPERTY_RESERVATION_TYPEROOMResult">
+      <Column Name="ReservationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BedNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CheckIn" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CheckOut" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Status_Reservation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LIST_RATES_FILTER" Method="LIST_RATES_FILTER">
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TypeRoom" Parameter="typeRoom" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="StatusRoom" Parameter="statusRoom" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LIST_RATES_FILTERResult">
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Status_Reservation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LIST_RATES" Method="LIST_RATES">
+    <Parameter Name="ProID" Parameter="proID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LIST_RATESResult">
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeOfRoom" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Status_Reservation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

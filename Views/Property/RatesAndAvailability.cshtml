@@ -31,6 +31,15 @@
     tr:nth-child(n + 2) {
         border-width: 1px;
     }
+
+    .table-bordered > :not(caption) > * {
+        border-width: 1px;
+    }
+
+    table td {
+        border: 1px solid #c8c8c8;
+        padding: 8px;
+    }
 </style>
 
 <div class="app__content-main">
@@ -38,68 +47,148 @@
         <div class="mt-5 d-flex justify-content-between">
             <select name="select-room" id="select-room">
                 <option value="">Types of room</option>
-                <option value="standard">Standard</option>
-                <option value="supervisor">Supervisor</option>
-                <option value="deluxe">Deluxe</option>
+                <option value="Standard">Standard</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Deluxe">Deluxe</option>
             </select>
 
             <select name="select-status" id="select-status" class="ms-3">
                 <option value="">Room status</option>
-                <option value="booked">Booked</option>
-                <option value="checked-in">Checked in</option>
-                <option value="checked-out">Checked out</option>
-                <option value="canceled">Canceled</option>
-                <option value="no-show">No show</option>
+                <option value="1">Booked</option>
+                <option value="2">Checked out</option>
+                <option value="3">Live in</option>
+                <option value="4">Canceled</option>
+                <option value="5">No show</option>
             </select>
 
-            <input type="date" name="input-date" id="input-date" class="ms-3">
-
-            <button class="ms-3 btn-clear">Clear filters</button>
+            <button class="ms-3 btn-clear">Filter</button>
             <div style="flex: 1;"></div>
         </div>
 
-        <table class="table mt-5">
+        <table class="table mt-5 table-bordered">
             <tr>
                 <th>Quantity</th>
                 <th>Room types</th>
-                <th>Standard rates</th>
+                <th>Average rates</th>
                 <th>Room status</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Standard</td>
-                <td>320000 VND</td>
-                <td>Booked</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Supervisor</td>
-                <td>320000 VND</td>
-                <td>Checked in</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Deluxe</td>
-                <td>320000 VND</td>
-                <td>No show</td>
             </tr>
         </table>
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    const roomFilter = document.getElementById('select-room')
-    const statusFilter = document.getElementById('select-status')
-    const dateFilter = document.getElementById('input-date')
-    const buttonClearFilter = document.querySelector('.btn-clear')
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Property/GetRates",
+            data: {},
+            datatype: "json",
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+                let html = "";
 
-    function clearFilter() {
-        buttonClearFilter.addEventListener('click', () => {
-            roomFilter.value = ""
-            statusFilter.value = ""
-            dateFilter.value = null
-        })
-    }
+                for (let i = 0; i < data.quantities.length; i++) {
+                    html += `
+                            <tr>
+                                <td>${data.quantities[i]}</td>
+                                <td>${data.type[i]}</td>
+                                <td>${data.avgPrice[i]} VND</td>
+                                <td>`;
 
-    clearFilter()
+                    switch (data.status[i]) {
+                        case 1: {
+                            html += `Booked`;
+                            break;
+                        }
+                        case 2: {
+                            html += `Checked out`;
+                            break;
+                        }
+                        case 3: {
+                            html += `Live in`;
+                            break;
+                        }
+                        case 4: {
+                            html += `Cancelled`;
+                            break;
+                        }
+                        case 5: {
+                            html += `No show`;
+                            break;
+                        }
+                    }
+
+                    html += `</td>
+                    </tr>`;
+                }
+
+                $('.table').append(html);
+            },
+            error: function () {
+                alert("Error occured!!!");
+            }
+        });
+
+        $('.btn-clear').click(function () {
+            let typeRoom = $('#select-room').find(':selected').val();
+            let status = $('#select-status').find(':selected').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Property/GetRatesFilter",
+                data: {
+                    values: [typeRoom, status]
+                },
+                datatype: "json",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (data) {
+                    let html = `<tr>
+                                    <th class="p-2" style="color: white;background-color: #08536B">Quantity</th>
+                                    <th class="p-2" style="color: white;background-color: #08536B">Room types</th>
+                                    <th class="p-2" style="color: white;background-color: #08536B">Average rates</th>
+                                    <th class="p-2" style="color: white;background-color: #08536B">Room status</th>
+                                </tr>`;
+                    
+                    for (let i = 0; i < data.quantities.length; i++) {
+                        html += `<tr>
+                                    <td>${data.quantities[i]}</td>
+                                    <td>${data.type[i]}</td>
+                                    <td>${data.avgPrice[i]} VND</td>`;
+
+                        switch (data.status[i]) {
+                            case 1: {
+                                html += `<td>Booked</td>`;
+                                break;
+                            }
+                            case 2: {
+                                html += `<td>Checked out</td>`;
+                                break;
+                            }
+                            case 3: {
+                                html += `<td>Live in</td>`;
+                                break;
+                            }
+                            case 4: {
+                                html += `<td>Cancelled</td>`;
+                                break;
+                            }
+                            case 5: {
+                                html += `<td>No show</td>`;
+                                break;
+                            }
+                        }
+
+                        html += `</tr>`;
+                    }
+
+                    console.log(html)
+                    $('.table').html(html);
+                },
+                error: function () {
+                    alert("Error occured!!!");
+                }
+            });
+        });
+    })
 </script>

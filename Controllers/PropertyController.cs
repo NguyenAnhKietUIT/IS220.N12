@@ -327,6 +327,61 @@ namespace IS220.N12.Controllers
             return View();
         }
 
+        public JsonResult GetRates()
+        {
+            var property = Session["Property"] as PROPERTY;
+            var query = ldc.LIST_RATES(property.PropertyID);
+
+            List<int> quantities = new List<int>();
+            List<string> type = new List<string>();
+            List<double> avgPrice = new List<double>();
+            List<int> status = new List<int>();
+
+            foreach(var item in query)
+            {
+                quantities.Add(Convert.ToInt32(item.Quantity));
+                type.Add(item.TypeOfRoom);
+                avgPrice.Add(Convert.ToDouble(item.Price));
+                status.Add(item.Status_Reservation);
+            }
+
+            return Json(new {
+                quantities, 
+                type, 
+                avgPrice, 
+                status
+            });
+        }
+
+        public JsonResult GetRatesFilter(string[] values)
+        {
+            var property = Session["Property"] as PROPERTY;
+            string typeRoom = values[0];
+            int statusInput = Convert.ToInt32(values[1]);
+            var query = ldc.LIST_RATES_FILTER(property.PropertyID, typeRoom, statusInput);
+
+            List<int> quantities = new List<int>();
+            List<string> type = new List<string>();
+            List<double> avgPrice = new List<double>();
+            List<int> status = new List<int>();
+
+            foreach (var item in query)
+            {
+                quantities.Add(Convert.ToInt32(item.Quantity));
+                type.Add(item.TypeOfRoom);
+                avgPrice.Add(Convert.ToDouble(item.Price));
+                status.Add(item.Status_Reservation);
+            }
+
+            return Json(new
+            {
+                quantities,
+                type,
+                avgPrice,
+                status
+            });
+        }
+
         public ActionResult Manage_Reservation()
         {
             return View();
@@ -382,6 +437,83 @@ namespace IS220.N12.Controllers
             RESERVATIONDao dao = new RESERVATIONDao();
             bool isSuccess = dao.UpdateStatus(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
             return Json(new { isSuccess });
+        }
+
+        public JsonResult SearchBasic(string[] values)
+        {
+            var property = Session["Property"] as PROPERTY;
+            int choice = Convert.ToInt32(values[0]);
+            DateTime from = DateTime.ParseExact(values[1], "yyyy-MM-dd", null);
+            DateTime until = DateTime.ParseExact(values[2], "yyyy-MM-dd", null);
+            var query = ldc.PROPERTY_RESERVATION_BASIC(property.PropertyID, choice, from, until);
+
+            List<int> reservationIDs = new List<int>();
+            List<int> bedNums = new List<int>();
+            List<string> checkIns = new List<string>();
+            List<string> checkOuts = new List<string>();
+            List<string> typeRooms = new List<string>();
+            List<int> status = new List<int>();
+            List<int> totals = new List<int>();
+
+            foreach (var item in query)
+            {
+                reservationIDs.Add(item.ReservationID);
+                bedNums.Add(item.BedNum);
+                checkIns.Add(((DateTime)item.CheckIn).ToString("MM/dd/yyyy"));
+                checkOuts.Add(((DateTime)item.CheckOut).ToString("MM/dd/yyyy"));
+                typeRooms.Add(item.TypeOfRoom);
+                status.Add(item.Status_Reservation);
+                totals.Add(Convert.ToInt32(item.Total));
+            }
+            return Json(new
+            {
+                reservationIDs,
+                bedNums,
+                checkIns,
+                checkOuts,
+                typeRooms,
+                status,
+                totals
+            });
+        }
+
+        public JsonResult SearchByType(string[] values)
+        {
+            var property = Session["Property"] as PROPERTY;
+            int choice = Convert.ToInt32(values[0]);
+            DateTime from = DateTime.ParseExact(values[1], "yyyy-MM-dd", null);
+            DateTime until = DateTime.ParseExact(values[2], "yyyy-MM-dd", null);
+            string type = values[3];
+            var query = ldc.PROPERTY_RESERVATION_TYPEROOM(property.PropertyID, choice, from, until, type);
+
+            List<int> reservationIDs = new List<int>();
+            List<int> bedNums = new List<int>();
+            List<string> checkIns = new List<string>();
+            List<string> checkOuts = new List<string>();
+            List<string> typeRooms = new List<string>();
+            List<int> status = new List<int>();
+            List<int> totals = new List<int>();
+
+            foreach (var item in query)
+            {
+                reservationIDs.Add(item.ReservationID);
+                bedNums.Add(item.BedNum);
+                checkIns.Add(((DateTime)item.CheckIn).ToString("MM/dd/yyyy"));
+                checkOuts.Add(((DateTime)item.CheckOut).ToString("MM/dd/yyyy"));
+                typeRooms.Add(item.TypeOfRoom);
+                status.Add(item.Status_Reservation);
+                totals.Add(Convert.ToInt32(item.Total));
+            }
+            return Json(new
+            {
+                reservationIDs,
+                bedNums,
+                checkIns,
+                checkOuts,
+                typeRooms,
+                status,
+                totals
+            });
         }
 
         public ActionResult Manage_Review()
