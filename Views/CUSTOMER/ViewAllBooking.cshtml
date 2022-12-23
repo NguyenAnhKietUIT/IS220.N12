@@ -108,7 +108,7 @@
                 datatype: "json",
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (data) {
-                    if (data) {
+                    if (data.msg) {
                         window.location.replace("https://localhost:44306/CUSTOMER/Detail_Booking");
                     }
                 },

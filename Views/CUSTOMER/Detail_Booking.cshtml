@@ -89,7 +89,8 @@
     <header class="app__header">
         <nav class="app__nav container">
             <a href="~/Homepage/Index" class="app__nav-name-link">
-                <img src="../assets/img/logo.png" alt="Logo" class="app__nav-name-icon">
+                <img src="../assets/img/logo.png" alt="@detailBooking[0]" class="app__nav-name-icon">
+                <img hidden alt="@detailBooking[1]" id="room-name"/>
             </a>
 
             <ul class="app__nav-list hide-on-mobile-tablet">
@@ -109,15 +110,13 @@
     <div class="container" style="height: 250px;"></div>
 
     <script>
-        const propertyName = '@detailBooking[0]';
-        const roomName = '@detailBooking[1]';
         var reservationID;
 
         $.ajax({
                 type: "POST",
                 url: "/CUSTOMER/GetDetailBooking",
                 data: {
-                    values: [propertyName, roomName]
+                    values: [$('.app__nav-name-icon').attr('alt'), $('#room-name').attr('alt')]
                 },
                 datatype: "json",
                 contentType: 'application/x-www-form-urlencoded',
