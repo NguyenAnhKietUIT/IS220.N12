@@ -142,6 +142,7 @@
                 let html = `
                             <table id="table-customer" class="table mb-2">
                                 <tr>
+                                    <th class="d-none"></th>
                                     <th>Customer Name</th>
                                     <th>Country</th>
                                     <th>Phone</th>
@@ -155,6 +156,7 @@
                 for (let i = 0; i < data.customers.length; i++) {
                     html += `
                             <tr>
+                                <td class="d-none">${data.customers[i].CustomerID}</td>
                                 <td>${data.customers[i].CustomerName}</td>
                                 <td>${data.customers[i].Country}</td>
                                 <td>${data.customers[i].Phone}</td>
@@ -201,8 +203,24 @@
                         $('.inactive').click(function () {
                             $(this).removeClass('.inactive');
 
-                            $(this).parent().parent().find("td").eq(3).text("Active");
-                            $(this).attr('disabled', true);
+                            $(this).parent().parent().find("td").eq(5).text("Active");
+                            $(this).prop('disabled', true);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/Admin/ActiveAccount",
+                                data: {
+                                    values: [$(this).parent().parent().find("td").eq(0).html()]
+                                },
+                                datatype: "json",
+                                contentType: 'application/x-www-form-urlencoded',
+                                success: function (data) {
+                                    console.log(data.msg);
+                                },
+                                error: function () {
+                                    alert("Error occured!!!");
+                                }
+                            });
                         })
                     })
                 }

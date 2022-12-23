@@ -99,6 +99,16 @@ namespace IS220.N12.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ActiveAccount(string[] values)
+        {
+            int cusID = Convert.ToInt32(values[0]);
+            CUSTOMER customer = context.CUSTOMERs.Find(cusID);
+            customer.Status_Account = 1;
+            context.SaveChanges();
+
+            return Json(new { msg = "Successfully active!!!" });
+        }
+
         // GET Message
         public ActionResult AdminMessage(int page = 1, int pageSize = 8)
         {
