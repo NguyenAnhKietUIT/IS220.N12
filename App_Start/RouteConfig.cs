@@ -18,12 +18,6 @@ namespace IS220.N12
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Homepage", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "Beach",
-                url: "beach",
-                defaults: new { controller = "Beach", action = "Index", id = UrlParameter.Optional }
-            );
         }
     }
 }
