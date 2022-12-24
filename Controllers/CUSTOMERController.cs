@@ -212,7 +212,7 @@ namespace IS220.N12.Controllers
             }
             else if (query.status == 4)
             {
-                status = "Cancelled";
+                status = "Canceled";
             }
             else
             {
